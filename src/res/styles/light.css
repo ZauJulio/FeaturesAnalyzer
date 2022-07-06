@@ -1,0 +1,81 @@
+#parent > QWidget,
+#settingsBox {
+    background: rgb(213, 215, 218);
+    margin: 0rem;
+}
+
+QScrollBar:vertical {
+    border: 1px solid #999999;
+    background: rgb(192, 192, 192);
+    width: 12px;
+    margin: 0px 0px 0px 0px;
+}
+QScrollBar::handle:vertical {
+    background: rgba(79, 87, 110, 0.726);
+    border-radius: 5px;
+    min-height: 0px;
+}
+QScrollBar::add-line:vertical {
+    background: rgb(40, 42, 54);
+    height: 0px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    background: rgb(40, 42, 54);
+    height: 0 px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QGroupBox {
+    font-size: 17px;
+    font-weight: bold;
+    border: 1px solid rgb(102, 120, 131);
+    border-radius: 3px;
+    margin-top: 1.5em;
+    margin-right: 0.3em;
+    background: rgb(245, 245, 245);
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding:  3px 0 3px;
+    font-size: 20px;
+}
+
+QLineEdit,
+QSpinBox,
+QTimeEdit {
+    background: rgb(214, 218, 223);
+}
+
+QComboBox {
+    background-color: rgb(216, 216, 216);
+}
+
+QComboBox::item:selected {
+    background-color: rgb(139, 149, 155);
+}
+
+QPushButton:checked {
+    background-color: rgb(201, 201, 216);
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(55, 177, 86);
+}
+
+QComboBox QAbstractItemView {
+    border: 1px solid grey;
+    border-radius: 5px;
+    background: rgb(129, 145, 155);
+    selection-background-color: rgb(40, 42, 54);
+  }
+
+#pidBox #showIntegralParameters, #betweenButton,
+#showBox #trainButton, #mediumLineButton, #testButton {
+    font-size: 12px;
+    height: 22px;
+}

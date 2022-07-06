@@ -1,0 +1,800 @@
+{
+  "models": {
+    "linear": {
+      "show": true,
+      "outlier": true,
+      "min": {
+        "show": false,
+        "outlier": false
+      },
+      "mean": {
+        "show": false,
+        "outlier": false
+      },
+      "max": {
+        "show": false,
+        "outlier": false
+      }
+    },
+    "ransac": {
+      "show": false,
+      "outlier": false,
+      "min": {
+        "show": false,
+        "outlier": false
+      },
+      "mean": {
+        "show": false,
+        "outlier": false
+      },
+      "max": {
+        "show": false,
+        "outlier": false
+      }
+    },
+    "rlm": {
+      "show": false,
+      "outlier": false,
+      "min": {
+        "show": false,
+        "outlier": false
+      },
+      "mean": {
+        "show": false,
+        "outlier": false
+      },
+      "max": {
+        "show": false,
+        "outlier": false
+      }
+    },
+    "weights": {
+      "show": true,
+      "outlier": false,
+      "min": {
+        "show": false,
+        "outlier": false
+      },
+      "mean": {
+        "show": false,
+        "outlier": false
+      },
+      "max": {
+        "show": false,
+        "outlier": false
+      }
+    },
+    "all": {
+      "min": {
+        "absolute": {
+          "show": false,
+          "outlier": false
+        },
+        "relative": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "mean": {
+        "absolute": {
+          "show": false,
+          "outlier": false
+        },
+        "relative": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "max": {
+        "absolute": {
+          "show": false,
+          "outlier": false
+        },
+        "relative": {
+          "show": false,
+          "outlier": false
+        }
+      }
+    }
+  },
+  "metrics": {
+    "all": {
+      "all": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "MAE": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "RMSE": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "QE": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "MAPE": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      }
+    },
+    "linear": {
+      "all": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "MAE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "RMSE": {
+        "normal": true,
+        "show": true,
+        "outlier": true,
+        "filters": {
+          "savgol": {
+            "show": true,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "QE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "MAPE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      }
+    },
+    "ransac": {
+      "all": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "MAE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "RMSE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "QE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "MAPE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      }
+    },
+    "rlm": {
+      "all": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "MAE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "RMSE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "QE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "MAPE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      }
+    },
+    "weights": {
+      "all": {
+        "min": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "mean": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "max": {
+          "absolute": {
+            "show": false,
+            "outlier": false
+          },
+          "relative": {
+            "show": false,
+            "outlier": false
+          }
+        }
+      },
+      "MAE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "RMSE": {
+        "normal": true,
+        "show": true,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": true,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "QE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      },
+      "MAPE": {
+        "normal": true,
+        "show": false,
+        "outlier": false,
+        "filters": {
+          "savgol": {
+            "show": false,
+            "outlier": false
+          }
+        },
+        "min": {
+          "show": false,
+          "outlier": false
+        },
+        "mean": {
+          "show": false,
+          "outlier": false
+        },
+        "max": {
+          "show": false,
+          "outlier": false
+        }
+      }
+    }
+  },
+  "both": {
+    "min": {
+      "absolute": {
+        "show": false,
+        "outlier": false
+      },
+      "relative": {
+        "show": false,
+        "outlier": false
+      }
+    },
+    "mean": {
+      "absolute": {
+        "show": false,
+        "outlier": false
+      },
+      "relative": {
+        "show": false,
+        "outlier": false
+      }
+    },
+    "max": {
+      "absolute": {
+        "show": false,
+        "outlier": false
+      },
+      "relative": {
+        "show": false,
+        "outlier": false
+      }
+    }
+  }
+}

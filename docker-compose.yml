@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  features-analyzer:
+    container_name: FeaturesAnalyzer
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    devices:
+      - "/dev/dri/card0:/dev/dri/card0"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - TZ=Brazil/East
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - HOME=/root
+      - LANGUAGE=en_US.UTF-8
+      - LANG=en_US.UTF-8
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+    network_mode: host
+    privileged: true

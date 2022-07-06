@@ -1,0 +1,56 @@
+{
+  "data": {
+    "weekday": "segunda",
+    "field": "P1",
+    "trainStart": "2018.1",
+    "trainEnd": "2018.2",
+    "testStart": "2019.1",
+    "testEnd": "2019.2",
+    "hourStart": "20:00",
+    "hourEnd": "23:59",
+    "transformation": "",
+    "splitData": true,
+    "dropInterval": true,
+    "replaceNaN": true,
+    "dataType": "default",
+    "mobileMeanMinutes": 5,
+    "mobileMedianMinutes": 5
+  },
+  "regressions": {
+    "linear": true,
+    "rlm": true,
+    "ransac": true,
+    "linearDegree": 4,
+    "rlmDegree": 4,
+    "ransacDegree": 4
+  },
+  "som": {
+    "clusterize": true,
+    "grid": [
+      3,
+      3
+    ],
+    "cluster": [
+      0,
+      0
+    ],
+    "showActMap": false,
+    "showDistMap": false,
+    "diffClusters": false
+  },
+  "pid": {
+    "sample": "weights",
+    "derivative": false,
+    "integral": false,
+    "fillBetween": false,
+    "showIntegralParameters": false
+  },
+  "show": {
+    "data": "All",
+    "mediumLine": false,
+    "train": false,
+    "test": true,
+    "ColorClassification": true,
+    "TimeLimit": "23:00:00"
+  }
+}
