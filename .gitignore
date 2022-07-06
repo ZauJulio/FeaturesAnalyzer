@@ -14,7 +14,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -130,7 +129,7 @@ dmypy.json
 
 # Data files
 
-src/data/dump/*
-src/data/clusters/*
-src/data/models/*
-src/data/tables/*
+data/dump/*
+data/clusters/*
+data/models/*
+data/tables/*
