@@ -18,7 +18,6 @@ class FeaturesAnalyzer(QWidget):
         super(QWidget, self).__init__()
         super().__init__()
 
-        self.setWindowTitle("Smart Energy: Features Analyzer")
 
         print("""
         ______          _                         _                _
@@ -45,6 +44,7 @@ class FeaturesAnalyzer(QWidget):
         self.core = Core(self, language)
         QMetaObject.connectSlotsByName(self)
         self.showMaximized()
+        self.setWindowTitle("Features Analyzer")
 
     def setTheme(self, darkTheme: bool):
         """  """
