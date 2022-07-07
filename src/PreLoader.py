@@ -1,12 +1,12 @@
 import sys
 
-sys.path.append("../../")
+sys.path.append("../")
+
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtWidgets import QApplication
+from PyQt5 import QtSvg, QtGui
 
 from lib.util.path import bar
-
-from PyQt5 import QtSvg, QtGui
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import Qt, QTimer
 
 
 class PreLoader(QtSvg.QSvgWidget):
@@ -16,12 +16,19 @@ class PreLoader(QtSvg.QSvgWidget):
 
     def showSmartEnergyLogo(self):
         """  """
+        self.setWindowTitle("Smart Energy")
         self.load(bar.join(["res", "drawable", "SE_LOGO.svg"]))
+        # Centralize loader in the screen
+        self.move(QApplication.desktop().screen(
+        ).rect().center() - self.rect().center())
         self.show()
 
     def showFeaturesAnalyzerLogo(self):
         """  """
+        self.setWindowTitle("Smart Energy: Features Analyzer")
         self.load(bar.join(["res", "drawable", "FA_LOGO.svg"]))
+        self.move(QApplication.desktop().screen(
+        ).rect().center() - self.rect().center())
         self.show()
 
 

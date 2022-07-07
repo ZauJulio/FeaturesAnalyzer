@@ -1,10 +1,7 @@
 import os
 import sys
 
-sys.path.append("../")
 sys.path.append("../../")
-sys.path.append("../../../")
-sys.path.append("../lib")
 
 import pandas as pd
 import numpy as np
@@ -84,7 +81,7 @@ class Data(Transform):
                 self.__setDay(day)
                 self.__setTable()
                 dfs.append(self.__reader())
-            
+
             self.df = pd.concat(dfs, axis=1, sort=True)
 
             if len(days) > 1:
@@ -169,7 +166,7 @@ class Data(Transform):
         if endTime != None:
             if endTime == self.df.index[-1] or endTime >= self.df.index[-1]:
                 endTime = None
-        
+
         __df = self.df.loc[startTime:endTime, startDate:endDate]
         if inplace:
             self.df = __df
@@ -234,7 +231,7 @@ class Data(Transform):
         return df
 
     def shuffle(self, seed:int, inplace:bool=True) -> pd.DataFrame:
-        """ Shuffle data columns 
+        """ Shuffle data columns
 
         Parameters
         ----------
@@ -665,13 +662,18 @@ class Data(Transform):
         -------
             pd.core.frame.DataFrame indexed by hours
         """
-        conn = sqlite3.connect(self.__file)
-        self.df = pd.read_sql(f'SELECT * FROM {self.field}', conn)
-        self.df.set_index('time', inplace=True)
-        self.df.index = np.array(pd.to_datetime(
-            self.df.index).time).astype(str)
-        self.df.index.rename('hora', inplace=True)
+        if self.__file is not None:
+            conn = sqlite3.connect(self.__file)
+            self.df = pd.read_sql(f'SELECT * FROM {self.field}', conn)
+            self.df.set_index('time', inplace=True)
+            self.df.index = np.array(pd.to_datetime(
+                self.df.index).time).astype(str)
+            self.df.index.rename('hora', inplace=True)
 
-        self.ffill(inplace=self.ffill_)
-        self.bfill(inplace=self.bfill_)
+            self.ffill(inplace=self.ffill_)
+            self.bfill(inplace=self.bfill_)
+        else:
+            return pd.DataFrame()
+            # raise ValueError('No file found')
+
         return self.df

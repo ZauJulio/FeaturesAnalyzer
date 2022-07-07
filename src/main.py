@@ -1,6 +1,5 @@
 import sys
 
-sys.path.append("../../")
 sys.path.append("../")
 
 from lib.util.path import bar
@@ -19,6 +18,17 @@ class FeaturesAnalyzer(QWidget):
         super(QWidget, self).__init__()
         super().__init__()
 
+        self.setWindowTitle("Smart Energy: Features Analyzer")
+
+        print("""
+        ______          _                         _                _
+        |  ______  __ _| |_ _   _ _ __ ___ ___   / \   _ __   __ _| |_   _ _______ _ __
+        | |_ / _ \/ _` | __| | | | '__/ _ / __| / _ \ | '_ \ / _` | | | | |_  / _ | '__|
+        |  _|  __| (_| | |_| |_| | | |  __\__ \/ ___ \| | | | (_| | | |_| |/ |  __| |
+        |_|  \___|\__,_|\__|\__,_|_|  \___|___/_/   \_|_| |_|\__,_|_|\__, /___\___|_|
+                                                                    |___/
+        """)
+
         self.setTheme(darkTheme)
         self.preLoader()
 
@@ -26,7 +36,7 @@ class FeaturesAnalyzer(QWidget):
         """  """
         self.__smartEnergyLogo = Popen(['python3', 'PreLoader.py', '--se', 'time=1000'])
         self.__smartEnergyLogo.wait()
-        self.__featuresAnalyzer = Popen(['python3', 'PreLoader.py', '--fa'])
+        self.__featuresAnalyzer = Popen(['python3', 'PreLoader.py', '--fa', 'time=750'])
         self.loadCore()
         self.__featuresAnalyzer.terminate()
 

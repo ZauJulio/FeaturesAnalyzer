@@ -25,7 +25,6 @@ class Interface(FigureCanvasQTAgg, DataComponent, RegressionsComponent,
         FigureCanvasQTAgg.__init__(self, self.fig)
         FigureCanvasQTAgg.updateGeometry(self)
 
-        print("Initializing GUI", parent)
         self.setParent(parent)
         self.setObjectName("parent")
         self.setWindowTitle(QtCore.QCoreApplication.translate("Parent", "Features Analyzer"))

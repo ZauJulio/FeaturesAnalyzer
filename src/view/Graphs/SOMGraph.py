@@ -6,7 +6,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 class SOMGraph:
     def plotSOM(self):
         """  """
-        if self.R.ShowTest or self.R.ShowTrain:
+        if (self.R.ShowTest or self.R.ShowTrain) and self.R.Clusterize:
             self.__weigthsLine()
             self.__optionsWeights()
             self.__metricsWeights()

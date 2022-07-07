@@ -1,7 +1,7 @@
 {
   "models": {
     "linear": {
-      "show": true,
+      "show": false,
       "outlier": true,
       "min": {
         "show": false,
@@ -318,12 +318,12 @@
       },
       "RMSE": {
         "normal": true,
-        "show": true,
-        "outlier": true,
+        "show": false,
+        "outlier": false,
         "filters": {
           "savgol": {
             "show": true,
-            "outlier": false
+            "outlier": true
           }
         },
         "min": {

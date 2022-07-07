@@ -18,7 +18,7 @@ class DataController:
         if self.R.Clusterize:
             self.dataTrain = self.loadClusterizer()
             self.trainClusters = self.clusterize(data=self.dataTrain)
-            
+
             if self.R.ShowTrain:
                 self.testClusters = deepcopy(self.trainClusters)
             else:
@@ -49,7 +49,7 @@ class DataController:
                 dataType = 'train'
             else:
                 dataType = 'test'
-                
+
         period = self.getPeriod(dataType)
 
         startDate = period[0][0]
@@ -57,7 +57,7 @@ class DataController:
 
         startDateDrop = period[0][1]
         endDateDrop = period[1][0]
-        
+
         reader = DataManager(
             day=self.getWeekday(),
             field=self.R.Field,
@@ -87,7 +87,7 @@ class DataController:
 
     def setMediumLine(self, data: pd.DataFrame):
         """  """
-        self.mediumLine = np.zeros(len(data.index)) + data.mean().mean()
+        self.mediumLine = np.zeros(len(data.index)) + data.mean(numeric_only=True).mean()
 
     def setMetricData(self):
         """ Update Metric data """
@@ -197,7 +197,7 @@ class DataController:
             key = 'all'
         else:
             raise Exception("Unknown language")
-        
+
         if self.R.Weekday.lower() == key:
             return timelib.weekdays
         else:

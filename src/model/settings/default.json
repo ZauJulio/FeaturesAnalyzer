@@ -51,6 +51,6 @@
     "train": false,
     "test": true,
     "ColorClassification":false,
-    "TimeLimit":""
+    "TimeLimit":"23:00:00"
   }
 }

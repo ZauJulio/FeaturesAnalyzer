@@ -64,3 +64,5 @@ check_create_dir(clusters_som)
 check_create_dir(models_rgs)
 check_create_dir(models_som)
 check_create_dir(models_mlp)
+
+if not path.isdir(tables_days): makedirs(tables_days)

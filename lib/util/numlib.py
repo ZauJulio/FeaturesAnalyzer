@@ -200,6 +200,7 @@ def dot(x, y):
         (float): Returns the internal product realized with
         the normalized inputs.
     """
+    # Check shape
     lx = x/np.linalg.norm(x, 2)
     ly = y/np.linalg.norm(y, 2)
 

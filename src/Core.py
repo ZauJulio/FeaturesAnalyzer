@@ -42,7 +42,7 @@ class Core(Controllers, Views):
 
     def updateCore(self):
         """  """
-        print("--> Updating the data:...", end="")
+        print("--> Updating the data:...     ", end="")
         self.thresholds = deepcopy(self.thresholdSettings)
         self.updateData()
         self.updateModels()

@@ -232,7 +232,6 @@ class ModelManager(Data):
         """ Load model from file """
 
         def readObject(path):
-            print(path)
             return pickle.load(open(path, "rb"))
 
         if os.path.isfile(self.__pathModel):

@@ -39,7 +39,7 @@
     "diffClusters": false
   },
   "pid": {
-    "sample": "weights",
+    "sample": "Sample...",
     "derivative": false,
     "integral": false,
     "fillBetween": false,

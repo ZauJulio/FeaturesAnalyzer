@@ -157,7 +157,7 @@ class SOMController:
     def getCurrentCluster(self, dropWeights: bool = False, dropTime: bool = False):
         """  """
         cluster = self.testClusters[self.R.Cluster]
-        
+
         if dropWeights:
             cluster = cluster.drop(['weights'], errors='ignore', axis=1)
         if dropTime:
@@ -188,7 +188,9 @@ class SOMController:
 
     def getQeFromCluster(self) -> float:
         """ Return mean of quantization_error from current cluster"""
-        return self.modelSOM.quantization_error(
+        cluster =  self.getCurrentCluster(dropWeights=True, dropTime=True).T.to_numpy()
+
+        return -1 if len(cluster) == 0 else self.modelSOM.quantization_error(
             self.getCurrentCluster(dropWeights=True, dropTime=True).T.to_numpy()
         )
 

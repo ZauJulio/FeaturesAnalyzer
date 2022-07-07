@@ -14,13 +14,13 @@ class Graphs(DataGraph, ThresholdsGraph, PIDGraph, SOMGraph):
         self.fig.clear()
         self.__updateNPlots()
 
-        print("--> Plotting:...", end="")
+        print("--> Plotting:...              ", end="")
         if self.R.ShowTest or self.R.ShowTrain:
             self.plotData()
             self.plotThresholds()
             self.plotTimeLimit()
             self.__updateGraphProperties()
-        
+
         self.plotSOM()
         self.plotPID()
         self.__updateLegend()
@@ -116,7 +116,7 @@ class Graphs(DataGraph, ThresholdsGraph, PIDGraph, SOMGraph):
                     label = "on " + timelib.weekdaysEN[timelib.weekday(self.R.Weekday)]
                 elif self.LANGUAGE == 'pt_br':
                     label = "das " + timelib.weekdays[timelib.weekday(self.R.Weekday)]
-            
+
             return label
 
         if self.R.Clusterize:

@@ -103,12 +103,13 @@ class SOMComponent(object):
         if self.R.Clusterize:
             clusterLabels = []
             totalSamples = 0
-            
+
             for i in self.testClusters.keys():
                 totalSamples += self.testClusters[i].shape[1] - 2
 
             for key in self.testClusters.keys():
                 nSamples = self.testClusters[key].shape[1] - 2
+                # percent = 100*(nSamples / totalSamples)
                 percent = 100*(nSamples / totalSamples)
 
                 if self.LANGUAGE == 'pt_br':
@@ -119,12 +120,14 @@ class SOMComponent(object):
                     raise ValueError("Unknown language")
 
                 clusterLabels.append("%s | %s %s | %.2f %%"%(key, nSamples, label, percent))
-                
+
             self.clusterComBox.addItems(clusterLabels)
             self.updateClusterInfo()
-        
+
     def updateClusterInfo(self):
         """  """
+        nSamples = (self.getCurrentCluster().shape[1] - 2) < 1
+
         if self.LANGUAGE == 'pt_br':
             text = str(
                 """
@@ -145,9 +148,9 @@ class SOMComponent(object):
                     self.getCurrentCluster().shape[1] - 2,
                     round(self.getVarianceFromCluster(), 2),
                     round(self.getMeanFromCluster(), 2),
-                    round(self.getStdFromCluster(), 2),
-                    round(self.getQeFromCluster(), 2),
-                    round(self.getDotProductFromCluster(), 8)*100,
+                    -1 if nSamples else round(self.getStdFromCluster(), 2),
+                    -1 if nSamples else round(self.getQeFromCluster(), 2),
+                    -1 if nSamples else round(self.getDotProductFromCluster(), 8)*100,
                 )
             )
 
@@ -171,12 +174,12 @@ class SOMComponent(object):
                     self.getCurrentCluster().shape[1] - 2,
                     round(self.getVarianceFromCluster(), 2),
                     round(self.getMeanFromCluster(), 2),
-                    round(self.getStdFromCluster(), 2),
-                    round(self.getQeFromCluster(), 2),
-                    round(self.getDotProductFromCluster(), 8)*100,
+                    -1 if nSamples else round(self.getStdFromCluster(), 2),
+                    -1 if nSamples else round(self.getQeFromCluster(), 2),
+                    -1 if nSamples else round(self.getDotProductFromCluster(), 8)*100,
                 )
             )
-            
+
             self.clusterSamplesLabel.setText(text)
 
 

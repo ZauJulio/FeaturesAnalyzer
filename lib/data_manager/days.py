@@ -6,7 +6,7 @@ import sys
 from numpy import NaN, array
 from pandas import DataFrame, read_csv
 
-sys.path.append('../../../')
+sys.path.append('../../')
 from lib.util import path, timelib
 
 USAGE = """

@@ -38,7 +38,7 @@ class Model(ABC):
         else:
             day = weekdaysEN[weekday(day)]
 
-        return self.path + bar + day + bar + id + self.extension
+        return self.path + day + bar + id + self.extension
 
 
 class SOM(Model):

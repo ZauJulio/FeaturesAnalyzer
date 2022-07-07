@@ -201,7 +201,7 @@ class DataGraph:
 
         if len(model.shape) == 1:
             model = np.ravel(model)
-            
+
         if isSource:
             check = self.__data.values.T < model.T
             dataMask = np.logical_xor(check.T, dataMask)
@@ -239,8 +239,7 @@ class DataGraph:
 
     def __plotExpected(self):
         """  """
-        if self.__data[self.__dataMask == 0].any().any():
-            self.expectedFound = True
+        self.expectedFound = self.__data[self.__dataMask == 0].any().any()
 
         self.ax.plot(
             self.time,
