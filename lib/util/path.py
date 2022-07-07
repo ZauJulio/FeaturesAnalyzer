@@ -29,7 +29,7 @@ def check_create_dir(dir):
 tables = path.abspath(__file__ + '..' + '..' + _path + 'tables') + bar
 """ A path to the tables directory
 """
-tables_days = tables + 'days' + bar
+tables_days = tables + bar
 """ A path to the days directory
 """
 tables_classified = tables + 'classified' + bar

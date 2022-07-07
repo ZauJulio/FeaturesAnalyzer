@@ -3,22 +3,22 @@ import sys
 
 sys.path.append("../../")
 
-import pandas as pd
-import numpy as np
 import sqlite3
+import numpy as np
+import pandas as pd
 
-from lib.util import timelib, numlib
-from lib.data_manager.days import Days
-from lib.data_manager.synthetic import synthetic
-from lib.util.path import bar, tables_days, tables_synthetic
 from lib.data_manager.transformations import Transform
+from lib.util.path import bar, tables_days, tables_synthetic
+from lib.data_manager.synthetic import synthetic
+from lib.data_manager.days import Days
+from lib.util import timelib, numlib
 
 
 class Data(Transform):
     def __init__(self, df=None, dir=tables_days, day='segunda',
                  dump='dump-2019-09-24-21-31-31', field='P1',
-                 func=None, ffill:bool=True, bfill:bool=True,
-                 transform=None, synthetic:bool=False):
+                 func=None, ffill: bool = True, bfill: bool = True,
+                 transform=None, synthetic: bool = False):
         """ Data Manager
 
         Parameters
@@ -79,13 +79,16 @@ class Data(Transform):
             dfs = []
             for day in days:
                 self.__setDay(day)
-                self.__setTable()
-                dfs.append(self.__reader())
+                _df = self.__setTable()
+
+                if (type(_df) is pd.core.frame.DataFrame) and not _df.empty:
+                    dfs.append(self.__format(_df))
+                else:
+                    dfs.append(self.__reader())
 
             self.df = pd.concat(dfs, axis=1, sort=True)
 
-            if len(days) > 1:
-                self._day = '_'.join(days)
+            if len(days) > 1: self._day = '_'.join(days)
 
         self.transformData(transform)
 
@@ -230,7 +233,7 @@ class Data(Transform):
 
         return df
 
-    def shuffle(self, seed:int, inplace:bool=True) -> pd.DataFrame:
+    def shuffle(self, seed: int, inplace: bool = True) -> pd.DataFrame:
         """ Shuffle data columns
 
         Parameters
@@ -525,7 +528,7 @@ class Data(Transform):
         """
         return list(self.df.loc[startTime:endTime, :].index.values)
 
-    def split(self, data: pd.DataFrame=None, trainSize: float=0.5) -> list:
+    def split(self, data: pd.DataFrame = None, trainSize: float = 0.5) -> list:
         """ Training and test data separator
 
         Parameters
@@ -628,8 +631,7 @@ class Data(Transform):
             bool()()
         """
         try:
-            self.__file = [
-                dir+day for day in os.listdir(dir) if self._day in day]
+            self.__file = [dir+day for day in os.listdir(dir) if self._day in day]
             self.__file = str(self.__file)[2:-2]
             return True
         except FileNotFoundError:
@@ -651,9 +653,22 @@ class Data(Transform):
         elif self._day and self._dump and self.field:
             if not self.__setFile(tables_days+self._dump+bar):
                 try:
-                    Days(field=[self.field], days=[self._day])
+                    return Days(field=[self.field], days=[self._day]).table
                 except ValueError:
                     raise ValueError('Cannot create the days table')
+
+    def __format(self, _df):
+        try:
+            _df.set_index('time', inplace=True)
+        except KeyError:
+            _df.index.rename('hora', inplace=True)
+
+        _df.index = _df.index.map(str)
+
+        _df.ffill(inplace=True)
+        _df.bfill(inplace=True)
+
+        return _df
 
     def __reader(self):
         """ Read the DataFrame
@@ -673,7 +688,6 @@ class Data(Transform):
             self.ffill(inplace=self.ffill_)
             self.bfill(inplace=self.bfill_)
         else:
-            return pd.DataFrame()
-            # raise ValueError('No file found')
+            raise ValueError('No file found')
 
         return self.df

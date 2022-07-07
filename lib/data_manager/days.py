@@ -17,7 +17,7 @@ USAGE = """
 
 
 class Days:
-    def __init__(self, saveDir=path.tables+'days'+path.bar,
+    def __init__(self, saveDir=path.tables+path.bar,
                 dump=path.dump+'dump-2019-09-24-21-31-31.csv',
                 field=['P1','P2', 'P3', 'Q1', 'Q2', 'Q3', 'FPA', 'FPB', 'FPC'],
                 days=timelib.weekdaysEN):
@@ -168,7 +168,7 @@ class Days:
         self.table.set_index('hora', drop=True, inplace=True)
 
     def save(self):
-        """ Save new table in csv file """
+        """ Save new table in sqlite3 file """
         if self.saveDir:
             dir = self.saveDir+self.dump+path.bar
             if not os.path.isdir(dir):
