@@ -133,3 +133,6 @@ data/dump/*
 data/clusters/*
 data/models/*
 data/tables/*
+
+# App current settings
+current.json
