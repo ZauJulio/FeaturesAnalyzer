@@ -1,15 +1,14 @@
 import sys
 
-import pandas as pd
-import numpy as np
-
-sys.path.append("../")
 sys.path.append("../../")
-sys.path.append("../../../")
-sys.path.append("../../lib/")
 
-from lib.util.numlib import dot
+
+import numpy as np
+import pandas as pd
+
 from lib.ModelManager import ModelManager
+from lib.util.numlib import dot
+
 
 class SOMController:
     def loadClusterizer(self):
@@ -167,6 +166,10 @@ class SOMController:
 
     def getVarianceFromCluster(self) -> float:
         """ Return mean of variance of current cluster"""
+        # Check if cluster is empty
+        if self.getCurrentCluster(dropWeights=True, dropTime=True).empty:
+            return -1
+
         return np.var(
             self.getCurrentCluster(dropWeights=True, dropTime=True).to_numpy(),
             axis=1
@@ -174,6 +177,9 @@ class SOMController:
 
     def getMeanFromCluster(self) -> float:
         """ Return absolute mean of the current cluster"""
+        if self.getCurrentCluster(dropWeights=True, dropTime=True).empty:
+            return -1
+
         return np.mean(
             self.getCurrentCluster(dropWeights=True, dropTime=True).to_numpy(),
             axis=1
@@ -181,6 +187,9 @@ class SOMController:
 
     def getStdFromCluster(self) -> float:
         """ Return mean of standard deviation of current cluster"""
+        if self.getCurrentCluster(dropWeights=True, dropTime=True).empty:
+            return -1
+
         return np.std(
             self.getCurrentCluster(dropWeights=True, dropTime=True).to_numpy(),
             axis=1
@@ -188,10 +197,15 @@ class SOMController:
 
     def getQeFromCluster(self) -> float:
         """ Return mean of quantization_error from current cluster"""
-        cluster =  self.getCurrentCluster(dropWeights=True, dropTime=True).T.to_numpy()
+        if self.getCurrentCluster(dropWeights=True, dropTime=True).empty:
+            return -1
+
+        cluster = self.getCurrentCluster(
+            dropWeights=True, dropTime=True).T.to_numpy()
 
         return -1 if len(cluster) == 0 else self.modelSOM.quantization_error(
-            self.getCurrentCluster(dropWeights=True, dropTime=True).T.to_numpy()
+            self.getCurrentCluster(
+                dropWeights=True, dropTime=True).T.to_numpy()
         )
 
     def getSOMWeights(self):
@@ -200,6 +214,9 @@ class SOMController:
 
     def getDotProductFromCluster(self) -> float:
         """ Return dot product of current cluster"""
+        if self.getCurrentCluster(dropWeights=True, dropTime=True).empty:
+            return -1
+
         return np.mean(dot(
             self.getCurrentCluster(dropWeights=True, dropTime=True).T.values,
             np.ravel(self.getSOMWeights())
