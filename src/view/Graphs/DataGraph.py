@@ -149,7 +149,7 @@ class DataGraph:
                         self.time,
                         data[column].astype(int),
                         'o',
-                        color=COLORS[i],
+                        color=COLORS[i if i < len(COLORS) else i % len(COLORS)],
                         label=label,
                         markersize=5,
                         markeredgewidth=0,
