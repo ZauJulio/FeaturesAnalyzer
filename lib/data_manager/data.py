@@ -110,7 +110,7 @@ class Data(Transform):
                 ]
         """
         if transform in self.transformations.keys():
-            self.transformations[transform.title()]()
+            self.transformations[transform]()
 
     def filter(self, startTime=None, endTime=None, startDate=None, endDate=None,
                inplace=True):
