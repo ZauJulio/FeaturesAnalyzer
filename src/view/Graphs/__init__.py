@@ -247,7 +247,6 @@ class Graphs(DataGraph, ThresholdsGraph, PIDGraph, SOMGraph):
         """  """
         def dataFormatter(sample):
             """  """
-            label = sample.split('-')
             return label[-1]+'/'+label[1]+'/'+label[0]
 
         if self.LANGUAGE == 'en_us':
