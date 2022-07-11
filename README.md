@@ -20,6 +20,15 @@ Temporarily to use this platform you need to add the data to the Data/Dump Direc
 ```txt
     dump_[YYYY-MM-DD-HH-mm-SS].csv
 ```
+With this data format:
+
+| name    | time     | FPA | FPB | FPC | P1  | P2  | P3  | Q1  | Q2  | Q3  |
+| ------- | -------- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| sensor1 | 00:00:00 | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| sensor1 | 00:01:00 | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| ...     | ...      | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| sensor1 | 23:58:00 | ... | ... | ... | ... | ... | ... | ... | ... | ... |
+| sensor1 | 23:59:00 | ... | ... | ... | ... | ... | ... | ... | ... | ... |
 
 In addition, several settings and several internal are still related to the original problem of the analysis platform.Além disso várias configurações e várias internas ainda são relativas ao problema original da plataforma de análise.
 
