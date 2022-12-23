@@ -22,7 +22,23 @@
 % acrescenta as entradas do glossário
 % \input{pos-textuais/GlossarioEntradas}
 
-% cria o índice remissivo
+\titleformat{\chapter}[display] % changed
+  {\titlerule\normalfont\huge\bfseries\vspace{15pt}}
+  {\chaptertitlename\ \thechapter }{0pt}{\Huge}[\vspace{15pt}\titlerule]
+  \titlespacing*{\chapter}{0pt}{-35pt}{20pt}  % changed
+
+\titleformat{\section}
+  {\normalfont\fontsize{16}{16}\bfseries}
+  {\thesection\enspace}{0pt}{}[\vspace{2pt}]
+
+\titleformat{\subsection}
+  {\normalfont\fontsize{14}{14}\bfseries}
+  {\thesection\enspace}{0pt}{}[\vspace{2pt}]
+
+
+% Title format: set time new roman as font of the index
+\makeindex[title={\normalfont\fontsize{14}{14}\bfseries\textbf{Índice}}]
+
 \makeindex
 \begin{document}
 
