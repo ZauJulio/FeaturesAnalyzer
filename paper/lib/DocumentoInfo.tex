@@ -12,7 +12,7 @@
 \newcommand{\subtitulo}[1]{\renewcommand{\imprimirsubtitulo}{#1}}
 
 % criar fonte em imagens, tabelas e quadros
-\newcommand{\source}[1]{\legend{\textbf{Fonte:} {#1}}}    
+\newcommand{\source}[1]{\legend{\textbf{Fonte:} {#1}}}
 
 % texto em arial
 %\renewcommand{\sfdefault}{phv}
@@ -26,7 +26,8 @@
 %%          Informações do documento          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\titulo{Desenvolvimento de um Sistema Empresarial de Monitoramento de Consumo Elétrico}
+\titulo{Features Analyzer}
+\subtitulo{Desenvolvimento de uma plataforma de Análise e Visualização de Dados}
 \tipotrabalho{Monografia (bacharel em Sistema de Informação) }
 \autor{Zaú Júlio Araújo Galvão}
 \orientador{Ms. Luiz Paulo de Assis Barbosa}     % nível acadêmico + nome
@@ -66,7 +67,7 @@
 % configurações para atender às regras da ABNT
 \setfloatadjustment{quadro}{\centering}
 \counterwithout{quadro}{chapter}
-\renewcommand{\cftquadroname}{\quadroname\space} 
+\renewcommand{\cftquadroname}{\quadroname\space}
 \renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
 
 \setfloatlocations{quadro}{hbtp}
@@ -86,11 +87,11 @@
 \makeatletter
 \hypersetup{
     %  	pagebackref=true,
-		pdftitle={\@title}, 
+		pdftitle={\@title},
 		pdfauthor={\@author},
         pdfsubject={\imprimirpreambulo},
         pdfcreator={LaTeX with abnTeX2},
-		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico}, 
+		pdfkeywords={abnt}{latex}{abntex}{abntex2}{trabalho acadêmico},
     %   false: boxed links; true: colored links
 		colorlinks=true,
     % 	color of internal links

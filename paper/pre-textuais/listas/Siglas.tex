@@ -5,15 +5,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \thispagestyle{empty}
 
-\chapter*{\normalsize{\textbf{LISTA DE ABREVIATURAS E SIGLAS}}}
+\newcommand{\listofsiglasname}
+{\vspace{15pt}
+	\centering\normalsize
+	{\normalfont\bfseries\Large\textbf{LISTA DE SIGLAS}}
+	\vspace{15pt}
+}
+
+
+\listofsiglasname
+
+% Revert text to default align
+\justifying
+
 
 %ordem alfabética
-
 \begin{acronym}[]
-    \acro{bsi}[BSI]{Bacharelado em Sistemas de Informação}
-    \acro{ti}[TI]{Tecnologia da Informação}
-    \acro{ufrn}[UFRN]{Universidade Federal do Rio Grande do Norte}
-    \acro{es}[ES]{Engenharia de Software}
-    \acro{gui}[GUI]{Graphical User Interface}
-    \acro{css}[CSS]{Cascading Style Sheets}
+	\acro{es}[ES]{Engenharia de Software}
+	\acro{gui}[GUI]{Graphical User Interface}
+	\acro{css}[CSS]{Cascading Style Sheets}
 \end{acronym}
