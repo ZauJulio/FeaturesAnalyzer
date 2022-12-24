@@ -2,11 +2,50 @@
 %%      Desenvolvimento da Pesquisa      %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Neste capítulo expõe-se os experimentos da sua pesquisa a proposta de solução da sua pesquisa e em caso do TCC II como ela foi implementada
-
 \chapter{Desenvolvimento da Pesquisa}
     \label{cha:desenvolvimento-da-pesquisa}
-    % remove nome do capítulo do cabeçalho
+
+    A pesquisa foi desenvolvida em duas etapas, a primeira corresponde a entrevista realizada com os pesquisadores do projeto SmartEnergy para o Levantamento de requisitos; a seguinda etapa corresponde a pesquisa bibliográfica realizada para a elaboração do TCC I, o presente trabalho.
+
+    \section{Levantamento de Requisitos}
+
+    A etapa de levantamento de requisitos foi realizada em conjunto com os pesquisadores apontados anteriormente, com o intuito de identificar as principais funcionalidades e carências para uma plataforma do tipo proposto.
+
+    O levantamento ocorreu através de entrevistas informais, onde os pesquisadores foram questionados sobre as funcionalidades que a plataforma deveria ter, e as carências que a plataforma deveria suprir. Foram apresentados base de dados, identificados os objetivos e então proposto abordagens que poderiam ser seguidas para atingir a solução.
+
+    \subsection{Requisitos Funcionais}
+
+    Os requisitos funcionais foram identificados a partir das funcionalidades que a plataforma deveria ter, e que foram apresentadas pelos pesquisadores. A seguir, são apresentados os requisitos funcionais identificados:
+
+    \begin{enumerate}
+        \item \textbf{Importação de Dados}: A plataforma deverá ser capaz de importar dados em diferentes formatos, como por exemplo, arquivos CSV, JSON, XLXS, dentre outros.
+        \item \textbf{Pré-processamento de Dados}: A plataforma deverá ser capaz de realizar o pré-processamento dos dados, como por exemplo, a normalização dos dados, remoção de dados faltantes, entre outros.
+        \item \textbf{Visualização de Dados}: A plataforma deverá ser capaz de apresentar os dados de forma visual em gráficos, em barras, gráficos de dispersão, entre outros.
+        \item \textbf{Processamento de Dados}: A plataforma deverá ser capaz de realizar o processamento dos dados, como por exemplo, a aplicação de algoritmos de aprendizado de máquina, como por exemplo, regressão linear, regressão logística, entre outros.
+        \item \textbf{Exportação de Dados}: A plataforma deverá ser capaz de exportar os dados em diferentes formatos, como por exemplo, arquivos CSV, JSON, XLXS, dentre outros.
+        \item \textbf{Métricas}: A plataforma deverá ser capaz de apresentar métricas de avaliação dos resultados, como por exemplo, a acurácia, a precisão, a revocação, entre outros.
+        \item \textbf{Extensibilidade}: A plataforma deverá ser capaz de ser estendida para novos algoritmos a partir de interfaces de código tipado e aberto.
+        \item \textbf{Interface de Usuário}: A plataforma deverá ser capaz de apresentar uma interface de usuário intuitiva e personalizável.
+        \item \textbf{Exportação de Modelos}: A plataforma deverá ser capaz de exportar os modelos de aprendizado de máquina em binários com extensão .pkl e arquivos descritivos com extensão .json.
+        \item \textbf{Exportação de Configurações}: A plataforma deverá ser capaz de exportar as configurações de execução em arquivos com extensão .json.
+        \item \textbf{Personalização de Configurações}: A plataforma deverá ser capaz de permitir a personalização das configurações de execução, como por exemplo a quantidade de iterações, a quantidade de camadas, entre outros.
+        \item \textbf{Extensão da Interface}: A interface da plataforma deverá ser capaz de ser estendida para novas funcionalidades preservando os estilos e funcionalidades já existentes.
+    \end{enumerate}
+
+    \subsection{Requisitos Não Funcionais}
+
+    Os requisitos não funcionais, características que a plataforma deve possuir, mas que não são funcionalidades que o usuário precisa estar ciente, por se tratar de questões básicas de software. A seguir, são apresentados os requisitos não funcionais identificados:
+
+    \begin{enumerate}
+        \item \textbf{Execução Multiplataforma}: A plataforma deverá ser capaz de ser executada em diferentes plataformas, como por exemplo, Windows, Linux, Mac OS, entre outros.
+        \item \textbf{Consumo de Recursos}: A plataforma, principalmente parte que não trata do processamento, deverá ser capaz de consumir poucos recursos de hardware, como por exemplo, memória RAM, CPU, entre outros.
+        \item \textbf{Confiabilidade}: A plataforma deverá ser capaz de ser executada sem falhas, e em caso de falhas, deverá ser capaz de ser executada novamente sem a necessidade de intervenção humana.
+        \item \textbf{Desempenho}: A plataforma deverá ser capaz de ser executada em tempo hábil, sem a atrasar o processo de análise de dados.
+        \item \textbf{Status Operacional}: A plataforma deverá ser capaz de apresentar o status de operação, como por exemplo, se está processando os dados, salvando alterações, baixando dados, exportando gráficos ou configurações, entre outros.
+        \item \textbf{Log de Execução}: A plataforma deverá ser capaz de apresentar um log de execução, onde serão apresentados os eventos que ocorreram durante a execução, como por exemplo, a importação de dados, a exportação de gráficos, a exportação de modelos, entre outros.
+        \item \textbf{Containg}: A plataforma deverá ser capaz de ser executada em um container, como por exemplo, Docker, para que seja possível a execução em diferentes ambientes.
+    \end{enumerate}
+
     \input{textuais/capitulo_4/sub-topicos/PropostaDeSolucao}
-    
+
     \input{textuais/capitulo_4/sub-topicos/Experimentos}
