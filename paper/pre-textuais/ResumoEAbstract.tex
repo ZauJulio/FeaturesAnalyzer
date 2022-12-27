@@ -5,13 +5,32 @@
 %%                        %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Title format for the abstract: set time new roman as font of the index content
+
+
+\renewenvironment{resumo}{\vspace{15pt}
+    \normalsize
+    {\normalfont\bfseries\Large\textbf{RESUMO}}
+    \vspace{15pt}
+}{\endquotation}
+
+\renewenvironment{abstract}{\vspace{15pt}
+    \normalsize\centering
+    {\normalfont\bfseries\Large\textbf{ABSTRACT}}
+    \vspace{15pt}
+}{\endquotation}
+
 \begin{resumo}
-   \noindent 
-%Escreva aqui.
+	\noindent
 
+    \justifying
 
-    \textbf{Palavras-chave}: 
+    Este trabalho tem como objetivo apresentar uma proposta de desenvolvimento de uma plataforma de análise e visualização de dados extensível e personalizável, visando proporcionar uma forma simples e objetiva de acesso para as bibliotecas de aprendizado de máquina e semelhantes presentes no repositório de bibliotecas \textit{Pypi}. Para atingir este objetivo, foi realizado entrevistas com os pesquisadores da área de Ciência de Dados e Processamento de Sinais, responsáveis pelo projeto de pesquisa \textit{SmartEnergy}, para identificar as principais necessidades e desafios no processo de análise de dados. Além disso, foi realizada uma pesquisa bibliográfica para identificar as principais ferramentas de análise de dados e visualização de dados que possam atender aos requisitos identificados. Por fim, foi proposto um conjunto de bibliotecas e ferramentas para o desenvolvimento da plataforma, que podem ser utilizadas para a criação de um ambiente de desenvolvimento para análise e visualização de dados, que atenda as necessidades do processo de análise de dados.
+
+    \textbf{Palavras-chave}: Plataforma, Análise de Dados, Visualização de Dados, Machine Learning, Python.
 \end{resumo}
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                        %%
@@ -19,10 +38,15 @@
 %%                        %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{resumo}[Abstract]
-    \noindent
-%Write here
 
-    
-    \textbf{Keywords}:
-\end{resumo}
+\begin{abstract}
+    \noindent
+    \justifying
+
+    This work aims to present a proposal for the development of an extensible and customizable data analysis and visualization platform, aiming to provide a simple and objective way of accessing machine learning libraries and the like present in the library repository \textit{Pypi }. To achieve this goal, interviews were conducted with researchers in the area of Data Science and Signal Processing, responsible for the research project \textit{SmartEnergy}, to identify the main needs and challenges in the data analysis process. In addition, a literature search was carried out to identify the main data analysis and data visualization tools that can meet the identified requirements. Finally, a set of libraries and tools for the development of the platform was proposed, which can be used to create a development environment for data analysis and visualization, which meets the needs of the data analysis process.
+
+
+    \textbf{Keywords}: Platform, Data Analysis, Data Visualization, Machine Learning, Python.
+\end{abstract}
+
+\newpage
