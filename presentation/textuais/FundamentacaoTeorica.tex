@@ -1,0 +1,149 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%       Fundamentação Teórica       %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Fundamentação Teórica}
+\label{sec:fundamentacao-teorica}
+
+\begin{frame}{Fundamentação Teórica}
+	A seguir são apresentados os conceitos de:
+
+	\bigskip
+
+	\begin{itemize}
+		\item \textbf{Análise e visualização de dados}
+		\item \textbf{Aprendizado de Máquina}
+		\item \textbf{Engenharia de Software}
+		\item \textbf{Linguagens de Programação}
+		\item \textbf{Bibliotecas}
+		      \begin{itemize}
+			      \item \textbf{Numpy}
+			      \item \textbf{Pandas}
+			      \item \textbf{Scikit-learn}
+			      \item  \textbf{PyQt}
+			      \item \textbf{Seaborn/Matplotlib}
+		      \end{itemize}
+	\end{itemize}
+
+\end{frame}
+
+\subsection{Análise e visualização de dados}
+\label{subsec:analise-e-visualizacao-de-dados}
+
+\begin{frame}{Análise e visualização de dados}
+	\quad  Ela pode ser descrita como um processo de transformação de dados em informações que tenham valor. Com a crescente produção e coleta de dados, pelo surgimento do IOT e dos próprios usuários, esta tarefa tornou-se de suma importância para a evolução da Web como a conhecemos.
+
+	\begin{itemize}
+		\item \textbf{Pré-processamento}: como formatação, remoção de dados faltantes e valores atípicos (\textit{Outliers}), normalização, etc. Por exeplo a remoção de \textit{Outliers}, problemas durante a coleta ou armazenamento.
+		\item \textbf{Processamento}: pode ser realizada de diversas formas, como, por exemplo, a aplicação de métodos estatísticos ou algoritmos de aprendizado de máquina. Por exemplo: regressão, classificação, agrupamento, predição, otimização, entre outros.
+		\item \textbf{Pós-processamento}: consiste na apresentação dos resultados obtidos, que pode ser por simples tabelas, gráficos, modelos matemáticos ou até valores numéricos. Por exemplo: visualização de dados em gráficos de séries históricas.
+	\end{itemize}
+\end{frame}
+
+\subsection{Aprendizado de Máquina}
+\label{subsec:aprendizado-de-maquina}
+
+\begin{frame}{Aprendizado de Máquina I}
+	\quad O aprendizado de máquina consiste em conjunto de algoritmos visando resolver um problema de forma que algoritmos clássicos não conseguem ou não operam eficientemente.
+
+	\begin{itemize}
+		\item \textbf{Regressão}: Envolve encontrar uma função que descreve a relação entre uma variável dependente e uma ou mais independentes. A função encontrada pode ser usada para prever o valor da variável dependente para novos valores da variável independente.
+		\item \textbf{Classificação}: Consiste em encontrar uma função que descreva a relação entre os dados, para poder ser usada para prever a classe de um novo dado.
+		\item \textbf{Agrupamento}: Encontrar grupos de dados que compartilham características semelhantes, sem que se tenha informações sobre esses grupos. Por exemplo, agrupar clientes de uma loja de acordo com o perfil de compra.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Aprendizado de Máquina II}
+	\begin{itemize}
+		\item \textbf{Predição}: Compreende a tarefa de prever um valor para um momento futuro. Por exemplo, prever o preço de uma ação.
+		\item \textbf{Detecção de anomalias}: Trata-se de encontrar dados com características diferentes dos demais. Esses dados podem ser removidos ou estudados separadamente.
+		\item \textbf{Ranqueamento}: Esta técnica tem a finalidade de ordenar os dados de acordo com uma métrica de relevância. Por exemplo, ranquear os resultados de uma busca.
+		\item \textbf{Otimização}: Consiste em encontrar uma função com objetivo de maximizar ou minimizar um valor. Por exemplo, encontrar o melhor caminho para um problema de roteamento.
+	\end{itemize}
+\end{frame}
+
+\subsection{Engenharia de Software}
+\label{subsec:engenharia-de-software}
+
+\begin{frame}{Engenharia de Software}
+	\quad A engenharia de software surgiu para facilitar e padronizar os projetos e o desenvolvimento de software, bem como para aumentar a eficiência e a qualidade do software produzido.
+
+	\medskip
+
+	\quad Para isso, a engenharia de software utiliza diversas técnicas e ferramentas, como por exemplo: Padrões de Projeto, Testes, entre outras.
+\end{frame}
+
+\subsection{Linguagens de Programação}
+\label{subsec:linguagens-de-programacao}
+
+\begin{frame}{Linguagens de Programação I}
+	\quad A linguagem escolhida para esse projeto foi o Python, presente entre as linguagens mais utilizadas no mundo, com uma vasta comunidade e um número crescente de bibliotecas.
+
+	\quad A linguagem executa sobre uma máquina virtual, chamada de Python Virtual Machine (\textit{PVM}), responsável por interpretar o código-fonte e executar as instruções \cite{pvm-2017}. O Python usa a compilação \textit{just-in-time} (JIT), que compila o código-fonte para \textit{bytecodes} e depois para código de máquina, em tempo de execução \cite{pvm-2017}.
+\end{frame}
+
+\begin{frame}{Linguagens de Programção II}
+	\begin{enumerate}
+		\item O código-fonte é compilado para \textit{bytecodes}.
+		\item O \textit{bytecodes} é interpretado pela \textit{PVM}.
+		\item A \textit{PVM} executa o código.
+		\item O código é compilado para código de máquina.
+		\item O código de máquina é executado.
+	\end{enumerate}
+
+	\bigskip
+
+	\quad O \textbf{CPython} é a implementação mais popular da linguagem Python, a implementação oficial da linguagem, e é a implementação que será utilizada nesse projeto. Desenvolvido em C, o \textbf{CPython} é multiplataforma, ou seja, pode ser executado em qualquer sistema operacional e arquitetura.
+\end{frame}
+
+\subsection{Bibliotecas}
+\label{subsec:bibliotecas}
+
+\subsubsection{Numpy}
+\label{subsubsec:numpy}
+
+\begin{frame}{Bibliotecas: Numpy}
+	O Numpy é uma biblioteca fundamental para a computação científica. Ela possui implementações de vetores n-dimensionais em C, compiladas e executadas de maneira nativa, resultando em alto desempenho \cite{numpy}. Além disso, o Numpy já dispõe de uma vasta gama de funções matemáticas e operações de álgebra linear. Usando o Numpy é possível realizar, por exemplo, a normalização de um conjunto de dados com apenas uma linha de código.
+\end{frame}
+
+\subsubsection{Pandas}
+\label{subsubsec:pandas}
+
+\begin{frame}{Bibliotecas: Pandas}
+	O Pandas, que no que lhe concerne recorre ao Numpy, é uma biblioteca \textit{open-source}, ou seja, é um projeto disponibilizado com código aberto, que estrutura os dados em tabelas (\textit{Dataframes}), que são estruturas multidimensionais de dados, utilizados para análise de dados \cite{pandas}. Por utilizar o Numpy, além de uma vasta gama de funções matemáticas, o Pandas também possui desempenho de alto nível. Com o Pandas é possível realizar várias operações com os dados, como ordenação, filtragem, entre outros.
+\end{frame}
+
+\subsubsection{Scikit-learn}
+\label{subsubsec:scikit-learn}
+
+\begin{frame}{Bibliotecas: Scikit-learn}
+	O Scikit-learn, como o próprio nome sugere, é uma biblioteca de \textit{machine learning}, que possui implementações de algoritmos de aprendizado de máquina, estatísticos e de mineração de dados \cite{scikit-learn2022}. O \textit{Scikit-learn} possui um conjunto considerável de algoritmos de classificação, regressão, agrupamento, redução de dimensionalidade, entre outros. Além disso, ele possui um grupo de métricas de avaliação, utilizadas para avaliar o desempenho dos modelos criados. Utilizando a biblioteca é possível realizar, por exemplo, a criação de um modelo de árvore de decisão, um exemplo de algoritmo de aprendizado supervisionado, utilizado para classificação e regressão.
+\end{frame}
+
+
+\subsubsection{PyQt}
+\label{subsubsec:pyqt}
+
+\begin{frame}{Bibliotecas: PyQt}
+	O PyQt é a biblioteca responsável por criar as interfaces gráficas de usuário (GUI) do projeto. Sobe licença GPL, o PyQt é uma biblioteca de código aberto, que opera por \textit{wrapper's}, funções que encapsulam as bibliotecas pré-compiladas do Qt \cite{pyqt}. O Qt no que lhe concerne, é uma biblioteca, também de código aberto, que dispões de uma série de \textit{widgets}, layouts, entre outros componentes que podem ser facilmente utilizados para a criação de interfaces gráficas. Outra vantagem do PyQt é sua compatibilidade com vários sistemas operacionais, como Linux, Windows, Mac OS, entre outros.
+\end{frame}
+
+\subsubsection{Seaborn/Matplotlib}
+\label{subsubsec:seaborn}
+
+\begin{frame}{Bibliotecas: Seaborn/Matplotlib}
+	O Seaborn é a biblioteca gráfica escolhida nesse projeto para tratar a visualização dos dados. Ela utiliza o Matplotlib como base, fornecendo várias interfaces de alto nível para a criação e personalização de gráficos \cite{seaborn}. O Seaborn possui um conjunto de possibilidades como, por exemplo, a criação de gráficos de dispersão, gráficos de linha, gráficos de barras, entre outros. Utilizando ela é possível embutir os gráficos gerados na interface gráfica criada com o PyQt.
+\end{frame}
+
+
+\subsection{Trabalhos Relacionados}
+\label{subsec:trabalhos}
+
+\begin{frame}{Trabalhos Relacionados}
+	\begin{itemize}
+		\item \textbf{SmartEnergy}: \cite{SmartEnergy}
+		\item \textbf{kMap. py: A Python program for simulation and data analysis in photoemission tomography}: \cite{brandstetter2021kmap}
+		\item \textbf{mwarp1d: Manual one-dimensional data warping in python and pyqt}: \cite{pataky2019mwarp1d}
+	\end{itemize}
+\end{frame}
