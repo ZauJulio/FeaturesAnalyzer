@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 pyqt6 = "~=6.5.0"
+matplotlib = "~=3.7.1"
+autopep8 = "~=2.0.2"
 
 [dev-packages]
 
