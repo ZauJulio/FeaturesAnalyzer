@@ -1,2 +1,4 @@
-from .MPLCanvas import MPLCanvas
 from .SideMenu import SideMenu
+from .DataSideMenuItem import DataSideMenuItem
+
+from .base import *

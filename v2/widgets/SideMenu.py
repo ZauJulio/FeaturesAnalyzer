@@ -1,4 +1,6 @@
-from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout
+from PyQt6.QtWidgets import QVBoxLayout, QWidget
+
+from .DataSideMenuItem import DataSideMenuItem
 
 
 class SideMenu(QWidget):
@@ -7,4 +9,5 @@ class SideMenu(QWidget):
 
         self.setObjectName("sideMenuLayout")
         self.setLayout(QVBoxLayout())
-        self.layout().addWidget(QLabel("Hello World"))
+
+        self.layout().addWidget(DataSideMenuItem(self))

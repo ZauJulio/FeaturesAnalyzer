@@ -1,6 +1,7 @@
 from matplotlib.backends.backend_qt import NavigationToolbar2QT
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QMainWindow, QGridLayout, QScrollArea, QWidget
+from matplotlib.figure import Figure
 
 from widgets import MPLCanvas, SideMenu
 
@@ -14,7 +15,9 @@ class MainView(QWidget):
         self.buildLayout()
 
     def buildWidgets(self, window: QMainWindow):
-        self.mplCanvas = MPLCanvas(window, width=5, height=4, dpi=100)
+        self.fig = Figure(figsize=(5, 4), dpi=100)
+
+        self.mplCanvas = MPLCanvas(fig=self.fig)
         self.navigationBar = NavigationToolbar2QT(self.mplCanvas, self)
         self.sideMenu = SideMenu(self)
 
