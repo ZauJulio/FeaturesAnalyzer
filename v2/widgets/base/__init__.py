@@ -6,3 +6,4 @@ from .CheckBox import CheckBox
 from .PushButton import PushButton
 from .RadioButton import RadioButton
 from .SpinBox import SpinBox
+from .LineEdit import LineEdit
