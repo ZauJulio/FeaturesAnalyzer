@@ -1,13 +1,17 @@
-from PyQt6.QtWidgets import QVBoxLayout, QWidget
+from interfaces import AbstractLayout
+from PyQt6.QtWidgets import QSizePolicy, QSpacerItem, QVBoxLayout
 
-from .DataSideMenuItem import DataSideMenuItem
+from .DataMenu import DataMenu
 
 
-class SideMenu(QWidget):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+class SideMenu(AbstractLayout):
+    def buildComponents(self):
+        self.dataMenu = DataMenu(self)
 
-        self.setObjectName("sideMenuLayout")
-        self.setLayout(QVBoxLayout())
-
-        self.layout().addWidget(DataSideMenuItem(self))
+    def buildLayout(self):
+        self.setLayout(QVBoxLayout(self))
+        self.layout().addWidget(self.dataMenu)
+        self.layout().addItem(QSpacerItem(
+            7, 7,
+            QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
+        ))

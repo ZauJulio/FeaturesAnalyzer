@@ -1,9 +1,12 @@
-from views.MainView import MainView
+from controllers import MainController
 from PyQt6.QtWidgets import QMainWindow
+from views import MainView
 
 
-class Core(MainView):
+class Core:
     def __init__(self, window: QMainWindow, language: str = 'en_us'):
-        self.LANGUAGE = language
+        self.window = window
+        self.language = language
 
-        super().__init__(window)
+        self.controller = MainController(self)
+        self.view = MainView(self)

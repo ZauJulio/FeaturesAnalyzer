@@ -1,11 +1,10 @@
 import os
 import sys
 
-from PyQt6.QtCore import QMetaObject
-from PyQt6.QtGui import QIcon
-from PyQt6.QtWidgets import QApplication, QMainWindow
-
 from core import Core
+from PyQt6.QtCore import QMetaObject, Qt
+from PyQt6.QtGui import QGuiApplication, QIcon
+from PyQt6.QtWidgets import QApplication, QMainWindow
 
 
 class MainWindow(QMainWindow):
@@ -26,24 +25,24 @@ class MainWindow(QMainWindow):
     def loadCore(self):
         self.core = Core(window=self, language=self.language)
 
-        self.setCentralWidget(self.core)
+        self.setCentralWidget(self.core.view)
         QMetaObject.connectSlotsByName(self)
 
     def configure(self):
-        self.showMaximized()
         self.setWindowTitle("Features Analyzer")
         self.app.setWindowIcon(QIcon(self.iconPath))
 
         QMetaObject.connectSlotsByName(self)
 
-        with open(self.themePath, "r") as css:
-            self.setStyleSheet(css.read())
+        # with open(self.themePath, "r") as css:
+        #     self.setStyleSheet(css.read())
+
+        self.setGeometry(QGuiApplication.primaryScreen().availableGeometry())
+        self.showMaximized()
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow(app)
-
-    window.show()
 
     sys.exit(app.exec())
