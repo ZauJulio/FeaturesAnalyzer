@@ -2,7 +2,7 @@ import os
 import sys
 
 from core import Core
-from PyQt6.QtCore import QMetaObject, Qt
+from PyQt6.QtCore import QMetaObject
 from PyQt6.QtGui import QGuiApplication, QIcon
 from PyQt6.QtWidgets import QApplication, QMainWindow
 
@@ -26,13 +26,10 @@ class MainWindow(QMainWindow):
         self.core = Core(window=self, language=self.language)
 
         self.setCentralWidget(self.core.view)
-        QMetaObject.connectSlotsByName(self)
 
     def configure(self):
         self.setWindowTitle("Features Analyzer")
         self.app.setWindowIcon(QIcon(self.iconPath))
-
-        QMetaObject.connectSlotsByName(self)
 
         # with open(self.themePath, "r") as css:
         #     self.setStyleSheet(css.read())

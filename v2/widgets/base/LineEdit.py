@@ -22,6 +22,11 @@ class LineEdit(QLineEdit, AbstractWidget):
     def setValue(self, text: str) -> None:
         self.setText(text)
 
+    def onError(self) -> None:
+        self.setStyleSheet("border: 1px solid red;")
+        self.textEdited.connect(lambda: self.setStyleSheet(
+            "border: 1px solid transparent;"))
+
     def setOnChange(self, callback: Callable[[str], None]) -> None:
         with suppress(TypeError):
             self.editingFinished.disconnect()

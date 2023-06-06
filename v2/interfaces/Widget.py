@@ -15,6 +15,9 @@ class AbstractWidget(QWidget):
     def getValue(self) -> Any:
         raise NotImplementedError()
 
+    def onError(self) -> None:
+        pass
+
     def setValue(self, value: Any) -> None:
         raise NotImplementedError()
 

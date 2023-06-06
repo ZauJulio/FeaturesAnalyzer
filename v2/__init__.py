@@ -1,1 +1,2 @@
-from .core import Core
+from core import *
+from views import *

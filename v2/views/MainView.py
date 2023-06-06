@@ -1,8 +1,9 @@
-from widgets import MPLCanvas, SideMenu
-from PyQt6.QtWidgets import QGridLayout, QScrollArea, QWidget
-from PyQt6.QtCore import QSize
 from matplotlib.figure import Figure
-from matplotlib.backends.backend_qt import NavigationToolbar2QT
+from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QGridLayout, QScrollArea, QWidget
+from widgets import SideMenu
+
+from .GraphView import GraphView
 
 
 class MainView(QWidget):
@@ -17,8 +18,7 @@ class MainView(QWidget):
     def buildWidgets(self):
         self.fig = Figure(figsize=(5, 4), dpi=100)
 
-        self.mplCanvas = MPLCanvas(fig=self.fig)
-        self.navigationBar = NavigationToolbar2QT(self.mplCanvas, self)
+        self.graphView = GraphView(self.core)
         self.sideMenu = SideMenu(self)
 
     def buildLayout(self):
@@ -35,7 +35,6 @@ class MainView(QWidget):
         layout.setSpacing(0)
 
         layout.addWidget(scrollArea,         0, 0, 2, 1)
-        layout.addWidget(self.mplCanvas,     0, 1, 1, 1)
-        layout.addWidget(self.navigationBar, 1, 1, 1, 1)
+        layout.addWidget(self.graphView,     0, 1, 1, 1)
 
         self.setLayout(layout)
