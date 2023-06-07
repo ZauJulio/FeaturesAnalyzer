@@ -1,0 +1,15 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pyqt6 = "~=6.5.0"
+matplotlib = "~=3.7.1"
+autopep8 = "~=2.0.2"
+pandas = "~=2.0.2"
+
+[dev-packages]
+
+[requires]
+python_version = "3.11"
