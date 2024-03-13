@@ -1,0 +1,13 @@
+{
+  "workbench.colorCustomizations": {
+    "commandCenter.border": "#15202b99",
+    "tab.activeBorder": "#f57cdb",
+    "titleBar.activeBackground": "#f24cce",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#f24cce99",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#f24cce",
+  "C_Cpp.default.compileCommands": "/home/zaujulio/Projects/FeaturesAnalyzer/builddir/compile_commands.json",
+  "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild"
+}

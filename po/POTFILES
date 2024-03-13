@@ -1,0 +1,6 @@
+data/zaujulio.research.FeaturesAnalyzer.desktop.in
+data/zaujulio.research.FeaturesAnalyzer.metainfo.xml.in
+data/zaujulio.research.FeaturesAnalyzer.gschema.xml
+src/main.py
+src/window.py
+src/window.ui
