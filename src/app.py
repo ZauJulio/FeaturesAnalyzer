@@ -2,7 +2,7 @@ import gi
 
 gi.require_version("Gtk", "3.0")
 
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk, Gio, GdkPixbuf
 
 
 class FeaturesAnalyzer(Gtk.Application):
@@ -10,6 +10,10 @@ class FeaturesAnalyzer(Gtk.Application):
         super().__init__(
             application_id="zaujulio.research.FeaturesAnalyzer",
             flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
+        )
+
+        self.app_icon = GdkPixbuf.Pixbuf.new_from_file_at_size(
+            "../assets/icons/app.png", 64, 64
         )
 
         self.create_actions("quit", lambda *_: self.quit(), ["<primary>q"])
@@ -22,13 +26,13 @@ class FeaturesAnalyzer(Gtk.Application):
         self.add_action(action)
         self.set_accels_for_action(f"app.{name}", accel)
 
-    def on_about_action(self, widget, _):
+    def on_about_action(self, *_):
         """Callback for the app.about action."""
         about = Gtk.AboutDialog(
+            logo=self.app_icon,
             transient_for=self.props.active_window,
             modal=True,
             program_name="FeaturesAnalyzer",
-            logo_icon_name="zaujulio.research.FeaturesAnalyzer",
             version="0.1.0",
             authors=["Zaú Júlio"],
             copyright="© 2024 Zaú Júlio",
@@ -43,9 +47,10 @@ class FeaturesAnalyzer(Gtk.Application):
         necessary.
         """
         builder = Gtk.Builder()
-        builder.add_from_file("ui/window.ui")
+        builder.add_from_file("ui/views/windows/MainWindow.ui")
         builder.connect_signals(self)
 
         self.window = builder.get_object("MainWindow")
+        self.window.set_icon(self.app_icon)
         self.add_window(self.window)
         self.window.show_all()
