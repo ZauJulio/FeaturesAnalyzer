@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta" # If not defined, then legacy behavior can happen.
+
+
+[project]
+name = "features-analyzer"
+version = "0.1.0"
+description = "Machine learning features analyzer dashboard"
+keywords = ["machine learning", "features", "ia", "proto", "dashboard"]
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Zaú Júlio A. Galvão, Main developer", email = "zaujulio.dev@gmail.com" },
+]
+maintainers = [
+  { name = "Zaú Júlio A. Galvão, Main developer", email = "zaujulio.dev@gmail.com" },
+]
+
+# For a list of valid classifiers, see https://pypi.org/classifiers/
+classifiers = [
+  "Development Status :: 1 - Planning",
+
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Topic :: Software Development :: Build Tools",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.12",
+]
+
+# Look Pipfile for dependencies
+dependencies = ["pygobject"]
+
+[project.optional-dependencies]
+dev = ["fakegir", "black"]
+test = ["coverage"]
+
+# Black Settings
+target-version = ["py311"]
+
+[project.urls]
+"Homepage" = "https://github.com/ZauJulio/FeaturesAnalyzerGTK"
+"Bug Reports" = "https://github.com/ZauJulio/FeaturesAnalyzerGTK/issues"
+"Funding" = "https://github.com/sponsors/ZauJulio"
+"Say Thanks!" = "https://saythanks.io/to/ZauJulio"
+"Source" = "https://github.com/ZauJulio/FeaturesAnalyzerGTK/"
+
+[project.scripts]
+sample = "cd src && pipenv run python main.py"
+
+[tool.setuptools]

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="225mm" height="225mm" viewBox="0 0 225 225">
+   <defs>
+      <filter id="prefix__b" color-interpolation-filters="sRGB">
+         <feColorMatrix type="hueRotate" values="180" result="color1" />
+         <feColorMatrix values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 -0.21 -0.72 -0.07 2 0" result="color2" />
+      </filter>
+      <filter id="prefix__a" color-interpolation-filters="sRGB">
+         <feColorMatrix type="hueRotate" values="180" result="color1" />
+         <feColorMatrix values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 -0.21 -0.72 -0.07 2 0" result="color2" />
+      </filter>
+   </defs>
+   <rect width="212.286" height="212.286" x="6.357" y="6.357" rx="100" ry="100" fill="#1c1f24" stroke="#000"
+      stroke-width=".714" stroke-miterlimit="2" filter="url(#prefix__a)" />
+   <g transform="matrix(3.04096 0 0 3.04286 6.285 7.443)" filter="url(#prefix__b)">
+      <path d="M64.171 34.526a30 30 0 01-30 30 30 30 0 01-30-30 30 30 0 0130-30 30 30 0 0130 30z" fill="#fff" />
+      <path d="M60.163 34.524a26 26 0 01-26 26 26 26 0 01-26-26 26 26 0 0126-26 26 26 0 0126 26z" fill="#1c1f24" />
+      <path
+         d="M27.12 33.899a3 3 0 01-3 3 3 3 0 01-3-3 3 3 0 013-3 3 3 0 013 3zM48.288 33.895a3 3 0 01-3 3 3 3 0 01-3-3 3 3 0 013-3 3 3 0 013 3z"
+         fill="#fff" />
+      <path
+         d="M23.568 36.819c-1.054-.2-1.953-1.013-2.292-2.073-.502-1.572.501-3.315 2.15-3.735 1.425-.363 2.94.452 3.489 1.877.165.43.21 1.243.094 1.709-.208.828-.83 1.6-1.572 1.952a4.224 4.224 0 01-.62.24c-.37.088-.878.1-1.25.03zM44.777 36.821c-2.299-.445-3.237-3.153-1.7-4.906.735-.837 2.025-1.2 3.08-.868.63.2 1.344.76 1.675 1.315a2.987 2.987 0 01-.245 3.407c-.657.817-1.804 1.247-2.81 1.052z"
+         fill="#fff" />
+   </g>
+</svg>
