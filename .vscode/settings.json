@@ -1,13 +1,21 @@
 {
   "workbench.colorCustomizations": {
-    "commandCenter.border": "#15202b99",
-    "tab.activeBorder": "#f57cdb",
-    "titleBar.activeBackground": "#f24cce",
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveBackground": "#f24cce99",
-    "titleBar.inactiveForeground": "#15202b99"
+    "commandCenter.border": "#e7e7e799",
+    "tab.activeBorder": "#853d8f",
+    "titleBar.activeBackground": "#642e6b",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#642e6b99",
+    "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#f24cce",
-  "C_Cpp.default.compileCommands": "/home/zaujulio/Projects/FeaturesAnalyzer/builddir/compile_commands.json",
-  "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild"
+  "peacock.color": "#642E6B",
+  "python.analysis.extraPaths": [
+    "~/.cache/fakegir/"
+  ],
+  "python.autoComplete.extraPaths": [
+    "~/.cache/fakegir/"
+  ],
+  "cSpell.words": [
+    "gtktemplate",
+    "pygobject"
+  ]
 }
