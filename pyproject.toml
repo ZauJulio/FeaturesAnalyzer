@@ -1,8 +1,3 @@
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta" # If not defined, then legacy behavior can happen.
-
-
 [project]
 name = "features-analyzer"
 version = "0.1.0"
@@ -29,8 +24,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
 
-# Look Pipfile for dependencies
-dependencies = ["pygobject"]
+dependencies = ["pygobject", "numpy", "pandas", "matplotlib"]
 
 [project.optional-dependencies]
 dev = ["fakegir", "black"]
@@ -50,3 +44,4 @@ target-version = ["py311"]
 sample = "cd src && pipenv run python main.py"
 
 [tool.setuptools]
+# Look Pipfile for dependencies

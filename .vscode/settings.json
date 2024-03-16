@@ -19,7 +19,12 @@
     "~/.cache/fakegir/"
   ],
   "cSpell.words": [
-    "Pixbuf",
-    "commitizen"
+    "arange",
+    "commitizen",
+    "Pixbuf"
   ],
+  "files.exclude": {
+    "**/*.ui~": true,
+    "#*.ui#": true,
+  }
 }
