@@ -1,23 +1,25 @@
 import threading
 import time
 from typing import Callable, List
-import numpy as np
+
 import gi
+import numpy as np
 
 gi.require_version("Gtk", "3.0")
+gi.require_version("GdkPixbuf", "2.0")
 
-from gi.repository import Gtk, Gio, GdkPixbuf
+from gi.repository import GdkPixbuf, Gio, Gtk
+
+from lib.utils.alias import at
 from ui.components.graph_box import GraphBox
+from ui.screens.app_window import ApplicationWindow
 
 
 class FeaturesAnalyzer(Gtk.Application):
     """The main application class."""
 
-    app_icon = GdkPixbuf.Pixbuf.new_from_file_at_size("../assets/icons/app.png", 64, 64)
-
-    builder: Gtk.Builder
-    window: Gtk.Window
-    graph: GraphBox
+    icon = GdkPixbuf.Pixbuf.new_from_file_at_size(at("@icon/app.png"), 64, 64)
+    window: Gtk.Window = None
 
     def __init__(self):
         super().__init__(
@@ -38,17 +40,15 @@ class FeaturesAnalyzer(Gtk.Application):
 
     def on_about_action(self, *_):
         """Callback for the app.about action."""
-        about = Gtk.AboutDialog(
-            logo=self.app_icon,
+        Gtk.AboutDialog(
+            logo=self.icon,
             transient_for=self.props.active_window,
             modal=True,
             program_name="FeaturesAnalyzer",
             version="0.1.0",
             authors=["Zaú Júlio"],
             copyright="© 2024 Zaú Júlio",
-        )
-
-        about.present()
+        ).present()
 
     def do_activate(self, *_, **__):
         """Called when the application is activated.
@@ -56,27 +56,12 @@ class FeaturesAnalyzer(Gtk.Application):
         We raise the application's main window, creating it if
         necessary.
         """
-        self.builder = Gtk.Builder()
-        self.builder.add_from_file("ui/views/windows/MainWindow.ui")
-        self.builder.connect_signals(self)
+        self.window = self.window or ApplicationWindow(application=self)
+        self.window.display()
 
-        self.window = self.builder.get_object("MainWindow")
-        self.window.set_icon(self.app_icon)
-        self.add_window(self.window)
-
-        self.window.show_all()
-
-        self.load_graph()
-
-    def load_graph(self):
-        """Load the graph on the main window."""
-        self.graph = GraphBox()
-
-        self.builder.get_object("graph_container").add(self.graph)
-        self.graph.show_all()
-
-        thread = threading.Thread(target=self.update_graph, args=(self.graph,))
-        thread.start()
+        threading.Thread(
+            target=self.update_graph, args=(self.window.graph,), daemon=True
+        ).start()
 
     def update_graph(self, graph: GraphBox):
         """Update the graph with random data."""
@@ -84,12 +69,12 @@ class FeaturesAnalyzer(Gtk.Application):
         y = np.sin(x)
 
         while True:
+            # if the window is closed, stop the thread
+            if not self.window.is_visible():
+                break
+
             x = np.append(x, x[-1] + 0.1)
             y = np.append(y, np.sin(x[-1]))
 
             graph.plot(x, y)
             time.sleep(0.03)
-
-            # if the window is closed, stop the thread
-            if not self.window.is_visible():
-                break

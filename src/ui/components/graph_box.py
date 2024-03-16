@@ -2,10 +2,14 @@ import gi
 
 gi.require_version("Gtk", "3.0")
 
+
 from gi.repository import Gtk
-from matplotlib.backends.backend_gtk3agg import FigureCanvasGTK3Agg as FigureCanvas
 from matplotlib.backends.backend_gtk3 import NavigationToolbar2GTK3
+from matplotlib.backends.backend_gtk3agg import FigureCanvasGTK3Agg as FigureCanvas
 from matplotlib.figure import Figure
+from matplotlib import pyplot as plt
+
+plt.style.use("ggplot")
 
 
 class GraphBox(Gtk.VBox):
@@ -16,7 +20,6 @@ class GraphBox(Gtk.VBox):
 
         self.figure = Figure(figsize=(5, 4), dpi=100)
         self.ax = self.figure.add_subplot(111)
-        self.ax.plot([1, 2, 3, 4], [1, 4, 9, 16])
 
         self.canvas = FigureCanvas(self.figure)
         self.toolbar = NavigationToolbar2GTK3(self.canvas)
@@ -26,10 +29,9 @@ class GraphBox(Gtk.VBox):
 
         self.set_size_request(400, 300)
 
-    def plot(self, x: list, y: list):
-        """Plot the data on the graph."""
-        # clear the old plot
+    def plot(self, *args, **kwargs):
+        """Plot data on the graph."""
         self.ax.clear()
+        self.ax.plot(*args, **kwargs)
 
-        self.ax.plot(x, y)
         self.canvas.draw()

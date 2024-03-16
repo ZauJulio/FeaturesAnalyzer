@@ -433,6 +433,7 @@ disable=raw-checker-failed,
         use-implicit-booleaness-not-comparison-to-zero,
         wrong-import-position,
         no-member,
+        import-error,
         dangerous-default-value,
         too-few-public-methods,
         missing-module-docstring

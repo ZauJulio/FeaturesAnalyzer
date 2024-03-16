@@ -21,7 +21,10 @@
   "cSpell.words": [
     "arange",
     "commitizen",
-    "Pixbuf"
+    "isort",
+    "Pixbuf",
+    "xlabel",
+    "ylabel"
   ],
   "files.exclude": {
     "**/*.ui~": true,
