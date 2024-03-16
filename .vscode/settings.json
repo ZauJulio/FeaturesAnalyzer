@@ -9,7 +9,8 @@
   },
   "peacock.color": "#642E6B",
   "files.associations": {
-    "*.ui": "xml"
+    "*.ui": "xml",
+    "*.ini": "cfg",
   },
   "python.analysis.extraPaths": [
     "~/.cache/fakegir/"
@@ -18,6 +19,7 @@
     "~/.cache/fakegir/"
   ],
   "cSpell.words": [
-    "Pixbuf"
+    "Pixbuf",
+    "commitizen"
   ],
 }
