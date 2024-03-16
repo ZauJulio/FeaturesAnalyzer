@@ -1,15 +1,23 @@
+import threading
+import time
+from typing import Callable, List
+import numpy as np
 import gi
 
 gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gtk, Gio, GdkPixbuf
-from src.ui.components.graph_box import GraphBox
+from ui.components.graph_box import GraphBox
 
 
 class FeaturesAnalyzer(Gtk.Application):
     """The main application class."""
 
+    app_icon = GdkPixbuf.Pixbuf.new_from_file_at_size("../assets/icons/app.png", 64, 64)
+
+    builder: Gtk.Builder
     window: Gtk.Window
+    graph: GraphBox
 
     def __init__(self):
         super().__init__(
@@ -17,14 +25,10 @@ class FeaturesAnalyzer(Gtk.Application):
             flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
         )
 
-        self.app_icon = GdkPixbuf.Pixbuf.new_from_file_at_size(
-            "../assets/icons/app.png", 64, 64
-        )
-
         self.create_actions("quit", lambda *_: self.quit(), ["<primary>q"])
         self.create_actions("about", lambda *_: self.on_about_action(), ["<primary>a"])
 
-    def create_actions(self, name, callback, accel):
+    def create_actions(self, name: str, callback: Callable, accel: List[str] = []):
         """Create and add a Gio.SimpleAction to the app."""
         action = Gio.SimpleAction.new(name, None)
         action.connect("activate", callback)
@@ -52,26 +56,40 @@ class FeaturesAnalyzer(Gtk.Application):
         We raise the application's main window, creating it if
         necessary.
         """
-        builder = Gtk.Builder()
-        builder.add_from_file("ui/views/windows/MainWindow.ui")
-        builder.connect_signals(self)
+        self.builder = Gtk.Builder()
+        self.builder.add_from_file("ui/views/windows/MainWindow.ui")
+        self.builder.connect_signals(self)
 
-        self.window = builder.get_object("MainWindow")
+        self.window = self.builder.get_object("MainWindow")
         self.window.set_icon(self.app_icon)
         self.add_window(self.window)
+
         self.window.show_all()
 
-        self.load_graph(builder)
+        self.load_graph()
 
-    def load_graph(self, builder: Gtk.Builder):
+    def load_graph(self):
         """Load the graph on the main window."""
-        # Select graph_container as the graph container
-        graph_container = builder.get_object("graph_container")
+        self.graph = GraphBox()
 
-        # Create a GraphBox instance
-        graph_box = GraphBox()
-        graph_container.add(graph_box)
-        graph_box.show_all()
+        self.builder.get_object("graph_container").add(self.graph)
+        self.graph.show_all()
 
-        # plot some data
-        graph_box.plot([1, 2, 3, 4], [1, 4, 9, 16])
+        thread = threading.Thread(target=self.update_graph, args=(self.graph,))
+        thread.start()
+
+    def update_graph(self, graph: GraphBox):
+        """Update the graph with random data."""
+        x = np.arange(0, 10, 0.1)
+        y = np.sin(x)
+
+        while True:
+            x = np.append(x, x[-1] + 0.1)
+            y = np.append(y, np.sin(x[-1]))
+
+            graph.plot(x, y)
+            time.sleep(0.03)
+
+            # if the window is closed, stop the thread
+            if not self.window.is_visible():
+                break

@@ -3,25 +3,33 @@ import gi
 gi.require_version("Gtk", "3.0")
 
 from gi.repository import Gtk
-
 from matplotlib.backends.backend_gtk3agg import FigureCanvasGTK3Agg as FigureCanvas
+from matplotlib.backends.backend_gtk3 import NavigationToolbar2GTK3
 from matplotlib.figure import Figure
 
 
-class GraphBox(Gtk.Box):
-    """A Gtk.Box that contains a matplotlib graph."""
+class GraphBox(Gtk.VBox):
+    """A box to display a graph."""
 
     def __init__(self):
-        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
+        super().__init__()
 
-        self.figure = Figure(figsize=(500, 400))
+        self.figure = Figure(figsize=(5, 4), dpi=100)
         self.ax = self.figure.add_subplot(111)
-        self.canvas = FigureCanvas(self.figure)
-        self.pack_start(self.canvas, True, True, 0)
-        self.canvas.show()
+        self.ax.plot([1, 2, 3, 4], [1, 4, 9, 16])
 
-    def plot(self, x, y):
-        """Plot a graph on the canvas."""
-        self.ax.clear()  # Clear the previous plot
+        self.canvas = FigureCanvas(self.figure)
+        self.toolbar = NavigationToolbar2GTK3(self.canvas)
+
+        self.pack_start(self.canvas, True, True, 0)
+        self.pack_start(self.toolbar, False, False, 0)
+
+        self.set_size_request(400, 300)
+
+    def plot(self, x: list, y: list):
+        """Plot the data on the graph."""
+        # clear the old plot
+        self.ax.clear()
+
         self.ax.plot(x, y)
         self.canvas.draw()

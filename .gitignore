@@ -1,3 +1,4 @@
 .flatpak-builder/
 __pycache__/
 *.ui~
+\#*.ui#
