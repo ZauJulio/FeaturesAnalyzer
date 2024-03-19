@@ -29,6 +29,6 @@ repos:
     hooks:
       - id: update-requirements
         name: update-requirements
-        entry: bash -c 'pipenv requirements > requirements.txt'
+        entry: bash -c 'pipenv requirements > requirements.txt && git add requirements.txt'
         language: system
         types: [python]
