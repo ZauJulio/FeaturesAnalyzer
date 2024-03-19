@@ -4,16 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-lxml = "*"
-black = "*"
 pygobject = "==3.48.1"
 matplotlib = "==3.8.3"
-pylint = "*"
-pre-commit = "*"
 numpy = "==1.26.4"
 pandas = "==2.2.1"
 
 [dev-packages]
+lxml = "*"
+black = "*"
+pylint = "*"
+pre-commit = "*"
 
 [requires]
 python_version = "3.12"
