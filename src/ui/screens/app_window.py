@@ -5,6 +5,7 @@ from gi.repository import Gtk
 
 from lib.utils.alias import at
 from ui.components.graph_box import GraphBox
+from ui.components.sidebar import SideBar
 
 
 class ApplicationWindow(Gtk.ApplicationWindow):
@@ -15,10 +16,12 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
     # Containers
     container: Gtk.Box = builder.get_object("AppLayout")
+    side_bar_container: Gtk.Box = builder.get_object("SideBarContainer")
     graph_container: Gtk.Box = builder.get_object("GraphContainer")
 
     # Components
     graph: GraphBox = None
+    side_bar: SideBar = None
 
     def __init__(self, application: Gtk.Application):
         super().__init__(application=application)
@@ -36,6 +39,9 @@ class ApplicationWindow(Gtk.ApplicationWindow):
 
         self.graph = GraphBox()
         self.graph_container.add(self.graph)
+
+        self.side_bar = SideBar(application=self.get_application())
+        self.side_bar_container.add(self.side_bar)
 
     def display(self):
         """Show all widgets in the window."""
