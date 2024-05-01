@@ -1,0 +1,17 @@
+#from_label {
+  padding-top: 0.5rem;
+}
+
+#options_container,
+#import_tab_container {
+  margin: 0.5rem;
+}
+
+#file_chooser,
+#url_entry {
+  margin: 0.5rem;
+}
+
+#enter_box {
+  margin-right: -0.5rem;
+}

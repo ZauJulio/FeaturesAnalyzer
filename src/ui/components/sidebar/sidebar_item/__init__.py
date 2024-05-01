@@ -1,0 +1,1 @@
+"""Sidebar item component."""

@@ -1,6 +1,6 @@
 import threading
 import time
-from typing import Callable, List
+from collections.abc import Callable
 
 import gi
 import numpy as np
@@ -8,20 +8,25 @@ import numpy as np
 gi.require_version("Gtk", "3.0")
 gi.require_version("GdkPixbuf", "2.0")
 
+from context import Store
 from gi.repository import GdkPixbuf, Gio, Gtk
+from interfaces.application import ApplicationAbc
+from lib.utils import alias, types
+from ui.components import GraphBox
+from ui.screens import ApplicationWindow
 
-from lib.utils.alias import at
-from ui.components.graph_box import GraphBox
-from ui.screens.app_window import ApplicationWindow
 
-
-class FeaturesAnalyzer(Gtk.Application):
+@types.property_meta(ApplicationAbc)
+class FeaturesAnalyzer(ApplicationAbc):
     """The main application class."""
 
-    icon = GdkPixbuf.Pixbuf.new_from_file_at_size(at("@icon/app.png"), 64, 64)
-    window: Gtk.Window = None
+    store: Store = Store()
+    window: ApplicationWindow
+    icon: GdkPixbuf.Pixbuf = types.nn(
+        GdkPixbuf.Pixbuf.new_from_file_at_size(alias.at("@icon/app.png"), 64, 64),
+    )
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             application_id="zaujulio.research.FeaturesAnalyzer",
             flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
@@ -30,7 +35,12 @@ class FeaturesAnalyzer(Gtk.Application):
         self.create_actions("quit", lambda *_: self.quit(), ["<primary>q"])
         self.create_actions("about", lambda *_: self.on_about_action(), ["<primary>a"])
 
-    def create_actions(self, name: str, callback: Callable, accel: List[str] = []):
+    def create_actions(
+        self,
+        name: str,
+        callback: Callable,
+        accel: list[str] = [],
+    ) -> None:
         """Create and add a Gio.SimpleAction to the app."""
         action = Gio.SimpleAction.new(name, None)
         action.connect("activate", callback)
@@ -38,8 +48,8 @@ class FeaturesAnalyzer(Gtk.Application):
         self.add_action(action)
         self.set_accels_for_action(f"app.{name}", accel)
 
-    def on_about_action(self, *_):
-        """Callback for the app.about action."""
+    def on_about_action(self) -> None:
+        """Call the app.about action."""
         Gtk.AboutDialog(
             logo=self.icon,
             transient_for=self.props.active_window,
@@ -50,20 +60,20 @@ class FeaturesAnalyzer(Gtk.Application):
             copyright="© 2024 Zaú Júlio",
         ).present()
 
-    def do_activate(self, *_, **__):
-        """Called when the application is activated.
+    def do_activate(self, *_, **__) -> None:  # noqa: ANN002, ANN003
+        """Call when the application is activated."""
+        if not hasattr(self, "window"):
+            self.window = ApplicationWindow(application=self)
 
-        We raise the application's main window, creating it if
-        necessary.
-        """
-        self.window = self.window or ApplicationWindow(application=self)
         self.window.display()
 
         threading.Thread(
-            target=self.update_graph, args=(self.window.graph,), daemon=True
+            target=self.update_graph,
+            args=(self.window.graph,),
+            daemon=True,
         ).start()
 
-    def update_graph(self, graph: GraphBox):
+    def update_graph(self, graph: GraphBox) -> None:
         """Update the graph with random data."""
         x = np.arange(0, 10, 0.1)
         y = np.sin(x)
