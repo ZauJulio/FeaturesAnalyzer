@@ -12,23 +12,27 @@
     "*.ui": "xml",
     "*.ini": "cfg",
   },
-  "python.analysis.extraPaths": [
-    "~/.cache/fakegir/"
-  ],
-  "python.autoComplete.extraPaths": [
-    "~/.cache/fakegir/"
-  ],
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingModuleSource": "none",
+  },
   "cSpell.words": [
     "arange",
     "commitizen",
+    "ggplot",
+    "halign",
+    "hexpand",
     "hscroll",
     "isort",
     "Pixbuf",
+    "unicode",
+    "valign",
     "xlabel",
     "ylabel"
   ],
   "files.exclude": {
     "**/*.ui~": true,
     "#*.ui#": true,
-  }
+  },
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.typeCheckingMode": "basic"
 }

@@ -1,3 +1,0 @@
-[submodule "modules/fakegir"]
-	path = modules/fakegir
-	url = git@github.com:ZauJulio/fakegir.git

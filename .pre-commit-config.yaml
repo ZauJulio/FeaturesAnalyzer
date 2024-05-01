@@ -12,18 +12,11 @@ repos:
       - id: trailing-whitespace
       - id: check-ast
 
-  - repo: local
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.11
     hooks:
-      - id: pylint
-        name: pylint
-        entry: bash -c 'pipenv run pylint src'
-        language: system
-        types: [python]
-
-  - repo: https://github.com/psf/black
-    rev: 22.10.0
-    hooks:
-      - id: black
+      - id: ruff
+      - id: ruff-format
 
   - repo: local
     hooks:
