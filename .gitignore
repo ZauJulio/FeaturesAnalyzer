@@ -1,4 +1,9 @@
-.flatpak-builder/
+# Python
 __pycache__/
+
+# UI/GTK
 *.ui~
 \#*.ui#
+
+# Env
+.env
