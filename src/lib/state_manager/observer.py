@@ -20,12 +20,6 @@ class Observer:
     _status: StateStatus = "idle"
     _tracked: bool = True
     _keys: ClassVar[set[str]] = set()
-    _excluded_keys: ClassVar[set[str]] = {
-        "_tracked",
-        "_status",
-        "on_commit",
-        "on_untrack",
-    }
 
     _subscribers: ClassVar[dict[str, list[Callback]]] = {}
     _root_subscribers: ClassVar[dict[RootSubscriber, list[Callback]]] = {}
