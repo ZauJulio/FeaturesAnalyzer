@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 from lib.utils.ui import load_styles
-from ui.components.sidebar.sidebar_item.widget import SideBarItem
+from ui.components.shared import SideBarItem
 
 
 class ImportSettingsWidget(SideBarItem):

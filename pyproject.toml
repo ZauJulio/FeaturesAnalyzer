@@ -48,6 +48,7 @@ sample = "cd src && pipenv run python main.py"
 
 [tool.ruff]
 lint.select = ["ALL"]
+namespace-packages = ["src/ui/components/"]
 lint.extend-select = [
   "D419",    # empty-docstring
   "E501",    # line-too-long

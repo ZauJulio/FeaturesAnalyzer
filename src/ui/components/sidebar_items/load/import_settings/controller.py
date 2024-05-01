@@ -5,7 +5,7 @@ from gi.repository import Gtk
 from interfaces.application import ApplicationAbc
 from interfaces.controller import ControllerAbc
 from lib.utils import types
-from ui.components.sidebar.import_settings.widget import ImportSettingsWidget
+from ui.components.sidebar_items.load.import_settings.widget import ImportSettingsWidget
 
 
 @types.property_meta(ControllerAbc)

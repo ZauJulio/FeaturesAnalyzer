@@ -1,8 +1,7 @@
 from gi.repository import Gtk
 from interfaces.application import ApplicationAbc
 from lib.utils import alias, types
-from ui.components import GraphBox
-from ui.components.sidebar.sidebar import SideBar
+from ui.modules import GraphBox, SideBar
 
 
 class ApplicationWindow(Gtk.ApplicationWindow):

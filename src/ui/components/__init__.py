@@ -1,5 +1,5 @@
 """Components module for UI package."""
 
-from .graph_box import GraphBox
+from .shared import SideBarItem
 
-__all__ = ["GraphBox"]
+__all__ = ["SideBarItem"]

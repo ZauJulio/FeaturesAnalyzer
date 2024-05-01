@@ -12,7 +12,7 @@ from context import Store
 from gi.repository import GdkPixbuf, Gio, Gtk
 from interfaces.application import ApplicationAbc
 from lib.utils import alias, types
-from ui.components import GraphBox
+from ui.modules.graph_box import GraphBox
 from ui.screens import ApplicationWindow
 
 

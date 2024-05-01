@@ -3,7 +3,7 @@ from typing import TypedDict
 from gi.repository import Gtk
 from interfaces.application import ApplicationAbc
 from interfaces.module import ModuleAbc
-from ui.components.sidebar.import_settings import ImportSettingsModule
+from ui.components.sidebar_items.load.import_settings.module import ImportSettingsModule
 
 
 class SettingsModule(TypedDict):

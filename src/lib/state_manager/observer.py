@@ -7,6 +7,7 @@ from typing import (
     ClassVar,
     Literal,
     Never,
+    Self,
 )
 
 Callback = Callable[[Any, Any], None]
@@ -58,12 +59,12 @@ class Observer:
         self.__dict__["_status"] = "idle"
 
     @abstractmethod
-    def _get_untracked(self) -> Never:
+    def _get_untracked(self) -> Self:
         """Get the untracked state."""
         raise NotImplementedError
 
     @abstractmethod
-    def _get_tracked(self) -> Never:
+    def _get_tracked(self) -> Self:
         """Get the tracked state."""
         raise NotImplementedError
 
