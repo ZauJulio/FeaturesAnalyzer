@@ -48,7 +48,7 @@ pandas = "==2.2.1"
 poetry-plugin-export = "^1.0.6"
 lxml = "*"
 pre-commit = "*"
-pygobject-stubs = "==2.10.0"
+pygobject-stubs = "==2.12.0"
 ruff = "*"
 jinja2 = "^3.1.5"
 
