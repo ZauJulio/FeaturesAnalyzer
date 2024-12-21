@@ -1,18 +1,28 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "packageRules": [
     {
-      "packagePatterns": ["*"],
-      "updateTypes": ["minor", "patch"],
+      "matchCategories": [
+        "python"
+      ],
+      "enabled": true
+    },
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
       "enabled": true,
-      "managers": ["poetry"]
+      "matchManagers": [
+        "poetry"
+      ],
+      "matchPackageNames": [
+        "*"
+      ]
     }
   ],
-  "python": {
-    "enabled": true
-  },
   "poetry": {
     "fileMatch": [
       "^pyproject.toml$",
