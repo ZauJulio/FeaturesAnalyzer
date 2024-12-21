@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "assignees": ["zaujulio"],
+  "labels": ["dependencies"],
+  "timezone": "Brasil/SaoPaulo",
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "packageNames": ["python", "ruff"],
+      "enabled": true,
+      "versioning": "auto",
+      "updateTypes": ["minor", "patch"]
+    }
+  ]
+}
