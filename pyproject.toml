@@ -39,7 +39,7 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
-pygobject = "==3.48.1"
+pygobject = "==3.50.0"
 matplotlib = "==3.8.3"
 numpy = "==1.26.4"
 pandas = "==2.2.1"
