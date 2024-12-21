@@ -2,9 +2,6 @@
   "extends": [
     "config:base"
   ],
-  "assignees": ["zaujulio"],
-  "labels": ["dependencies"],
-  "dependencyDashboard": true,
   "packageRules": [
     {
       "packagePatterns": ["*"],
@@ -14,7 +11,12 @@
     }
   ],
   "python": {
-    "enabled": true,
-    "fileMatch": ["^pyproject.toml$"]
+    "enabled": true
+  },
+  "poetry": {
+    "fileMatch": [
+      "^pyproject.toml$",
+      "^poetry.lock$"
+    ]
   }
 }
