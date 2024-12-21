@@ -4,6 +4,7 @@ __pycache__/
 # UI/GTK
 *.ui~
 \#*.ui#
+.ruff_cache
 
 # Env
 .env

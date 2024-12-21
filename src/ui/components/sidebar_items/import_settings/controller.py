@@ -1,28 +1,19 @@
-from urllib.parse import urlparse
-
-from context.states import ImportSettingsState
 from gi.repository import Gtk
-from interfaces.application import ApplicationAbc
-from interfaces.controller import ControllerAbc
-from lib.utils import types
-from ui.components.sidebar_items.load.import_settings.widget import ImportSettingsWidget
+
+from interfaces import FAController, FAMetaCheckController
+
+from . import ImportSettingsState, ImportSettingsWidget
 
 
-@types.property_meta(ControllerAbc)
-class ImportSettingsController(ControllerAbc[ImportSettingsWidget]):
+@FAMetaCheckController
+class ImportSettingsController(FAController[ImportSettingsState]):
     """Import controller."""
 
     state: ImportSettingsState
     widget: ImportSettingsWidget
-    application: ApplicationAbc
 
-    def __handle_dialog(self, text: str, buttons: Gtk.ButtonsType) -> None:
-        Gtk.MessageDialog(
-            transient_for=self.application.window,
-            message_type=Gtk.MessageType.INFO,
-            text=text,
-            buttons=buttons,
-        )
+    def __init__(self, state: ImportSettingsState) -> None:
+        super().__init__(state=state, widget=ImportSettingsWidget())
 
     def _connect_signals(self) -> None:
         """Connect signals to the widget."""
@@ -58,17 +49,19 @@ class ImportSettingsController(ControllerAbc[ImportSettingsWidget]):
         """File chooser file set."""
         self.state.selected_file = widget.get_filename() or ""
 
-        self.__handle_dialog(
+        self._handle_dialog(
             text=f"Selected file: {self.state.selected_file}",
             buttons=Gtk.ButtonsType.OK,
         )
 
     def __on_url_entry_changed(self, widget: Gtk.Entry) -> None:
         """URL entry changed."""
+        from urllib.parse import urlparse
+
         result = urlparse(str(widget.get_text()))
 
         if all([result.scheme, result.netloc, result.path]):
-            self.__handle_dialog(text="✅", buttons=Gtk.ButtonsType.OK)
+            self._handle_dialog(text="✅", buttons=Gtk.ButtonsType.OK)
 
             self.widget.url_entry.set_tooltip_text("Valid URL")
             self.widget.url_entry.set_icon_from_icon_name(

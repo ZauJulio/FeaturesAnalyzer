@@ -22,6 +22,6 @@ repos:
     hooks:
       - id: update-requirements
         name: update-requirements
-        entry: bash -c 'pipenv requirements > requirements.txt && git add requirements.txt'
+        entry: make migrate-deps
         language: system
         types: [python]

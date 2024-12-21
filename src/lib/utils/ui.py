@@ -6,7 +6,17 @@ from . import types
 
 
 def load_styles(source: str | None = None, styles: str | None = None) -> None:
-    """Load styles for the widget."""
+    """
+    Load styles for the widget.
+
+    Parameters
+    ----------
+    source : str, optional
+        The source file path, by default None
+    styles : str, optional
+        The styles file path, by default None
+
+    """
     resource_path = path.dirname(types.nn(source or styles))
 
     if source:

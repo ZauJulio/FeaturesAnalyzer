@@ -5,13 +5,14 @@ def at(path: str) -> str:
     """
     Return the absolute path of a file in the project.
 
-    Args:
-    ----
-        path (str): The path to the file.
-        Must start with: ["@layout", "@icon"]
-        and followed by the path to the file using "/" as separator.
+    Parameters
+    ----------
+    path : str
+        The path to the file.
+        Must start with: ["@layout", "@icon"] and followed by the path to the
+        file using "/" as separator.
 
-    Returns:
+    Returns
     -------
         str: The absolute path of the file.
 

@@ -1,7 +1,7 @@
 from collections.abc import Callable
-from typing import Any
 
 from gi.repository import Gtk
+
 from lib.utils.ui import load_styles
 
 
@@ -41,15 +41,11 @@ class SideBarItemHeader(Gtk.HBox):
 class SideBarItem(Gtk.Box):
     """Sidebar item."""
 
-    application: Any
-
     head_bar: SideBarItemHeader
     notebook_item: Gtk.Notebook
 
-    def __init__(self, application: object, label: str) -> None:
+    def __init__(self, label: str) -> None:
         super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-
-        self.application = application
 
         self.set_property("expand", True)
 

@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from interfaces.application import ApplicationAbc
+
 from lib.utils import alias, types
 from ui.modules import GraphBox, SideBar
 
@@ -19,7 +19,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     graph: GraphBox
     side_bar: SideBar
 
-    def __init__(self, application: ApplicationAbc) -> None:
+    def __init__(self, application: types.Any) -> None:
         super().__init__(application=application)
 
         self.set_title("Features Analyzer")
@@ -36,7 +36,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         self.graph = GraphBox()
         self.graph_container.add(self.graph)
 
-        self.side_bar = SideBar(application=types.nn(self.get_application()))  # type: ignore  # noqa: PGH003
+        self.side_bar = SideBar(app=types.nn(self.get_application()))
         self.side_bar_container.add(self.side_bar)
 
     def display(self) -> None:

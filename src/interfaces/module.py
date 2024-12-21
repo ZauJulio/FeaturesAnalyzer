@@ -1,21 +1,16 @@
 from typing import Generic, TypeVar
 
-from interfaces.application import ApplicationAbc
-from interfaces.controller import GenericController
+from interfaces import GenericController, StateGeneric
+from lib.utils import types
 
 
-class ModuleAbc(Generic[GenericController]):
+class FAModule(Generic[GenericController, StateGeneric]):
     """Abstract module class."""
 
-    module_name: str
+    name: str
     controller: GenericController
 
-    def __init__(
-        self,
-        application: ApplicationAbc,
-        controller: GenericController,
-    ) -> None:
-        self.application = application
+    def __init__(self, controller: GenericController) -> None:
         self.controller = controller
 
     def get_widget(self):  # noqa: ANN201
@@ -38,14 +33,11 @@ class ModuleAbc(Generic[GenericController]):
         """Load the module state."""
         self.controller.load(state)
 
-    def get_state(self):  # noqa: ANN201
+    @property
+    def state(self) -> StateGeneric:
         """Return the module state."""
         return self.controller.state
 
-    @staticmethod
-    def handle_module_apply() -> None:
-        """Handle the module apply."""
-        print("Module apply")  # noqa: T201
 
-
-GenericModule = TypeVar("GenericModule", bound=ModuleAbc)
+FAMetaCheckModule = types.MetaCheckGenerator(FAModule)
+GenericModule = TypeVar("GenericModule", bound=FAModule)

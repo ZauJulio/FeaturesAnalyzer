@@ -1,31 +1,31 @@
 import abc
-from typing import Generic, Never, TypeVar
+from typing import Any, Generic, Never, TypeVar
 
-from interfaces import GenericWidget
-from interfaces.application import ApplicationAbc
-from lib.state_manager import State
+from gi.repository import Gtk
+
+from interfaces import StateGeneric
+from lib.utils import types
 
 
-class ControllerAbc(Generic[GenericWidget]):
+class FAController(Generic[StateGeneric]):
     """Abstract controller class."""
 
-    state: State
-    widget: GenericWidget
-    application: ApplicationAbc
+    state: StateGeneric
+    widget: Any
 
-    def __init__(
-        self,
-        application: ApplicationAbc,
-        widget: GenericWidget,
-        module_name: str,
-        state: State,
-    ) -> None:
-        self.application = application
-        self.widget = widget
-        self.module_name = module_name
+    def __init__(self, widget: Any, state: StateGeneric) -> None:
         self.state = state
+        self.widget = widget
 
         self._connect_signals()
+
+    @staticmethod
+    def _handle_dialog(text: str, buttons: Gtk.ButtonsType) -> None:
+        Gtk.MessageDialog(
+            message_type=Gtk.MessageType.INFO,
+            text=text,
+            buttons=buttons,
+        )
 
     @abc.abstractmethod
     def _connect_signals(self) -> Never:
@@ -51,4 +51,5 @@ class ControllerAbc(Generic[GenericWidget]):
         self.widget.hide()
 
 
-GenericController = TypeVar("GenericController", bound=ControllerAbc)
+FAMetaCheckController = types.MetaCheckGenerator(FAController)
+GenericController = TypeVar("GenericController", bound=FAController)

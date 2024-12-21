@@ -1,4 +1,4 @@
-"""State manager library."""
+"""State manager."""
 
 from .observer import Observer
 from .state import State

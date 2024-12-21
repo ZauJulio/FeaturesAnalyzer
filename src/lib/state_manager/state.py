@@ -70,7 +70,7 @@ class State(Observer):
                 self,
                 cls: State | None = None,
                 obj: dict[str, Any] | None = None,
-                _tracked: bool = True,  # noqa: FBT001, FBT002
+                _tracked: bool = True,
             ) -> None:
                 _keys = None
 
@@ -95,7 +95,7 @@ class State(Observer):
                     "_tracked": _tracked,
                 }
 
-        return cast(Self, SelfMask(cls, obj, self._tracked))
+        return cast("Self", SelfMask(cls, obj, self._tracked))
 
     def reset(self) -> None:
         """Reset the state to its initial values."""
@@ -125,8 +125,8 @@ class State(Observer):
         """Load a state from a dictionary."""
         self._validate_keys(list(value.keys()))
 
-        for key in value:
-            self._state[key] = value[key]
-            self.__dict__[key] = value[key]
+        for k, v in value.items():
+            self._state[k] = v
+            self.__dict__[k] = v
 
         self.track()

@@ -1,4 +1,4 @@
-"""Screens module."""
+"""Screens."""
 
 from .app_window import ApplicationWindow
 

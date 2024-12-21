@@ -1,27 +1,25 @@
-import threading
-import time
 from collections.abc import Callable
 
 import gi
-import numpy as np
 
 gi.require_version("Gtk", "3.0")
 gi.require_version("GdkPixbuf", "2.0")
 
-from context import Store
 from gi.repository import GdkPixbuf, Gio, Gtk
-from interfaces.application import ApplicationAbc
+
+from context import Store
+from interfaces import FAApplication, FAMetaCheckApplication
 from lib.utils import alias, types
-from ui.modules.graph_box import GraphBox
 from ui.screens import ApplicationWindow
 
 
-@types.property_meta(ApplicationAbc)
-class FeaturesAnalyzer(ApplicationAbc):
+@FAMetaCheckApplication
+class FeaturesAnalyzer(FAApplication):
     """The main application class."""
 
     store: Store = Store()
     window: ApplicationWindow
+
     icon: GdkPixbuf.Pixbuf = types.nn(
         GdkPixbuf.Pixbuf.new_from_file_at_size(alias.at("@icon/app.png"), 64, 64),
     )
@@ -66,25 +64,3 @@ class FeaturesAnalyzer(ApplicationAbc):
             self.window = ApplicationWindow(application=self)
 
         self.window.display()
-
-        threading.Thread(
-            target=self.update_graph,
-            args=(self.window.graph,),
-            daemon=True,
-        ).start()
-
-    def update_graph(self, graph: GraphBox) -> None:
-        """Update the graph with random data."""
-        x = np.arange(0, 10, 0.1)
-        y = np.sin(x)
-
-        while True:
-            # if the window is closed, stop the thread
-            if not self.window.is_visible():
-                break
-
-            x = np.append(x, x[-1] + 0.1)
-            y = np.append(y, np.sin(x[-1]))
-
-            graph.plot(x, y)
-            time.sleep(0.03)

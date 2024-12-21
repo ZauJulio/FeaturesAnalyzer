@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+
 from lib.utils.ui import load_styles
 from ui.components.shared import SideBarItem
 
@@ -18,10 +19,11 @@ class ImportSettingsWidget(SideBarItem):
     enter_box: Gtk.Box
     data_id_entry: Gtk.Entry
 
-    def __init__(self, application: object) -> None:
-        super().__init__(application, "Load")
+    def __init__(self) -> None:
+        super().__init__(label="Load")
 
         self.__load_layout()
+
         load_styles(styles=__file__)
 
     def __load_layout(self) -> None:

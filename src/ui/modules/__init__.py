@@ -1,4 +1,4 @@
-"""Application modules."""
+"""UI Modules."""
 
 from .graph_box import GraphBox
 from .sidebar import SideBar
