@@ -4,19 +4,21 @@
   ],
   "packageRules": [
     {
-      "matchCategories": [
-        "python"
+      "matchManagers": [
+        "pep621",
+        "pip_requirements",
+        "pyenv"
       ],
-      "enabled": true
+      "enabled": false
     },
     {
+      "matchManagers": [
+        "poetry"
+      ],
+      "enabled": true,
       "matchUpdateTypes": [
         "minor",
         "patch"
-      ],
-      "enabled": true,
-      "matchManagers": [
-        "poetry"
       ],
       "matchPackageNames": [
         "*"
