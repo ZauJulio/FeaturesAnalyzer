@@ -14,3 +14,8 @@ poetry install
 - Create a controller to > handle the widget state setter's/handle signals
 - Create a module to     > handle the controller with root state subscribes
 - Create a widget to     > integrate the module and interact with data/graphs, group widgets/modules, be creative ; )
+
+## TMP: Tools Maintain Project
+
+- [SonarCloud - Code Quality and Security](https://sonarcloud.io/project/overview?id=ZauJulio_FeaturesAnalyzerGTK)
+- [Renovate - Dependency Updates](https://developer.mend.io/github/ZauJulio/FeaturesAnalyzerGTK)
