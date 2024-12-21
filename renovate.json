@@ -7,9 +7,14 @@
   "dependencyDashboard": true,
   "packageRules": [
     {
+      "packagePatterns": ["*"],
+      "updateTypes": ["minor", "patch"],
       "enabled": true,
-      "packageNames": ["python", "ruff"],
-      "updateTypes": ["minor", "patch"]
+      "managers": ["poetry"]
     }
-  ]
+  ],
+  "python": {
+    "enabled": true,
+    "fileMatch": ["^pyproject.toml$", "^poetry.lock$"]
+  }
 }
