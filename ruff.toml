@@ -15,38 +15,44 @@ target-version = "py312"
 [lint]
 select = ["ALL"]
 ignore = [
-  "FBT001",  # boolean-type-hint-positional-argument
-  "FBT002",  # boolean-type-hint-positional-argument
   "ANN401",  # any-type
-  "PLC0415", # import-outside-top-level
-  "DOC501",  # Raised exception `ValueError` missing from docstring
-  "DOC201",  # `return` is not documented in docstring
-  "A005",    # builtin-module-shadowing
-  "D107",    # undocumented-public-init
-  "PTH120",  # os-path-dirname
-  "E402",    # module-level-import-not-at-top-level
-  "D100",    # undocumented-public-module
-  "PD901",   # pandas-df-variable-name
   "B006",    # mutable-argument-default
-  "D401",    # non-imperative-mood
   "CPY001",  # missing-copyright-notice
+  "D100",    # undocumented-public-module
+  "D107",    # undocumented-public-init
   "D203",    # one-blank-line-before-class
   "D212",    # multi-line-summary-first-line
+  "D401",    # non-imperative-mood
+  "DOC201", # docstring-missing-returns
+  "DOC402", # docstring-missing-yields
+  "DOC501", # docstring-missing-exception
+  "E402",    # module-level-import-not-at-top-level
+  "FBT001",  # boolean-type-hint-positional-argument
+  "FBT002",  # boolean-type-hint-positional-argument
   "FBT003",  # boolean-positional-value-in-call
+  "PD901",   # pandas-df-variable-name
+  "PLC0415", # import-outside-top-level
+  "PTH120",  # os-path-dirname
 ]
 fixable = ["ALL"]
 unfixable = []
 extend-select = [
+  "B033",    # duplicate-value
+  "C416",    # unnecessary-comprehension
+  "D211",    # no-blank-line-before-class
+  "D213",    # multi-line-summary-second-line
   "D419",    # empty-docstring
   "E501",    # line-too-long
-  "W291",    # trailing-whitespace
+  "E722",    # bare-except
+  "F401",    # unused-import
+  "F704",    # yield-outside-function
+  "F706",    # return-outside-function
+  "F841",    # unused-variable
   "PLC0414", # useless-import-alias
   "PLC2401", # non-ascii-name
   "PLC2801", # unnecessary-dunder-call
   "PLC3002", # unnecessary-direct-lambda-call
   "PLE0101", # return-in-init
-  "F706",    # return-outside-function
-  "F704",    # yield-outside-function
   "PLE0115", # nonlocal-and-global
   "PLE0116", # continue-in-finally
   "PLE0117", # nonlocal-without-binding
@@ -75,7 +81,6 @@ extend-select = [
   "PLR0124", # comparison-with-itself
   "PLR0202", # no-classmethod-decorator
   "PLR0203", # no-staticmethod-decorator
-  "UP004",   # useless-object-inheritance
   "PLR0206", # property-with-parameters
   "PLR0904", # too-many-public-methods
   "PLR0911", # too-many-return-statements
@@ -88,7 +93,6 @@ extend-select = [
   "PLR1702", # too-many-nested-blocks
   "PLR1704", # redefined-argument-from-local
   "PLR1711", # useless-return
-  "C416",    # unnecessary-comprehension
   "PLR1733", # unnecessary-dict-index-lookup
   "PLR1736", # unnecessary-list-index-lookup
   "PLW0108", # unnecessary-lambda
@@ -96,7 +100,6 @@ extend-select = [
   "PLW0127", # self-assigning-variable
   "PLW0128", # redeclared-assigned-name
   "PLW0129", # assert-on-string-literal
-  "B033",    # duplicate-value
   "PLW0131", # named-expr-without-context
   "PLW0177", # nan-comparison
   "PLW0211", # bad-staticmethod-argument
@@ -105,9 +108,6 @@ extend-select = [
   "PLW0602", # global-variable-not-assigned
   "PLW0603", # global-statement
   "PLW0604", # global-at-module-level
-  "F401",    # unused-import
-  "F841",    # unused-variable
-  "E722",    # bare-except
   "PLW0711", # binary-op-exception
   "PLW1501", # bad-open-mode
   "PLW1508", # invalid-envvar-default
@@ -115,6 +115,6 @@ extend-select = [
   "PLW1514", # unspecified-encoding
   "PLW2101", # useless-with-lock
   "PLW3301", # nested-min-max
-  "D211",    # no-blank-line-before-class
-  "D213",    # multi-line-summary-second-line
+  "UP004",   # useless-object-inheritance
+  "W291",    # trailing-whitespace
 ]

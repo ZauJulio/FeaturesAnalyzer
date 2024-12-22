@@ -1,4 +1,4 @@
-from typing import Any, TypeVar
+from typing import Any, TypeVar  # noqa: A005
 
 
 def nn(value: Any | None):  # noqa: ANN201

@@ -31,10 +31,10 @@ class State(Observer):
 
         # Validate type
         if value.__class__ is not self.__annotations__[key]:
-            _type = type(value)
-            _expected = self.__annotations__[key]
+            type_ = type(value)
+            expected_ = self.__annotations__[key]
 
-            msg = f"Invalid type {_type} for {key}, expected {_expected}"
+            msg = f"Invalid type {type_} for {key}, expected {expected_}"
             raise TypeError(msg)
 
         # Notify subscribers
@@ -72,16 +72,16 @@ class State(Observer):
                 obj: dict[str, Any] | None = None,
                 _tracked: bool = True,
             ) -> None:
-                _keys = None
+                keys_ = None
 
                 if cls:
-                    _keys = cls.__annotations__.keys()
+                    keys_ = cls.__annotations__.keys()
 
                     def _get(key: str) -> object:
                         return getattr(cls, key)
 
                 elif obj:
-                    _keys = obj.keys()
+                    keys_ = obj.keys()
 
                     def _get(key: str) -> object:
                         return obj[key]
@@ -91,7 +91,7 @@ class State(Observer):
                     raise ValueError(msg)
 
                 self.__dict__ = {
-                    **{key: _get(key) for key in _keys},
+                    **{key: _get(key) for key in keys_},
                     "_tracked": _tracked,
                 }
 

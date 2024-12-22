@@ -1,5 +1,5 @@
 {
-  "workbench.colorCustomizations": {
+	"workbench.colorCustomizations": {
 		"commandCenter.border": "#e7e7e799",
 		"tab.activeBorder": "#853d8f",
 		"titleBar.activeBackground": "#642e6b",
@@ -7,35 +7,37 @@
 		"titleBar.inactiveBackground": "#642e6b99",
 		"titleBar.inactiveForeground": "#e7e7e799"
 	},
-		"peacock.color": "#642E6B",
-		"files.associations": {
-			"*.ui": "xml",
-			"*.ini": "cfg"
-		},
-		"python.analysis.diagnosticSeverityOverrides": {
-			"reportMissingModuleSource": "none"
-		},
-		"cSpell.words": [
-			"arange",
-			"commitizen",
-			"ggplot",
-			"halign",
-			"hexpand",
-			"hscroll",
-			"isort",
-			"lxml",
-			"Pixbuf",
-			"pygobject",
-			"unicode",
-			"valign",
-			"xlabel",
-			"ylabel"
-		],
-		"files.exclude": {
-			"**/*.ui~": true,
-			"#*.ui#": true
-		},
-		"python.analysis.autoImportCompletions": true,
-		"python.analysis.typeCheckingMode": "basic",
-		"makefile.configureOnOpen": false
+	"peacock.color": "#642E6B",
+	"files.associations": {
+		"*.ui": "xml",
+		"*.ini": "cfg"
+	},
+	"python.analysis.diagnosticSeverityOverrides": {
+		"reportMissingModuleSource": "none"
+	},
+	"cSpell.words": [
+		"arange",
+		"commitizen",
+		"ggplot",
+		"halign",
+		"hexpand",
+		"hscroll",
+		"isort",
+		"lxml",
+		"Pixbuf",
+		"pygobject",
+		"unicode",
+		"valign",
+		"xlabel",
+		"ylabel"
+	],
+	"files.exclude": {
+		"**/*.ui~": true,
+		"#*.ui#": true
+	},
+	"python.defaultInterpreterPath": "/.venv/bin/python",
+	"python.envFile": "${workspaceFolder}/.env",
+	"makefile.configureOnOpen": false,
+	"python.analysis.autoImportCompletions": true,
+	"python.analysis.typeCheckingMode": "basic"
 }

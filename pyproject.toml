@@ -31,28 +31,25 @@ classifiers = [
 "Say Thanks!" = "https://saythanks.io/to/ZauJulio"
 "Source" = "https://github.com/ZauJulio/FeaturesAnalyzerGTK/"
 
-[project.scripts]
-sample = "cd src && python3 main.py"
-
 [tool.poetry]
+name="features-analyzer"
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.12"
-pygobject = "==3.50.0"
 matplotlib = "==3.10.0"
 numpy = "==2.2.1"
 pandas = "==2.2.3"
+pygobject = "==3.50.0"
+python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
-poetry-plugin-export = "^1.0.6"
+jinja2 = "^3.1.5"
 lxml = "*"
+poetry-plugin-export = "^1.0.6"
 pre-commit = "*"
 pygobject-stubs = "==2.12.0"
 ruff = "*"
-jinja2 = "^3.1.5"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-

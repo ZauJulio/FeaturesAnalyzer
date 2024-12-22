@@ -26,17 +26,17 @@ class Observer:
     _root_subscribers: ClassVar[dict[RootSubscriber, list[Callback]]] = {}
 
     def __init__(self, annotations: set[str]) -> None:
-        _init = {
+        init_ = {
             "_keys": annotations,
             "_subscribers": {},
             "_root_subscribers": {"on_commit": [], "on_untrack": []},
         }
 
         for key in annotations:
-            _init[key] = None
-            _init["_subscribers"][key] = []
+            init_[key] = None
+            init_["_subscribers"][key] = []
 
-        self.__dict__.update({**self.__dict__, **_init})
+        self.__dict__.update({**self.__dict__, **init_})
 
     @property
     def status(self) -> StateStatus:
@@ -112,17 +112,17 @@ class Observer:
 
         if listeners and len(listeners) > 0:
             if key == "on_commit":
-                _prev = self._get_tracked()
-                _next = self._get_untracked()
+                prev_ = self._get_tracked()
+                next_ = self._get_untracked()
             else:
-                _prev = self._get_untracked()
-                _next = deepcopy(_prev)
+                prev_ = self._get_untracked()
+                next_ = deepcopy(prev_)
 
                 if value:
-                    _next.__dict__[key] = value
+                    next_.__dict__[key] = value
 
             for listener in listeners:
-                listener(_prev, _next)
+                listener(prev_, next_)
 
     @contextmanager
     def __on_commit(self) -> Generator[None, None, None]:
