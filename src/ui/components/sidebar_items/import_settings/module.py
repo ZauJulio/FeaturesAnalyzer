@@ -24,17 +24,15 @@ class ImportSettingsModule(FAModule[ImportSettingsController, ImportSettingsStat
             lambda *_: self.controller.widget.on_module_change(),
         )
 
-        # Handle status changes, like committing or updating
-        # show the status button to apply or cancel the changes
-        self.controller.widget.handle_status(lambda *_: self._update_module_status())
+        self.state.on_change(
+            "selected_file",
+            lambda _, next_: self.on_select_file(None, next_),
+        )
 
-    def _update_module_status(self) -> None:
-        """Update the module status."""
-        if not self.state.tracked:
-            if self.state.status != "committing":
-                self.controller.widget.on_module_updating()
-                self.state.commit()
-                self.controller.widget.hide_module_status()
-            else:
-                self.controller.widget.hide_module_status()
-                self.state.reset()
+    def on_select_file(self, _: None, next_: ImportSettingsState) -> None:
+        """Select file."""
+        # Get filename from path
+        filename = next_.selected_file.split("/")[-1].split(".")[0]
+
+        self.state.data_id = filename
+        self.controller.widget.data_id_entry.set_text(filename)

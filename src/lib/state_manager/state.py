@@ -24,12 +24,10 @@ class State(Observer):
 
     def __setattr__(self, key, value) -> None:  # noqa: ANN001
         """Set the value of a key."""
-        print(f"Setting {key} to {value}")  # noqa: T201
-
-        # Exclude keys
+        # Check if key is member of the class
         self._validate_keys(key)
 
-        # Validate type
+        # Validate type of value/annotation
         if value.__class__ is not self.__annotations__[key]:
             type_ = type(value)
             expected_ = self.__annotations__[key]

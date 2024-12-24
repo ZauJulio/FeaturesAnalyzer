@@ -1,40 +1,43 @@
-from collections.abc import Callable
 
 from gi.repository import Gtk
 
-from lib.utils.ui import load_styles
+from lib.state_manager import State
+from lib.utils import ui
 
 
 class SideBarItemHeader(Gtk.HBox):
     """Sidebar item header."""
 
     def __init__(self, label: str) -> None:
-        super().__init__()
+        super().__init__(name="head-bar")
 
         self.__load_layout(label)
 
     def __load_layout(self, label: str) -> None:
         """Load layout to the sidebar item."""
-        grid = Gtk.Grid()
-        grid.set_name("header_grid")
-        grid.set_hexpand(True)
+        grid = Gtk.Grid(name="header_grid", hexpand=True)
         self.add(grid)
 
-        self.label = Gtk.Label(label=label)
-        self.label.set_name("header_label")
-        self.label.set_halign(Gtk.Align.START)
-        self.label.set_valign(Gtk.Align.CENTER)
-        self.label.set_hexpand(True)
-        self.label.set_justify(Gtk.Justification.CENTER)
-        self.label.set_margin_start(10)
-        grid.attach(self.label, 0, 0, 1, 1)
+        self.label = Gtk.Label(
+            label=label,
+            name="header_label",
+            halign=Gtk.Align.START,
+            valign=Gtk.Align.CENTER,
+            hexpand=True,
+            justify=Gtk.Justification.CENTER,
+            margin_start=10,
+        )
 
-        self.status_button = Gtk.Button()
-        self.status_button.set_name("status_button")
-        self.status_button.set_property("visible", False)
-        self.status_button.set_relief(Gtk.ReliefStyle.NONE)
-        self.status_button.set_size_request(30, 30)
-        self.status_button.set_tooltip_text("Status")
+        self.status_button = Gtk.Button(
+            name="status_button",
+            visible=False,
+            relief=Gtk.ReliefStyle.NONE,
+            tooltip_text="Status",
+            width_request=30,
+            height_request=30,
+        )
+
+        grid.attach(self.label, 0, 0, 1, 1)
         grid.attach(self.status_button, 1, 0, 1, 1)
 
 
@@ -45,56 +48,63 @@ class SideBarItem(Gtk.Box):
     notebook_item: Gtk.Notebook
 
     def __init__(self, label: str) -> None:
-        super().__init__(orientation=Gtk.Orientation.VERTICAL, spacing=0)
-
-        self.set_property("expand", True)
+        super().__init__(
+            orientation=Gtk.Orientation.VERTICAL,
+            name="sidebar-item",
+            expand=True,
+            spacing=0,
+        )
 
         self.__load_layout(label)
-        load_styles(styles=__file__)
+        ui.load_styles(styles=__file__)
 
     def __load_layout(self, label: str) -> None:
         """Load layout to the sidebar item."""
-        self.set_name("notebook_container")
-
         self.head_bar = SideBarItemHeader(label=label)
         self.pack_start(self.head_bar, expand=False, fill=True, padding=0)
 
-        self.notebook_item = Gtk.Notebook()
-        self.notebook_item.set_name("notebook_item")
-        self.pack_start(self.notebook_item, expand=True, fill=True, padding=0)
-
-        # DND
-        self.notebook_item.set_group_name(label)
-        self.notebook_item.set_property("enable-popup", True)
-
-    def add_tab(self, label: str, content: Gtk.Widget) -> None:
-        """Add a tab to the notebook."""
-        self.notebook_item.append_page(content, Gtk.Label(label=label))
-        # DND
-        self.notebook_item.set_tab_detachable(content, detachable=True)
-
-    def handle_status(self, callback: Callable) -> None:
+    def handle_status(self, state: State) -> None:
         """Handle the status button."""
-        self.head_bar.status_button.connect("clicked", callback)
+
+        def on_any_change(state: State) -> None:
+            """Update the module status."""
+            # Handle status changes, like committing or updating
+            # show the status button to apply or cancel the changes
+            if not state.tracked:
+                if state.status != "committing":
+                    self.on_module_updating()
+                    state.commit()
+                    self.hide_module_status()
+                else:
+                    self.hide_module_status()
+                    state.reset()
+
+        self.head_bar.status_button.connect("clicked", lambda _: on_any_change(state))
 
     def on_module_change(self) -> None:
         """Update the status button."""
-        self.head_bar.status_button.set_property("visible", True)
+        self.show_module_status()
         self.head_bar.status_button.set_tooltip_text("Apply")
         self.head_bar.status_button.set_label("✅")
 
     def on_module_updating(self) -> None:
         """Update the status button."""
-        self.head_bar.status_button.set_property("visible", True)
+        self.show_module_status()
+
         self.head_bar.status_button.set_tooltip_text("Cancel")
         self.head_bar.status_button.set_label("❌")
 
     def hide_module_status(self) -> None:
         """Update the status button."""
-        self.head_bar.status_button.set_property("visible", False)
+        self.head_bar.status_button.set_property("opacity", 0)
+
+    def show_module_status(self) -> None:
+        """Update the status button."""
+        self.head_bar.status_button.set_property("opacity", 1)
 
     def on_module_error(self) -> None:
         """Update the status button."""
-        self.head_bar.status_button.set_property("visible", True)
+        self.show_module_status()
+
         self.head_bar.status_button.set_tooltip_text("Error")
         self.head_bar.status_button.set_label("❗")

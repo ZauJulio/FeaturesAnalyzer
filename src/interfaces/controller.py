@@ -1,5 +1,5 @@
 import abc
-from typing import Any, Generic, Never, TypeVar
+from typing import Any, Generic, TypeVar
 
 from gi.repository import Gtk
 
@@ -28,17 +28,17 @@ class FAController(Generic[StateGeneric]):
         )
 
     @abc.abstractmethod
-    def _connect_signals(self) -> Never:
+    def _connect_signals(self) -> None:
         """Connect signals to the widget."""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def reset(self) -> Never:
+    def reset(self) -> None:
         """Reset the controller."""
         raise NotImplementedError
 
     @abc.abstractmethod
-    def load(self, state) -> Never:  # noqa: ANN001
+    def load(self, state) -> None:  # noqa: ANN001
         """Load the controller state."""
         raise NotImplementedError
 

@@ -17,6 +17,9 @@ class ImportSettingsController(FAController[ImportSettingsState]):
 
     def _connect_signals(self) -> None:
         """Connect signals to the widget."""
+        # Handle status and commit interface
+        self.widget.handle_status(state=self.state)
+
         self.widget.file_radio.connect("toggled", self.__on_file_radio_toggled)
         self.widget.url_radio.connect("toggled", self.__on_url_radio_toggled)
 

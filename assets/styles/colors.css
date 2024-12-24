@@ -1,183 +1,54 @@
-.main-color-1 {
-  color: #002f55;
-}
-.main-bg-color-1 {
-  background-color: #002f55;
-}
-.main-color-2 {
-  color: #232852;
-}
-.main-bg-color-2 {
-  background-color: #232852;
-}
-.main-color-3 {
-  color: #411e45;
-}
-.main-bg-color-3 {
-  background-color: #411e45;
-}
+@define-color main-color-1 #002f55;
+@define-color main-color-2 #232852;
+@define-color main-color-3 #411e45;
 
-.color-1-100 {
-  color: #cce8ff;
-}
-.bg-color-1-100 {
-  background-color: #cce8ff;
-}
-.color-1-200 {
-  color: #99d1ff;
-}
-.bg-color-1-200 {
-  background-color: #99d1ff;
-}
-.color-1-300 {
-  color: #66bbff;
-}
-.bg-color-1-300 {
-  background-color: #66bbff;
-}
-.color-1-400 {
-  color: #33a4ff;
-}
-.bg-color-1-400 {
-  background-color: #33a4ff;
-}
-.color-1-500 {
-  color: #008dff;
-}
-.bg-color-1-500 {
-  background-color: #008dff;
-}
-.color-1-600 {
-  color: #0071cc;
-}
-.bg-color-1-600 {
-  background-color: #0071cc;
-}
-.color-1-700 {
-  color: #005599;
-}
-.bg-color-1-700 {
-  background-color: #005599;
-}
-.color-1-800 {
-  color: #002f55;
-}
-.bg-color-1-800 {
-  background-color: #002f55;
-}
-.color-1-900 {
-  color: #001c33;
-}
-.bg-color-1-900 {
-  background-color: #001c33;
-}
+@define-color color-1-100 #cce8ff;
+@define-color color-1-200 #99d1ff;
+@define-color color-1-300 #66bbff;
+@define-color color-1-400 #33a4ff;
+@define-color color-1-500 #008dff;
+@define-color color-1-600 #0071cc;
+@define-color color-1-700 #005599;
+@define-color color-1-800 #002f55;
+@define-color color-1-900 #001c33;
 
-.color-2-100 {
-  color: #dbddf0;
-}
-.bg-color-2-100 {
-  background-color: #dbddf0;
-}
-.color-2-200 {
-  color: #b8bce0;
-}
-.bg-color-2-200 {
-  background-color: #b8bce0;
-}
-.color-2-300 {
-  color: #949ad1;
-}
-.bg-color-2-300 {
-  background-color: #949ad1;
-}
-.color-2-400 {
-  color: #7079c2;
-}
-.bg-color-2-400 {
-  background-color: #7079c2;
-}
-.color-2-500 {
-  color: #4c57b3;
-}
-.bg-color-2-500 {
-  background-color: #4c57b3;
-}
-.color-2-600 {
-  color: #3d468f;
-}
-.bg-color-2-600 {
-  background-color: #3d468f;
-}
-.color-2-700 {
-  color: #2e346b;
-}
-.bg-color-2-700 {
-  background-color: #2e346b;
-}
-.color-2-800 {
-  color: #232852;
-}
-.bg-color-2-800 {
-  background-color: #232852;
-}
-.color-2-900 {
-  color: #0f1124;
-}
-.bg-color-2-900 {
-  background-color: #0f1124;
-}
+@define-color color-2-100 #dbddf0;
+@define-color color-2-200 #b8bce0;
+@define-color color-2-300 #949ad1;
+@define-color color-2-400 #7079c2;
+@define-color color-2-500 #4c57b3;
+@define-color color-2-600 #3d468f;
+@define-color color-2-700 #2e346b;
+@define-color color-2-800 #232852;
+@define-color color-2-900 #0f1124;
 
-.color-3-100 {
-  color: #eddbf0;
-}
-.bg-color-3-100 {
-  background-color: #eddbf0;
-}
-.color-3-200 {
-  color: #dcb8e0;
-}
-.bg-color-3-200 {
-  background-color: #dcb8e0;
-}
-.color-3-300 {
-  color: #ca94d1;
-}
-.bg-color-3-300 {
-  background-color: #ca94d1;
-}
-.color-3-400 {
-  color: #b971c1;
-}
-.bg-color-3-400 {
-  background-color: #b971c1;
-}
-.color-3-500 {
-  color: #a74db2;
-}
-.bg-color-3-500 {
-  background-color: #a74db2;
-}
-.color-3-600 {
-  color: #863e8e;
-}
-.bg-color-3-600 {
-  background-color: #863e8e;
-}
-.color-3-700 {
-  color: #642e6b;
-}
-.bg-color-3-700 {
-  background-color: #642e6b;
-}
-.color-3-800 {
-  color: #411e45;
-}
-.bg-color-3-800 {
-  background-color: #411e45;
-}
-.color-3-900 {
-  color: #210f24;
-}
-.bg-color-3-900 {
-  background-color: #210f24;
-}
+@define-color color-3-100 #eddbf0;
+@define-color color-3-200 #dcb8e0;
+@define-color color-3-300 #ca94d1;
+@define-color color-3-400 #b971c1;
+@define-color color-3-500 #a74db2;
+@define-color color-3-600 #863e8e;
+@define-color color-3-700 #642e6b;
+@define-color color-3-800 #411e45;
+@define-color color-3-900 #210f24;
+
+/* Gray and Black Tonalities */
+@define-color gray-100 #f8f9fa;
+@define-color gray-200 #e9ecef;
+@define-color gray-300 #dee2e6;
+@define-color gray-400 #ced4da;
+@define-color gray-500 #adb5bd;
+@define-color gray-600 #868e96;
+@define-color gray-700 #495057;
+@define-color gray-800 #343a40;
+@define-color gray-900 #212529;
+
+@define-color black-100 #d6d6d6;
+@define-color black-200 #b3b3b3;
+@define-color black-300 #909090;
+@define-color black-400 #6e6e6e;
+@define-color black-500 #4b4b4b;
+@define-color black-600 #3a3a3a;
+@define-color black-700 #292929;
+@define-color black-800 #1b1b1b;
+@define-color black-900 #0f0f0f;

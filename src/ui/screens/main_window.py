@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 
 from lib.utils import alias, types
-from ui.modules import GraphBox, SideBar
+from ui.modules import GraphNotebook, SideBar
 
 
 class ApplicationWindow(Gtk.ApplicationWindow):
@@ -16,7 +16,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
     graph_container: Gtk.Box = types.nn(builder.get_object("GraphContainer"))
 
     # Components
-    graph: GraphBox
+    graph: GraphNotebook
     side_bar: SideBar
 
     def __init__(self, application: types.Any) -> None:
@@ -33,7 +33,7 @@ class ApplicationWindow(Gtk.ApplicationWindow):
         """Load widgets to the window."""
         self.add(self.container)
 
-        self.graph = GraphBox()
+        self.graph = GraphNotebook()
         self.graph_container.add(self.graph)
 
         self.side_bar = SideBar(app=types.nn(self.get_application()))

@@ -30,5 +30,6 @@ def at(path: str) -> str:
 
     return {
         "@icon": os.path.join(cwd, "..", "assets", "icons", paths),  # noqa: PTH118
+        "@styles": os.path.join(cwd, "..", "assets", "styles", paths),  # noqa: PTH118
         "@layout": os.path.join(cwd, "ui", "layouts", f"{paths}.ui"),  # noqa: PTH118
     }[tag]

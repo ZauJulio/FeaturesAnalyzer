@@ -9,7 +9,7 @@ from gi.repository import GdkPixbuf, Gio, Gtk
 
 from context import Store
 from interfaces import FAApplication, FAMetaCheckApplication
-from lib.utils import alias, types
+from lib.utils import alias, types, ui
 from ui.screens import ApplicationWindow
 
 
@@ -30,6 +30,7 @@ class FeaturesAnalyzer(FAApplication):
             flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
         )
 
+        ui.load_styles(source=alias.at("@styles/colors.css"))
         self.create_actions("quit", lambda *_: self.quit(), ["<primary>q"])
         self.create_actions("about", lambda *_: self.on_about_action(), ["<primary>a"])
 

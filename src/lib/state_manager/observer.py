@@ -3,14 +3,12 @@ from collections.abc import Callable, Generator
 from contextlib import contextmanager
 from copy import deepcopy
 from typing import (
-    Any,
     ClassVar,
     Literal,
     Never,
     Self,
 )
 
-Callback = Callable[[Any, Any], None]
 StateStatus = Literal["idle", "committing", "error"]
 RootSubscriber = Literal["on_commit", "on_untrack"]
 
@@ -18,12 +16,14 @@ RootSubscriber = Literal["on_commit", "on_untrack"]
 class Observer:
     """Mutable Observer."""
 
+    type ObserverCallback = Callable[[Self, Self], None]
+
     _status: StateStatus = "idle"
     _tracked: bool = True
     _keys: ClassVar[set[str]] = set()
 
-    _subscribers: ClassVar[dict[str, list[Callback]]] = {}
-    _root_subscribers: ClassVar[dict[RootSubscriber, list[Callback]]] = {}
+    _subscribers: ClassVar[dict[str, list[ObserverCallback]]] = {}
+    _root_subscribers: ClassVar[dict[RootSubscriber, list[ObserverCallback]]] = {}
 
     def __init__(self, annotations: set[str]) -> None:
         init_ = {
@@ -87,8 +87,25 @@ class Observer:
         else:
             validate(key)
 
-    def on_change(self, key: RootSubscriber | str, callback: Callback) -> None:
-        """Add a subscriber to a key in the state."""
+    def on_change(self, key: RootSubscriber | str, callback: ObserverCallback) -> None:
+        """
+        Add a subscriber to a key in the state.
+
+        Parameters
+        ----------
+        key: RootSubscriber | str
+            The key to subscribe to.
+        callback: Callback
+            The callback function to call on change.
+            Expected signature:
+                callback(prev_: Self, next_: Self) -> None
+
+        Raises
+        ------
+        KeyError
+            If the key is not valid.
+
+        """
         if key in self._root_subscribers:
             self._root_subscribers[key].append(callback)
         elif key in self._keys:

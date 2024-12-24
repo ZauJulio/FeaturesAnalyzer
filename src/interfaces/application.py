@@ -6,7 +6,7 @@ from gi.repository import GdkPixbuf, Gtk
 
 from context.store import Store
 from lib.utils import types
-from ui.screens.app_window import ApplicationWindow
+from ui.screens import ApplicationWindow
 
 
 class FAApplication(Gtk.Application):

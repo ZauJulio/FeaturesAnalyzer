@@ -1,6 +1,6 @@
 """UI Modules."""
 
-from .graph_box import GraphBox
+from .graph_notebook import GraphNotebook
 from .sidebar import SideBar
 
-__all__ = ["GraphBox", "SideBar"]
+__all__ = ["GraphNotebook", "SideBar"]

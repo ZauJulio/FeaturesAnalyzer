@@ -23,6 +23,8 @@
 		"hexpand",
 		"hscroll",
 		"isort",
+		"jointplot",
+		"lineplot",
 		"lxml",
 		"Pixbuf",
 		"pygobject",

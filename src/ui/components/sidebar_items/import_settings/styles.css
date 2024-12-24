@@ -1,9 +1,9 @@
 #from_label {
-  padding-top: 0.5rem;
+  padding-right: 3.5rem;
 }
 
 #options_container,
-#import_tab_container {
+#import_settings_container {
   margin: 0.5rem;
 }
 

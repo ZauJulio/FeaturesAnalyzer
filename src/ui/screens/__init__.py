@@ -1,5 +1,5 @@
 """Screens."""
 
-from .app_window import ApplicationWindow
+from .main_window import ApplicationWindow
 
 __all__ = ["ApplicationWindow"]
