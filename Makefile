@@ -6,3 +6,6 @@ lint:
 
 migrate-deps:
 	@bash -c 'poetry export --without-hashes --format=requirements.txt > requirements.txt && git add requirements.txt'
+
+prepare:
+	@poetry install && poetry run pre-commit install
