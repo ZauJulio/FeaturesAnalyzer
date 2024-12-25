@@ -13,7 +13,7 @@ StateStatus = Literal["idle", "committing", "error"]
 RootSubscriber = Literal["on_commit", "on_untrack"]
 
 
-class Observer:
+class FAObserver:
     """Mutable Observer."""
 
     type ObserverCallback = Callable[[Self, Self], None]

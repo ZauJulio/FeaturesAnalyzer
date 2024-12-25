@@ -1,11 +1,9 @@
-import seaborn as sns
-
-from lib.state_manager import State
+from lib.state_manager import FAState
 
 TAB_1_KEY = "pairplot"
 
 
-class ImportSettingsState(State):
+class ImportSettingsState(FAState):
     """Import settings state."""
 
     selected_file: str
@@ -58,12 +56,14 @@ class ImportSettingsState(State):
     @staticmethod
     def handle_002_on_data_update(app: "FeaturesAnalyzer") -> None:
         """Update the graph."""
+        import seaborn as sns
+
         state = app.store.state.ImportSettings
         data = app.store.state.data[state.data_id]
 
         try:
-            tab_1 = app.window.graph.get_tab(TAB_1_KEY)
+            tab = app.window.graph.get_tab(TAB_1_KEY)
         except KeyError:
-            tab_1 = app.window.graph.add_tab(key=TAB_1_KEY, title="Pairplot")
+            tab = app.window.graph.add_tab(key=TAB_1_KEY, title="Pairplot")
 
-        tab_1.seaborn_plot(sns.pairplot, data=data, hue="species", size=3)
+        tab.seaborn_plot(sns.pairplot, data=data, hue="species", size=3)

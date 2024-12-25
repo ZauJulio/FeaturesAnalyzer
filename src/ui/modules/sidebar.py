@@ -2,13 +2,14 @@ from typing import TYPE_CHECKING, TypedDict
 
 from gi.repository import Gtk
 
-from ui.components.sidebar_items import ImportSettingsModule
+from ui.components.sidebar_items import ImportSettingsModule, KMeansSolverModule
 
 
 class SettingsModule(TypedDict):
     """Settings module."""
 
     ImportSettings: ImportSettingsModule
+    KMeansSolver: KMeansSolverModule
 
 
 class SideBar(Gtk.ScrolledWindow):
@@ -35,19 +36,30 @@ class SideBar(Gtk.ScrolledWindow):
 
     def __subscribe(self) -> None:
         """Subscribe to the sidebar."""
-        # ImportSettings
-        state = self.settings["ImportSettings"].state
 
-        state.on_change(
-            "on_commit",
-            lambda *_: state.handle_001_load_data(self.app),
-        )
+        def subscribe_import_settings() -> None:
+            """Subscribe to the import settings."""
+            with self.settings["ImportSettings"].state as state:
+                state.on_change(
+                    "on_commit",
+                    lambda *_: state.handle_001_load_data(self.app),
+                )
 
-        state.on_change(
-            "on_commit",
-            lambda *_: state.handle_002_on_data_update(self.app),
-        )
-        ###################################################################
+                state.on_change(
+                    "on_commit",
+                    lambda *_: state.handle_002_on_data_update(self.app),
+                )
+
+        def subscribe_kmeans_solver() -> None:
+            """Subscribe to the KMeans Solver."""
+            with self.settings["KMeansSolver"].state as state:
+                state.on_change(
+                    "on_commit",
+                    lambda *_: state.handle_001_on_params_update(self.app),
+                )
+
+        subscribe_import_settings()
+        subscribe_kmeans_solver()
 
     def __load_modules(self) -> None:
         """Load modules to the sidebar."""
@@ -55,6 +67,7 @@ class SideBar(Gtk.ScrolledWindow):
 
         self.settings: SettingsModule = {
             "ImportSettings": ImportSettingsModule(state=state.ImportSettings),
+            "KMeansSolver": KMeansSolverModule(state=state.KMeansSolver),
         }
 
     def __load_layout(self) -> None:

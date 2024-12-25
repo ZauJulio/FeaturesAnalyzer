@@ -1,17 +1,18 @@
 from collections.abc import Callable
 from typing import Any, ClassVar, Literal, Self, cast
 
-from . import Observer
+from . import FAObserver
 
 Callback = Callable[[Any, Any], None]
 StateStatus = Literal["idle", "committing", "error"]
 RootSubscriber = Literal["on_commit", "on_untrack"]
 
 
-class State(Observer):
+class FAState(FAObserver):
     """State manager."""
 
     _state: ClassVar[dict[str, Any]] = {}
+    _backup: Self
 
     def __init__(self, state: dict[str, Any] = {}) -> None:
         super().__init__(annotations=set(self.__annotations__.keys()))
@@ -66,7 +67,7 @@ class State(Observer):
 
             def __init__(
                 self,
-                cls: State | None = None,
+                cls: FAState | None = None,
                 obj: dict[str, Any] | None = None,
                 _tracked: bool = True,
             ) -> None:
@@ -123,8 +124,22 @@ class State(Observer):
         """Load a state from a dictionary."""
         self._validate_keys(list(value.keys()))
 
-        for k, v in value.items():
-            self._state[k] = v
-            self.__dict__[k] = v
+        for k in self._keys:
+            self._state[k] = value[k]
+            self.__dict__[k] = value[k]
 
         self.track()
+
+    def __enter__(self) -> Self:
+        """Enter the context and backup the current state."""
+        self.__dict__["_backup"] = self._copy(self)
+
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback) -> None:  # noqa: ANN001
+        """Exit the context and restore the previous state if an exception occurs."""
+        if exc_type is not None:
+            # Restore the backup state in case of an exception
+            self.load(self._backup.__dict__)
+
+        del self._backup

@@ -1,7 +1,6 @@
-
 from gi.repository import Gtk
 
-from lib.state_manager import State
+from lib.state_manager import FAState
 from lib.utils import ui
 
 
@@ -63,10 +62,10 @@ class SideBarItem(Gtk.Box):
         self.head_bar = SideBarItemHeader(label=label)
         self.pack_start(self.head_bar, expand=False, fill=True, padding=0)
 
-    def handle_status(self, state: State) -> None:
+    def handle_status(self, state: FAState) -> None:
         """Handle the status button."""
 
-        def on_any_change(state: State) -> None:
+        def on_any_change(state: FAState) -> None:
             """Update the module status."""
             # Handle status changes, like committing or updating
             # show the status button to apply or cancel the changes

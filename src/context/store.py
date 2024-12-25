@@ -2,25 +2,30 @@ from typing import ClassVar
 
 import pandas as pd
 
-from context.states import ImportSettingsState
-from lib.state_manager import State
+from context.states import ImportSettingsState, KMeansSolverState
+from lib.state_manager import FAState
 from lib.utils.meta import SingletonMeta
 
 
-class StateType(State):
+class StateType(FAState):
     """Global application state."""
 
     data: ClassVar[dict[str, pd.DataFrame]]
+
     ImportSettings: ImportSettingsState
+    KMeansSolver: KMeansSolverState
 
 
 class Store(metaclass=SingletonMeta):
     """State class for storing global state."""
 
-    __state = StateType(state={
-        "data": {},
-        "ImportSettings": ImportSettingsState(),
-    })
+    __state = StateType(
+        state={
+            "data": {},
+            "ImportSettings": ImportSettingsState(),
+            "KMeansSolver": KMeansSolverState(),
+        },
+    )
 
     @property
     def state(self) -> StateType:

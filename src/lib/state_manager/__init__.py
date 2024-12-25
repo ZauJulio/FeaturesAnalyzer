@@ -1,6 +1,6 @@
 """State manager."""
 
-from .observer import Observer
-from .state import State
+from .observer import FAObserver
+from .state import FAState
 
-__all__ = ["Observer", "State"]
+__all__ = ["FAObserver", "FAState"]

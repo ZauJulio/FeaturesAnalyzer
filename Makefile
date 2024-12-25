@@ -5,7 +5,7 @@ lint:
 	@cd src && python3 -m ruff check . --fix
 
 migrate-deps:
-	@bash -c 'poetry export --without-hashes --format=requirements.txt > requirements.txt && git add requirements.txt'
+	@bash -c 'poetry export --without-hashes --format=requirements.txt > requirements.txt'
 
 prepare:
 	@poetry install && poetry run pre-commit install
