@@ -4,7 +4,7 @@ from typing import Any, Generic, TypeVar
 from gi.repository import Gtk
 
 from interfaces import StateGeneric
-from lib.utils import types
+from lib.utils import types_
 
 
 class FAController(Generic[StateGeneric]):
@@ -51,5 +51,5 @@ class FAController(Generic[StateGeneric]):
         self.widget.hide()
 
 
-FAMetaCheckController = types.MetaCheckGenerator(FAController)
+FAMetaCheckController = types_.MetaCheckBuilder(FAController)
 GenericController = TypeVar("GenericController", bound=FAController)

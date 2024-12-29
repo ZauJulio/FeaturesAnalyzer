@@ -40,19 +40,14 @@ class SideBarItemHeader(Gtk.HBox):
         grid.attach(self.status_button, 1, 0, 1, 1)
 
 
-class SideBarItem(Gtk.Box):
+class SideBarItem(Gtk.VBox):
     """Sidebar item."""
 
     head_bar: SideBarItemHeader
     notebook_item: Gtk.Notebook
 
     def __init__(self, label: str) -> None:
-        super().__init__(
-            orientation=Gtk.Orientation.VERTICAL,
-            name="sidebar-item",
-            expand=True,
-            spacing=0,
-        )
+        super().__init__(name="sidebar-item", expand=True, spacing=0)
 
         self.__load_layout(label)
         ui.load_styles(styles=__file__)

@@ -15,6 +15,7 @@ target-version = "py312"
 [lint]
 select = ["ALL"]
 ignore = [
+  "RUF012",  # mutable-class-default
   "ANN401",  # any-type
   "B006",    # mutable-argument-default
   "CPY001",  # missing-copyright-notice
@@ -23,9 +24,9 @@ ignore = [
   "D203",    # one-blank-line-before-class
   "D212",    # multi-line-summary-first-line
   "D401",    # non-imperative-mood
-  "DOC201", # docstring-missing-returns
-  "DOC402", # docstring-missing-yields
-  "DOC501", # docstring-missing-exception
+  "DOC201",  # docstring-missing-returns
+  "DOC402",  # docstring-missing-yields
+  "DOC501",  # docstring-missing-exception
   "E402",    # module-level-import-not-at-top-level
   "FBT001",  # boolean-type-hint-positional-argument
   "FBT002",  # boolean-type-hint-positional-argument

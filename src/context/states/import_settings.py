@@ -1,3 +1,5 @@
+import pandas as pd
+
 from lib.state_manager import FAState
 
 TAB_1_KEY = "pairplot"
@@ -32,8 +34,6 @@ class ImportSettingsState(FAState):
     @staticmethod
     def handle_001_load_data(app: "FeaturesAnalyzer") -> None:
         """Update the data store with the selected file or URL."""
-        import pandas as pd
-
         state = app.store.state.ImportSettings
 
         if state.data_id and (state.selected_file or state.selected_url):
@@ -66,4 +66,4 @@ class ImportSettingsState(FAState):
         except KeyError:
             tab = app.window.graph.add_tab(key=TAB_1_KEY, title="Pairplot")
 
-        tab.seaborn_plot(sns.pairplot, data=data, hue="species", size=3)
+        tab.seaborn_plot(sns.pairplot, data=data, hue="species", height=3)

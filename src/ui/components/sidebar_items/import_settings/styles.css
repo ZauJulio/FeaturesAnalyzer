@@ -1,17 +1,3 @@
-#from_label {
-  padding-right: 3.5rem;
-}
-
-#options_container,
 #import_settings_container {
   margin: 0.5rem;
-}
-
-#file_chooser,
-#url_entry {
-  margin: 0.5rem;
-}
-
-#enter_box {
-  margin-right: -0.5rem;
 }

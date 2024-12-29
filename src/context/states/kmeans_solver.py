@@ -84,3 +84,6 @@ class KMeansSolverState(FAState):
         )
 
         tab.canvas.draw()
+
+        # Focus on the tab
+        app.window.graph.select_tab(TAB_2_KEY)

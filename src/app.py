@@ -5,11 +5,12 @@ import gi
 gi.require_version("Gtk", "3.0")
 gi.require_version("GdkPixbuf", "2.0")
 
+
 from gi.repository import GdkPixbuf, Gio, Gtk
 
 from context import Store
 from interfaces import FAApplication, FAMetaCheckApplication
-from lib.utils import alias, types, ui
+from lib.utils import alias, types_, ui
 from ui.screens import ApplicationWindow
 
 
@@ -18,9 +19,10 @@ class FeaturesAnalyzer(FAApplication):
     """The main application class."""
 
     store: Store = Store()
+
     window: ApplicationWindow
 
-    icon: GdkPixbuf.Pixbuf = types.nn(
+    icon: GdkPixbuf.Pixbuf = types_.nn(
         GdkPixbuf.Pixbuf.new_from_file_at_size(alias.at("@icon/app.png"), 64, 64),
     )
 

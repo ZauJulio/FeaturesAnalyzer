@@ -112,6 +112,7 @@ class GraphNotebook(Gtk.Notebook):
 
         self.append_page(self.tabs[key], tab_label)
         self.show_all()
+
         return self.tabs[key]
 
     def get_tab(self, key: str) -> GraphTab:
@@ -132,3 +133,13 @@ class GraphNotebook(Gtk.Notebook):
         page_num = self.page_num(page)
         if page_num != -1:
             self.remove_page(page_num)
+
+    def select_tab(self, key: str) -> None:
+        """Select a graph tab by its key."""
+        if key not in self.tabs:
+            msg = f"No tab with key '{key}' found."
+            raise KeyError(msg)
+
+        page_num = self.page_num(self.tabs[key])
+        self.set_current_page(page_num)
+        self.show_all()

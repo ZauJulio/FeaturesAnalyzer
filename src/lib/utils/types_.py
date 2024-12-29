@@ -1,4 +1,8 @@
-from typing import Any, TypeVar  # noqa: A005
+from collections.abc import Callable
+from functools import wraps as _wraps
+from typing import Any, Generic, TypeVar
+
+from typing_extensions import ParamSpec
 
 
 def nn(value: Any | None):  # noqa: ANN201
@@ -28,10 +32,31 @@ def nn(value: Any | None):  # noqa: ANN201
     return value
 
 
+P = ParamSpec("P")
+T = TypeVar("T")
+R = TypeVar("R")
+
+
+class ReturnsType(Generic[T, R]):
+    """A decorator to modify the return type of a function."""
+
+    def __init__(self, type_: Callable[[T], R]) -> None:
+        self.__type = type_
+
+    def __call__(self, callback: Callable[P, T]) -> Callable[P, R]:
+        """Change the return type of the function."""
+
+        @_wraps(callback)
+        def __new(*args: P.args, **kwargs: P.kwargs) -> R:
+            return self.__type(callback(*args, **kwargs))
+
+        return __new
+
+
 T = TypeVar("T", bound=type)
 
 
-class MetaCheckGenerator:
+class MetaCheckBuilder:
     """Generator for creating metaclass-based decorators."""
 
     def __init__(self, base_class: type, ignore_state: bool = False) -> None:

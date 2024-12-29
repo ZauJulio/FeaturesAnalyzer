@@ -5,7 +5,7 @@ from typing import Never
 from gi.repository import GdkPixbuf, Gtk
 
 from context.store import Store
-from lib.utils import types
+from lib.utils import types_
 from ui.screens import ApplicationWindow
 
 
@@ -33,4 +33,4 @@ class FAApplication(Gtk.Application):
         raise NotImplementedError
 
 
-FAMetaCheckApplication = types.MetaCheckGenerator(FAApplication)
+FAMetaCheckApplication = types_.MetaCheckBuilder(FAApplication)

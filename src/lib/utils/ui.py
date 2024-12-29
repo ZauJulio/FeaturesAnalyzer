@@ -2,7 +2,7 @@ from os import path
 
 from gi.repository import Gdk, Gtk
 
-from . import types
+from . import types_
 
 
 def load_styles(source: str | None = None, styles: str | None = None) -> None:
@@ -17,7 +17,7 @@ def load_styles(source: str | None = None, styles: str | None = None) -> None:
         The styles file path, by default None
 
     """
-    resource_path = path.dirname(types.nn(source or styles))
+    resource_path = path.dirname(types_.nn(source or styles))
 
     if source:
         filename = path.basename(source).replace(".py", ".css")  # noqa: PTH119
@@ -27,7 +27,7 @@ def load_styles(source: str | None = None, styles: str | None = None) -> None:
     else:
         return
 
-    screen = types.nn(Gdk.Screen.get_default())
+    screen = types_.nn(Gdk.Screen.get_default())
     priority = Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
 
     provider = Gtk.CssProvider()

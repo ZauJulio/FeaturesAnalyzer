@@ -1,7 +1,7 @@
 from typing import Generic, TypeVar
 
 from interfaces import GenericController, StateGeneric
-from lib.utils import types
+from lib.utils import types_
 
 
 class FAModule(Generic[GenericController, StateGeneric]):
@@ -39,5 +39,5 @@ class FAModule(Generic[GenericController, StateGeneric]):
         return self.controller.state
 
 
-FAMetaCheckModule = types.MetaCheckGenerator(FAModule)
+FAMetaCheckModule = types_.MetaCheckBuilder(FAModule)
 GenericModule = TypeVar("GenericModule", bound=FAModule)

@@ -9,3 +9,7 @@ __pycache__/
 
 # Env
 .env
+
+# DB
+db.json
+features-analyzer.log

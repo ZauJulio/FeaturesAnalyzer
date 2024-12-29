@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING, TypedDict
 
 from gi.repository import Gtk
 
+from lib.utils import ui
 from ui.components.sidebar_items import ImportSettingsModule, KMeansSolverModule
 
 
@@ -29,6 +30,7 @@ class SideBar(Gtk.ScrolledWindow):
         self.app = app
 
         self.set_min_content_width(350)
+        ui.load_styles(source=__file__)
 
         self.__load_modules()
         self.__load_layout()
@@ -72,10 +74,9 @@ class SideBar(Gtk.ScrolledWindow):
 
     def __load_layout(self) -> None:
         """Load layout to the sidebar."""
-        self.__scroll_container = Gtk.VBox(
-            valign=Gtk.Align.START,
-            orientation=Gtk.Orientation.VERTICAL,
-        )
+        label = Gtk.Label(label="Settings", name="sidebar-label")
+        self.__scroll_container = Gtk.VBox(valign=Gtk.Align.START)
+        self.__scroll_container.pack_start(label, expand=True, fill=True, padding=0)
 
         self.__side_bar = Gtk.Viewport(hscroll_policy=Gtk.ScrollablePolicy.NATURAL)
         self.__side_bar.add(self.__scroll_container)

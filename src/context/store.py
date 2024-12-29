@@ -4,7 +4,7 @@ import pandas as pd
 
 from context.states import ImportSettingsState, KMeansSolverState
 from lib.state_manager import FAState
-from lib.utils.meta import SingletonMeta
+from lib.utils import SingletonMeta
 
 
 class StateType(FAState):
