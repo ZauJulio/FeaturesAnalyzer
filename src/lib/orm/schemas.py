@@ -1,5 +1,5 @@
 from collections.abc import Mapping
-from typing import Literal, TypeVar
+from typing import Any, Literal, TypeVar
 
 from pydantic import BaseModel as PydanticBaseModel
 
@@ -24,15 +24,7 @@ class FAPreProcessorSchema(BaseSchema):
     """A preprocessor to prepare data for a model."""
 
     name: str
-    params: Mapping[
-        str,
-        str
-        | int
-        | float
-        | bool
-        | list[str | int | float | bool]
-        | dict[str, str | int | float | bool],
-    ]
+    params: Any
     data_hash: str | None = None
 
 

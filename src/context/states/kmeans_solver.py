@@ -1,6 +1,5 @@
-from sklearn.cluster import KMeans
-
 from lib.state_manager import FAState
+from models import KMeans
 
 TAB_2_KEY = "kmeans"
 
@@ -32,14 +31,19 @@ class KMeansSolverState(FAState):
         x = data.iloc[:, [0, 1, 2, 3]].values
 
         kmeans = KMeans(
-            n_clusters=model_state.n_clusters,
-            init="k-means++",
-            max_iter=model_state.max_iter,
-            n_init=10,
-            random_state=0,
+            x=x,
+            params=KMeans.schema(
+                n_clusters=model_state.n_clusters,
+                max_iter=model_state.max_iter,
+                init="k-means++",
+                random_state=0,
+                n_init=10,
+            ),
         )
 
-        y_kmeans = kmeans.fit_predict(x)
+        kmeans.fit(x)
+
+        y_kmeans = kmeans.predict(x)
 
         try:
             tab = app.window.graph.get_tab(TAB_2_KEY)
@@ -76,8 +80,8 @@ class KMeansSolverState(FAState):
 
         # Plotting the centroids of the clusters
         ax.scatter(
-            kmeans.cluster_centers_[:, 0],
-            kmeans.cluster_centers_[:, 1],
+            kmeans.method.cluster_centers_[:, 0],
+            kmeans.method.cluster_centers_[:, 1],
             s=100,
             c="red",
             label="Centroids",

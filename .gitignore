@@ -13,3 +13,6 @@ __pycache__/
 # DB
 db.json
 features-analyzer.log
+
+# Bin
+*.pkl

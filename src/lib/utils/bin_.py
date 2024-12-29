@@ -15,6 +15,9 @@ def write(obj: Any, path: str | Path) -> None:
         The file path to write the object to.
 
     """
+    # Create path if it doesn't exist
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+
     with Path(path).open("wb") as file:
         pickle.dump(obj, file)
 

@@ -1,13 +1,25 @@
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from typing import Generic, cast
-from venv import logger
 
 from tinydb import Storage
 from tinydb.queries import QueryLike
 from tinydb.table import Document, Table
 
 from lib.orm.schemas import SchemaType
-from lib.utils import hsash
+from lib.utils import hsash, logger
+
+
+class FADocument(dict):  # noqa: FURB189
+    """
+    A document stored in the database.
+
+    This class provides a way to access both a document's content and
+    its ID using ``doc.doc_id``.
+    """
+
+    def __init__(self, value: Mapping, doc_id: str) -> None:
+        super().__init__(value)
+        self.doc_id = doc_id
 
 
 class FATable(Table, Generic[SchemaType]):
@@ -16,6 +28,9 @@ class FATable(Table, Generic[SchemaType]):
     LOG_PREFIX = "[FAORM] -"
 
     schema: type[SchemaType]
+
+    document_class = FADocument
+    document_id_class = str
 
     def __init__(self, storage: Storage, name: str, schema: type[SchemaType]) -> None:
         self.schema = schema
@@ -71,7 +86,7 @@ class FATable(Table, Generic[SchemaType]):
         doc = self.get(doc_id=uid)
 
         if doc is None:
-            logger.error(f"{self.LOG_PREFIX} Document with UID {uid} not found")
+            logger.warning(f"{self.LOG_PREFIX} Document with UID {uid} not found")
             return None
 
         if isinstance(doc, list):
@@ -79,7 +94,7 @@ class FATable(Table, Generic[SchemaType]):
 
         return self.schema(**doc)
 
-    def insert(self, data: SchemaType, uid: str | None = None) -> SchemaType:
+    def insert(self, data: SchemaType, uid: str) -> SchemaType:
         """
         Create a new entry.
 
@@ -96,8 +111,7 @@ class FATable(Table, Generic[SchemaType]):
             The inserted data.
 
         """
-        data.uid = data.uid or uid or self.generate_hash(data)
-        super().insert(data.model_dump())
+        super().insert(FADocument(data.model_dump(), doc_id=uid))
         return data
 
     def update(

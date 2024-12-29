@@ -23,9 +23,8 @@ class TypedTinyDB(TinyDB):
 
     def __init__(self, path: str | None = None) -> None:
         self.base_path = Path(path or os.getenv("DB_PATH", "../"))
-        self.base_path.mkdir(parents=True, exist_ok=True)
 
-        super().__init__(self.base_path / "db.json")
+        super().__init__(self.base_path)
 
     def table(
         self,
