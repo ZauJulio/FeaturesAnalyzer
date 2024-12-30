@@ -25,11 +25,10 @@ class SideBar(Gtk.ScrolledWindow):
     app: "FeaturesAnalyzer"
 
     def __init__(self, app: "FeaturesAnalyzer") -> None:
-        super().__init__()
+        super().__init__(min_content_width=350)
 
         self.app = app
 
-        self.set_min_content_width(350)
         ui.load_styles(source=__file__)
 
         self.__load_modules()
@@ -52,12 +51,22 @@ class SideBar(Gtk.ScrolledWindow):
                     lambda *_: state.handle_002_on_data_update(self.app),
                 )
 
+                state.on_change(
+                    "on_commit",
+                    lambda *_: self.app.store.dump(),
+                )
+
         def subscribe_kmeans_solver() -> None:
             """Subscribe to the KMeans Solver."""
             with self.settings["KMeansSolver"].state as state:
                 state.on_change(
                     "on_commit",
                     lambda *_: state.handle_001_on_params_update(self.app),
+                )
+
+                state.on_change(
+                    "on_commit",
+                    lambda *_: self.app.store.dump(),
                 )
 
         subscribe_import_settings()

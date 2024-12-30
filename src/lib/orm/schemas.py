@@ -52,4 +52,10 @@ class FAModelSchema(BaseSchema):
     pre_processors: list[str] = []
 
 
-type SchemasKeys = Literal["FAPreProcessor", "FAModel"]
+class SettingsSchema(BaseSchema):
+    """A schema for settings."""
+
+    value: Any
+
+
+type SchemasKeys = Literal["FAPreProcessor", "FAModel", "Settings"]

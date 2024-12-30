@@ -36,6 +36,13 @@ class FeaturesAnalyzer(FAApplication):
         self.create_actions("quit", lambda *_: self.quit(), ["<primary>q"])
         self.create_actions("about", lambda *_: self.on_about_action(), ["<primary>a"])
 
+    def quit(self) -> None:
+        """Quit the application."""
+        self.store.dump()
+
+        self.window.destroy()
+        super().quit()
+
     def create_actions(
         self,
         name: str,

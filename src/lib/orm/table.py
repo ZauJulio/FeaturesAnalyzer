@@ -37,6 +37,24 @@ class FATable(Table, Generic[SchemaType]):
 
         super().__init__(storage=storage, name=name)
 
+    def remove(
+        self,
+        cond: QueryLike | None = None,
+        doc_ids: list | None = None,
+    ) -> None:
+        """
+        Remove documents from the table.
+
+        Parameters
+        ----------
+        cond : Optional[QueryLike]
+            The condition to match.
+        doc_ids : Optional[List]
+            The list of document IDs to match.
+
+        """
+        super().remove(cond, doc_ids)
+
     @staticmethod
     def generate_hash(entry: SchemaType) -> str:
         """

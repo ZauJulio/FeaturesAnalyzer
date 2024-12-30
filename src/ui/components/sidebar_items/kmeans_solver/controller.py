@@ -15,6 +15,12 @@ class KMeansSolverController(FAController[KMeansSolverState]):
     def __init__(self, state: KMeansSolverState) -> None:
         super().__init__(state=state, widget=KMeansSolverWidget())
 
+        self.widget.max_iter_entry.set_text(str(self.state.max_iter or 100))
+        self.widget.n_cluster_entry.set_text(str(self.state.n_clusters or 1))
+
+        if self.state.max_iter or self.state.n_clusters:
+            self.widget.on_module_change()
+
     def _connect_signals(self) -> None:
         """Connect signals to the widget."""
         # Handle status and commit interface

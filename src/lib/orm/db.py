@@ -21,11 +21,6 @@ class TypedTinyDB(TinyDB):
     table_class: type[FATable]
     document_id_class: str
 
-    def __init__(self, path: str | None = None) -> None:
-        self.base_path = Path(path or os.getenv("DB_PATH", "../"))
-
-        super().__init__(self.base_path)
-
     def table(
         self,
         name: SchemasKeys,
@@ -61,9 +56,11 @@ class TypedTinyDB(TinyDB):
         return self._tables[name]
 
 
-from lib.orm.schemas import FAModelSchema, FAPreProcessorSchema
+from lib.orm.schemas import FAModelSchema, FAPreProcessorSchema, SettingsSchema
 
-db = TypedTinyDB()
-
+db = TypedTinyDB(path=Path(os.getenv("MODELS_DB_PATH", "../db.json")))
 ModelTable = db.table("FAModel", FAModelSchema)
 PreProcessorTable = db.table("FAPreProcessor", FAPreProcessorSchema)
+
+settings_db = TypedTinyDB(path=os.getenv("SETTINGS_DB_PATH", "../settings.json"))
+SettingsTable = settings_db.table("Settings", SettingsSchema)

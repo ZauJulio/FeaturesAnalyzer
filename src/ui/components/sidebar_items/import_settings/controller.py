@@ -15,6 +15,18 @@ class ImportSettingsController(FAController[ImportSettingsState]):
     def __init__(self, state: ImportSettingsState) -> None:
         super().__init__(state=state, widget=ImportSettingsWidget())
 
+        if self.state.selected_file:
+            self.widget.file_radio.set_active(True)
+            self.widget.file_chooser.set_filename(self.state.selected_file)
+        elif self.state.selected_url:
+            self.widget.url_radio.set_active(True)
+            self.widget.url_entry.set_text(self.state.selected_url)
+
+        self.widget.data_id_entry.set_text(self.state.data_id)
+
+        if self.state.selected_file or self.state.selected_url or self.state.data_id:
+            self.widget.on_module_change()
+
     def _connect_signals(self) -> None:
         """Connect signals to the widget."""
         # Handle status and commit interface

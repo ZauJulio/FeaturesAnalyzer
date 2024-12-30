@@ -47,6 +47,30 @@ class FAState(FAObserver):
         """Get the state."""
         return self._state
 
+    def serialize(self) -> dict:
+        """Recursively serialize state."""
+        import pandas as pd
+
+        def _serialize_value(value: Any) -> object:
+            if isinstance(value, FAState):
+                return value.serialize()
+
+            if isinstance(value, dict):
+                return {k: _serialize_value(v) for k, v in value.items()}
+
+            if isinstance(value, list):
+                return [_serialize_value(v) for v in value]
+
+            if isinstance(value, pd.DataFrame):
+                return None
+
+            return value
+
+        return {
+            key: _serialize_value(value)
+            for key, value in self._copy(cls=self).__dict__.items()
+        }
+
     def _get_untracked(self) -> Self:
         """Get the untracked state."""
         return self._copy(self)
@@ -121,12 +145,15 @@ class FAState(FAObserver):
         self.track()
 
     def load(self, value: dict[str, Any]) -> None:
-        """Load a state from a dictionary."""
+        """Load a state from a dictionary, supporting nested FAState instances."""
         self._validate_keys(list(value.keys()))
 
         for k in self._keys:
-            self._state[k] = value[k]
-            self.__dict__[k] = value[k]
+            if isinstance(self._state.get(k), FAState):
+                self._state[k].load(value[k])
+            else:
+                self._state[k] = value[k]
+                self.__dict__[k] = value[k]
 
         self.track()
 

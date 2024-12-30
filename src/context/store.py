@@ -1,10 +1,13 @@
-from typing import ClassVar
+from typing import ClassVar, cast
 
 import pandas as pd
 
 from context.states import ImportSettingsState, KMeansSolverState
+from lib.orm import db
 from lib.state_manager import FAState
-from lib.utils import SingletonMeta
+from lib.utils import SingletonMeta, logger
+
+PREFIX = "[STORE] -"
 
 
 class StateType(FAState):
@@ -27,9 +30,35 @@ class Store(metaclass=SingletonMeta):
         },
     )
 
+    def __init__(self) -> None:
+        self.load()
+
     @property
     def state(self) -> StateType:
         """Return the state."""
         return self.__state
 
-    # Create, dump and load by JSON
+    def dump(self) -> None:
+        """Dump state to json."""
+        if db.SettingsTable.find_by_uid("root"):
+            db.SettingsTable.remove(doc_ids=["root"])
+
+        db.SettingsTable.insert(
+            db.SettingsTable.schema(value=self.__state.serialize()),
+            uid="root",
+        )
+
+        logger.info(f"{PREFIX} State dumped.")
+
+    def load(self) -> None:
+        """Load state from json."""
+        state = db.SettingsTable.find_by_uid("root")
+
+        if state:
+            self.__state.load(state.value)
+
+            for key in self.__state.__annotations__:
+                if isinstance(self.__state[key], FAState):
+                    cast("FAState", self.__state[key]).untrack()
+
+            logger.info(f"{PREFIX} State loaded.")

@@ -7,7 +7,7 @@ from pandas import DataFrame
 
 from lib.orm import db
 from lib.orm.schemas import FAPreProcessorSchema, PydanticBaseModel
-from lib.utils import hsash, types_
+from lib.utils import hsash, logger, types_
 
 SchemaType = TypeVar("SchemaType", bound=PydanticBaseModel)
 
@@ -41,6 +41,11 @@ class FAPreProcessor(ABC, Generic[SchemaType]):
         """Store the preprocessor in the database."""
         self.set_params(params)
         self.generate_hash(data)
+
+        if not self.uid:
+            msg = f"{self.__PREFIX} - Preprocessor must have a uid."
+            logger.error(msg)
+            raise ValueError(msg)
 
         entry = db.PreProcessorTable.find_by_uid(types_.nn(self.uid))
         return entry or db.PreProcessorTable.insert(self.get_entry(), self.uid)
