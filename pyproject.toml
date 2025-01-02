@@ -25,15 +25,21 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/ZauJulio/FeaturesAnalyzerGTK"
-"Bug Reports" = "https://github.com/ZauJulio/FeaturesAnalyzerGTK/issues"
+"Homepage" = "https://github.com/ZauJulio/FeaturesAnalyzer"
+"Bug Reports" = "https://github.com/ZauJulio/FeaturesAnalyzer/issues"
 "Funding" = "https://github.com/sponsors/ZauJulio"
 "Say Thanks!" = "https://saythanks.io/to/ZauJulio"
-"Source" = "https://github.com/ZauJulio/FeaturesAnalyzerGTK/"
+"Source" = "https://github.com/ZauJulio/FeaturesAnalyzer/"
 
 [tool.poetry]
-name="features-analyzer"
+name = "features-analyzer"
 package-mode = false
+
+[tool.poetry.installer]
+parallel = true
+
+[tool.poetry.virtualenvs]
+in-project = true
 
 [tool.poetry.dependencies]
 joblib = "^1.4.2"
