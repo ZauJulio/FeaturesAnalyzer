@@ -35,11 +35,6 @@ classifiers = [
 name = "features-analyzer"
 package-mode = false
 
-[tool.poetry.installer]
-parallel = true
-
-[tool.poetry.virtualenvs]
-in-project = true
 
 [tool.poetry.dependencies]
 joblib = "^1.4.2"

@@ -21,6 +21,7 @@ class FAModelManager(Generic[ModelType, ParamsType]):
     __PREFIX = "[FAModelManager] -"
     file_name: str
     bin_base_path = Path(os.getenv("BIN_PATH", "./bin")) / "models"
+    Path(bin_base_path).mkdir(parents=True, exist_ok=True)
 
     schema: type[ParamsType]
     method: ModelType
