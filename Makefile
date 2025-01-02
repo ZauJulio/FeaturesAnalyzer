@@ -9,3 +9,6 @@ migrate-deps:
 
 prepare:
 	@poetry install && poetry run pre-commit install
+
+serve:
+	@poetry run mkdocs serve -a localhost:5000

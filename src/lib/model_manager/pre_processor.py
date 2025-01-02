@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any, Generic, TypeVar
 
+from numpy import ndarray
 from pandas import DataFrame
 
 from lib.orm import db
@@ -35,7 +36,7 @@ class FAPreProcessor(ABC, Generic[SchemaType]):
 
     def store(
         self,
-        data: DataFrame,
+        data: DataFrame | ndarray,
         params: SchemaType | None,
     ) -> FAPreProcessorSchema | None:
         """Store the preprocessor in the database."""

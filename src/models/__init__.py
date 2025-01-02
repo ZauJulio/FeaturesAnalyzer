@@ -1,5 +1,6 @@
 """Context models."""
 
 from .kmeans import KMeans
+from .mlp import MLP
 
-__all__ = ["KMeans"]
+__all__ = ["MLP", "KMeans"]

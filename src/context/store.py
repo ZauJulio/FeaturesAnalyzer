@@ -2,7 +2,7 @@ from typing import ClassVar, cast
 
 import pandas as pd
 
-from context.states import ImportSettingsState, KMeansSolverState
+from context.states import ImportSettingsState, KMeansSolverState, MLPSolverState
 from lib.orm import db
 from lib.state_manager import FAState
 from lib.utils import SingletonMeta, logger
@@ -17,6 +17,7 @@ class StateType(FAState):
 
     ImportSettings: ImportSettingsState
     KMeansSolver: KMeansSolverState
+    MLPSolver: MLPSolverState
 
 
 class Store(metaclass=SingletonMeta):
@@ -27,6 +28,7 @@ class Store(metaclass=SingletonMeta):
             "data": {},
             "ImportSettings": ImportSettingsState(),
             "KMeansSolver": KMeansSolverState(),
+            "MLPSolver": MLPSolverState(),
         },
     )
 

@@ -13,8 +13,8 @@ LOG_SUCCESS_LEVEL: Final[int] = 25
 LOG_RESET_COLOR: Final[str] = "\033[0m"
 LOG_COLORS: Final[dict[str, str]] = {
     "DEBUG": "\033[94m",  # Blue
-    "INFO": "\033[92m",  # Green
-    "SUCCESS": "\033[90m",  # Gray
+    "INFO": "\033[90m",  # Gray (changed)
+    "SUCCESS": "\033[92m",  # Green (changed)
     "WARNING": "\033[93m",  # Yellow
     "ERROR": "\033[91m",  # Red
     "CRITICAL": "\033[95m",  # Magenta

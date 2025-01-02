@@ -15,6 +15,10 @@ class KMeansSolverController(FAController[KMeansSolverState]):
     def __init__(self, state: KMeansSolverState) -> None:
         super().__init__(state=state, widget=KMeansSolverWidget())
 
+        self._load_initial_state()
+
+    def _load_initial_state(self) -> None:
+        """Load the initial state."""
         self.widget.max_iter_entry.set_text(str(self.state.max_iter or 100))
         self.widget.n_cluster_entry.set_text(str(self.state.n_clusters or 1))
 

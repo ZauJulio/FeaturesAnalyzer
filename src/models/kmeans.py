@@ -28,7 +28,7 @@ class KMeans(FAModelManager[SklearnKMeans, KMeansParams]):
         """Initialize the model."""
         self.store(x, params)
 
-        if self.loaded():
+        if not self.loaded():
             self.method = SklearnKMeans(
                 n_clusters=self.params.n_clusters,
                 max_iter=self.params.max_iter,

@@ -3,7 +3,12 @@ from typing import TYPE_CHECKING, TypedDict
 from gi.repository import Gtk
 
 from lib.utils import ui
-from ui.components.sidebar_items import ImportSettingsModule, KMeansSolverModule
+from ui.components.global_apply import GlobalApplyWidget
+from ui.components.sidebar_items import (
+    ImportSettingsModule,
+    KMeansSolverModule,
+    MLPSolverModule,
+)
 
 
 class SettingsModule(TypedDict):
@@ -11,6 +16,7 @@ class SettingsModule(TypedDict):
 
     ImportSettings: ImportSettingsModule
     KMeansSolver: KMeansSolverModule
+    MLPSolver: MLPSolverModule
 
 
 class SideBar(Gtk.ScrolledWindow):
@@ -69,8 +75,22 @@ class SideBar(Gtk.ScrolledWindow):
                     lambda *_: self.app.store.dump(),
                 )
 
+        def subscribe_mlp_solver() -> None:
+            """Subscribe to the MLP Solver."""
+            with self.settings["MLPSolver"].state as state:
+                state.on_change(
+                    "on_commit",
+                    lambda *_: state.handle_001_on_params_update(self.app),
+                )
+
+                state.on_change(
+                    "on_commit",
+                    lambda *_: self.app.store.dump(),
+                )
+
         subscribe_import_settings()
         subscribe_kmeans_solver()
+        subscribe_mlp_solver()
 
     def __load_modules(self) -> None:
         """Load modules to the sidebar."""
@@ -79,6 +99,7 @@ class SideBar(Gtk.ScrolledWindow):
         self.settings: SettingsModule = {
             "ImportSettings": ImportSettingsModule(state=state.ImportSettings),
             "KMeansSolver": KMeansSolverModule(state=state.KMeansSolver),
+            "MLPSolver": MLPSolverModule(state=state.MLPSolver),
         }
 
     def __load_layout(self) -> None:
@@ -98,3 +119,35 @@ class SideBar(Gtk.ScrolledWindow):
                 fill=False,
                 padding=0,
             )
+
+        self.__load_global_apply()
+
+    def __load_global_apply(self) -> None:
+        """Load the global apply widget."""
+        if TYPE_CHECKING:
+            from lib.state_manager.state import FAState
+            from ui.components.shared.sidebar_item import SideBarItem
+
+        def on_click() -> None:
+            """On click event."""
+            for setting in self.settings:
+                widget: SideBarItem = self.settings[setting].controller.widget
+                state: FAState = self.settings[setting].controller.state
+
+                state.commit()
+                widget.hide_module_status()
+
+        self.__global_apply = GlobalApplyWidget()
+        self.__global_apply.connect("clicked", lambda _: on_click())
+        self.__scroll_container.pack_end(
+            child=self.__global_apply,
+            expand=False,
+            fill=False,
+            padding=10,
+        )
+
+        for setting in self.settings:
+            state: FAState = self.settings[setting].controller.state
+
+            state.on_change("on_untrack", lambda *_: self.__global_apply.show())
+            state.on_change("on_commit", lambda *_: self.__global_apply.hide())

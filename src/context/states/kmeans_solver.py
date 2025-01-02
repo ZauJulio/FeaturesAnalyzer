@@ -28,7 +28,7 @@ class KMeansSolverState(FAState):
             return
 
         data = app.store.state.data[import_state.data_id]
-        x = data.iloc[:, [0, 1, 2, 3]].values
+        x = data.iloc[:, [0, 1, 2]].values
 
         kmeans = KMeans(
             x=x,
@@ -58,34 +58,42 @@ class KMeansSolverState(FAState):
         ax.scatter(
             x[y_kmeans == 0, 0],
             x[y_kmeans == 0, 1],
-            s=100,
+            x[y_kmeans == 0, 2],
             c="purple",
-            label="Iris Setosa",
+            label="Cluster 1",
         )
 
         ax.scatter(
             x[y_kmeans == 1, 0],
             x[y_kmeans == 1, 1],
-            s=100,
+            x[y_kmeans == 1, 2],
             c="orange",
-            label="Iris Versicolour",
+            label="Cluster 2",
         )
+
         ax.scatter(
             x[y_kmeans == 2, 0],  # noqa: PLR2004
             x[y_kmeans == 2, 1],  # noqa: PLR2004
-            s=100,
+            x[y_kmeans == 2, 2],  # noqa: PLR2004
             c="green",
-            label="Iris Virginica",
+            label="Cluster 3",
         )
 
         # Plotting the centroids of the clusters
         ax.scatter(
             kmeans.method.cluster_centers_[:, 0],
             kmeans.method.cluster_centers_[:, 1],
-            s=100,
+            kmeans.method.cluster_centers_[:, 2],
             c="red",
+            marker="X",
             label="Centroids",
         )
+
+        ax.set_title("KMeans Clustering")
+        ax.set_xlabel(data.columns[0])
+        ax.set_ylabel(data.columns[1])
+        ax.set_zlabel(data.columns[2])  # type: ignore[union-attr]
+        ax.legend()
 
         tab.canvas.draw()
 

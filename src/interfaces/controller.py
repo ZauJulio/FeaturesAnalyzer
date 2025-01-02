@@ -32,6 +32,9 @@ class FAController(Generic[StateGeneric]):
         """Connect signals to the widget."""
         raise NotImplementedError
 
+    def _load_initial_state(self) -> None:
+        """Load the initial state."""
+
     @abc.abstractmethod
     def reset(self) -> None:
         """Reset the controller."""

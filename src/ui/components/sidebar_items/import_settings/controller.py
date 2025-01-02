@@ -15,6 +15,10 @@ class ImportSettingsController(FAController[ImportSettingsState]):
     def __init__(self, state: ImportSettingsState) -> None:
         super().__init__(state=state, widget=ImportSettingsWidget())
 
+        self._load_initial_state()
+
+    def _load_initial_state(self) -> None:
+        """Load the initial state."""
         if self.state.selected_file:
             self.widget.file_radio.set_active(True)
             self.widget.file_chooser.set_filename(self.state.selected_file)

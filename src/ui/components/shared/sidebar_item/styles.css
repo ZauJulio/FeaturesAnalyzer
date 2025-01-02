@@ -7,6 +7,10 @@
     margin: 0.3rem;
 }
 
+#status_button {
+    background-color: @black-600;
+}
+
 #head-bar {
     font-size: 0.9rem;
     font-weight: 600;

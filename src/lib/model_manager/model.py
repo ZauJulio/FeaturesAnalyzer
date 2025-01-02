@@ -73,20 +73,28 @@ class FAModelManager(Generic[ModelType, ParamsType]):
         self.file_name = f"{self.name}_{dt}_{self.uid}.pkl"
         self.file_name = self._find_bin_by_uid() or self.file_name
 
+        entry = db.ModelTable.find_by_uid(self.uid)
+
         try:
-            entry = db.ModelTable.find_by_uid(self.uid)
             self.method = bin_.load(path=self.bin_base_path / self.file_name)
 
             if self.method and entry:
+                logger.success(f"{self.__PREFIX} - Model loaded from {self.file_name}.")
                 return entry, self.method
 
             if not entry:
                 msg = (f"{self.__PREFIX} - Missing entry for {self.uid}.",)
                 raise db.MissingDBEntryError(msg)  # noqa: TRY301
         except FileNotFoundError:
-            entry = db.ModelTable.insert(self.get_entry(), self.uid)
+            logger.info(f"{self.__PREFIX} - Model binary not found.")
+
+            if not entry:
+                entry = db.ModelTable.insert(self.get_entry(), self.uid)
+
             return entry, None
         except db.MissingDBEntryError:
+            logger.info(f"{self.__PREFIX} - Model entry not found.")
+
             entry = db.ModelTable.insert(self.get_entry(), self.uid)
             return entry, None
         except Exception as e:
@@ -124,6 +132,7 @@ class FAModelManager(Generic[ModelType, ParamsType]):
     def save(self) -> None:
         """Save the model binary."""
         if self.loaded():
+            logger.info(f"{self.__PREFIX} - Saving model to {self.file_name}.")
             bin_.write(self.method, self.bin_base_path / self.file_name)
 
     def generate_hash(self, data: Any) -> None:

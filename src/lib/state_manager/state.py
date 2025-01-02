@@ -1,11 +1,15 @@
 from collections.abc import Callable
-from typing import Any, ClassVar, Literal, Self, cast
+from typing import Any, ClassVar, Literal, Self, cast, get_args
+
+from lib.utils import logger
 
 from . import FAObserver
 
 Callback = Callable[[Any, Any], None]
 StateStatus = Literal["idle", "committing", "error"]
 RootSubscriber = Literal["on_commit", "on_untrack"]
+
+PREFIX = "[State Manager] -"
 
 
 class FAState(FAObserver):
@@ -25,19 +29,41 @@ class FAState(FAObserver):
 
     def __setattr__(self, key, value) -> None:  # noqa: ANN001
         """Set the value of a key."""
-        # Check if key is member of the class
+        # Check if key is a member of the class
         self._validate_keys(key)
 
-        # Validate type of value/annotation
-        if value.__class__ is not self.__annotations__[key]:
-            type_ = type(value)
-            expected_ = self.__annotations__[key]
+        # Get the expected type from annotations
+        expected_type = self.__annotations__.get(key)
 
-            msg = f"Invalid type {type_} for {key}, expected {expected_}"
+        if not expected_type:
+            msg = f"Invalid key {key}"
+            logger.error(f"{PREFIX} {msg}")
+            raise KeyError(msg)
+
+        # Handle Literal types
+        if hasattr(expected_type, "__origin__") and expected_type.__origin__ is Literal:
+            # Extract allowed values from Literal
+            allowed_values = get_args(expected_type)
+            if value not in allowed_values:
+                msg = f"{PREFIX} Invalid value {value!r} for {key}, expected one of {allowed_values}"  # noqa: E501
+                logger.error(msg)
+                raise ValueError(msg)
+
+        # Handle tuple[int, ...] check
+        elif hasattr(expected_type, "__origin__") and expected_type.__origin__ is tuple:
+            # Ensure the tuple is of type tuple[int, ...]
+            if not all(isinstance(item, int) for item in value):
+                msg = f"{PREFIX} Invalid type in tuple for {key}, expected all elements to be of type int"  # noqa: E501
+                logger.error(msg)
+                raise TypeError(msg)
+
+        # Validate non-Literal types
+        elif not isinstance(value, expected_type):
+            msg = f"Invalid type {type(value)} for {key}, expected {expected_type}"
             raise TypeError(msg)
 
         # Notify subscribers
-        if getattr(self, key) != value:
+        if getattr(self, key, None) != value:
             self._notify(key, value)
             self.__dict__[key] = value
 

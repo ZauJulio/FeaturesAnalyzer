@@ -16,15 +16,18 @@
 		"reportMissingModuleSource": "none"
 	},
 	"cSpell.words": [
+		"mkdocs",
 		"arange",
 		"commitizen",
 		"dotenv",
+		"facecolors",
 		"FAORM",
 		"ggplot",
 		"halign",
 		"hexpand",
 		"hsash",
 		"hscroll",
+		"invscaling",
 		"isort",
 		"joblib",
 		"jointplot",
@@ -42,7 +45,8 @@
 		"unicode",
 		"valign",
 		"xlabel",
-		"ylabel"
+		"ylabel",
+		"zlabel"
 	],
 	"files.exclude": {
 		"**/*.ui~": true,

@@ -36,6 +36,7 @@ class SideBarItemHeader(Gtk.HBox):
             height_request=30,
         )
 
+        ui.pointer_cursor(self.status_button)
         grid.attach(self.label, 0, 0, 1, 1)
         grid.attach(self.status_button, 1, 0, 1, 1)
 
@@ -79,7 +80,7 @@ class SideBarItem(Gtk.VBox):
         """Update the status button."""
         self.show_module_status()
         self.head_bar.status_button.set_tooltip_text("Apply")
-        self.head_bar.status_button.set_label("✅")
+        self.head_bar.status_button.set_label("✓")
 
     def on_module_updating(self) -> None:
         """Update the status button."""
