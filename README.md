@@ -15,6 +15,8 @@
 ![Static Badge](https://img.shields.io/badge/pre--commit-enabled-%231F2E3A?logo=pre-commit&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/renovate-enabled-%2300BBDE?logo=renovatebot&logoColor=white)
 
+![image](https://github.com/user-attachments/assets/b336cca1-a81b-4be6-9e51-2947defd3eb6)
+
 ## Overview
 
 This is a simple tool to analyze the features of a dataset, prototype and test machine learning/statistical models.
