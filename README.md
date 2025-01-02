@@ -190,6 +190,7 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
 
 - [SonarCloud - Code Quality and Security](https://sonarcloud.io/project/overview?id=ZauJulio_FeaturesAnalyzer)
 - [Renovate - Dependency Updates](https://developer.mend.io/github/ZauJulio/FeaturesAnalyzer)
+- [Docs - Project documentation](https://zaujulio.github.io/FeaturesAnalyzer/)
 
 ---
 
