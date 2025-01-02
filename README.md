@@ -114,6 +114,7 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
 │   │   ├── states/*                    # States (With handlers)
 │   │   └── store.py                    # Store/Merge context
 │   ├── interfaces                      # Project interfaces
+│   ├── models                          # Project models (extends FAModel)
 │   ├── lib                             # Project libraries
 │   │   ├── model_manager               # Model manager
 │   │   ├── orm                         # Typed JSON ORM with Pydantic and tinydb
@@ -139,6 +140,7 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
 │   │   ├── states/*                    # States (With handlers)
 │   │   └── store.py                    # Store/Merge context
 │   ├── interfaces                      # Project interfaces
+│   ├── models/*                          # Project models (extends FAModel)
 │   │   ├── application.py              # Global app interface
 │   │   ├── controller.py               # Generic (handler and connect signals)
 │   │   ├── module.py                   # Generic (handler root state signals)
@@ -188,6 +190,7 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
 
 - [SonarCloud - Code Quality and Security](https://sonarcloud.io/project/overview?id=ZauJulio_FeaturesAnalyzer)
 - [Renovate - Dependency Updates](https://developer.mend.io/github/ZauJulio/FeaturesAnalyzer)
+- [Docs - Project documentation](https://zaujulio.github.io/FeaturesAnalyzer/)
 
 ---
 

@@ -8,14 +8,9 @@ __pycache__/
 .ruff_cache
 
 # Env
-.env
 
 # DB
-db.json
-settings.json
 
 # Logs
-features-analyzer.log
 
 # Bin
-*.pkl
