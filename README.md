@@ -30,7 +30,7 @@ The project is built with Python type hints in all modules.
 <summary><strong>1. Prerequisites</strong></summary>
 
 - **Python 3.12+**: Make sure you have Python 3.12 (or venv ;) ) or more recent installed on your system.
-- **WSL (para Windows)**: Windows users should install the [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/pt-br/windows/wsl/install) to use Poetry.
+- **WSL (on Windows)**: Windows users should install the [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/pt-br/windows/wsl/install) to use Poetry.
 
 </details>
 
