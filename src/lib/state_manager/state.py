@@ -1,13 +1,8 @@
-from collections.abc import Callable
 from typing import Any, ClassVar, Literal, Self, cast, get_args
 
 from lib.utils import logger
 
 from . import FAObserver
-
-Callback = Callable[[Any, Any], None]
-StateStatus = Literal["idle", "committing", "error"]
-RootSubscriber = Literal["on_commit", "on_untrack"]
 
 PREFIX = "[State Manager] -"
 
@@ -64,14 +59,10 @@ class FAState(FAObserver):
 
         # Notify subscribers
         if getattr(self, key, None) != value:
-            self._notify(key, value)
             self.__dict__[key] = value
+            self._notify(key, value)
 
             self.untrack()
-
-    def get_state(self):  # noqa: ANN201
-        """Get the state."""
-        return self._state
 
     def serialize(self) -> dict:
         """Recursively serialize state."""
@@ -164,6 +155,9 @@ class FAState(FAObserver):
                 value = 0.0
             elif isinstance(v, bool):
                 value = False
+            elif isinstance(v, FAState):
+                v.reset()
+                value = v
 
             self._state[k] = value
             self.__dict__[k] = value
