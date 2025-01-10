@@ -156,8 +156,8 @@ make run
 │   ├── context                         # Context (Global state)
 │   │   ├── states/*                    # States (With handlers)
 │   │   └── store.py                    # Store/Merge context
+│   ├── models/*                        # Project models (extends FAModel)
 │   ├── interfaces                      # Project interfaces
-│   ├── models/*                          # Project models (extends FAModel)
 │   │   ├── application.py              # Global app interface
 │   │   ├── controller.py               # Generic (handler and connect signals)
 │   │   ├── module.py                   # Generic (handler root state signals)
@@ -222,6 +222,6 @@ make run
 }
 ```
 
-## Licença
+## License
 
 UFRN/ZauJulio - 2024 💙🎓️
