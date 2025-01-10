@@ -90,7 +90,7 @@ class FAState(FAObserver):
 
     def _get_untracked(self) -> Self:
         """Get the untracked state."""
-        return self._copy(self)
+        return self._copy(cls=self)
 
     def _get_tracked(self) -> Self:
         """Get the tracked state."""
