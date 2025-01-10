@@ -360,3 +360,10 @@ WARNING : FALogger : [FAORM] - Document with UID bf7294e9f5a663002871c6eef522847
 INFO : FALogger : [FAModelManager] - - Model binary not found. : 2025-01-02 00:28:39,857
 INFO : FALogger : [FAModelManager] - - Saving model to MLP_2025-01-02_00-28-39_bf7294e9f5a663002871c6eef5228471.pkl. : 2025-01-02 00:28:40,012
 INFO : FALogger : [STORE] - State dumped. : 2025-01-02 00:28:40,172
+SUCCESS : FALogger : Logger initialized. : 2025-01-06 18:45:13,976
+INFO : FALogger : [STORE] - State loaded. : 2025-01-06 18:45:15,195
+INFO : FALogger : [STORE] - State dumped. : 2025-01-06 18:45:18,820
+SUCCESS : FALogger : [FAModelManager] - - Model loaded from KMeans_2025-01-01_22-03-32_2b006f2554fd1571df52f11df74811ad.pkl. : 2025-01-06 18:45:18,822
+INFO : FALogger : [STORE] - State dumped. : 2025-01-06 18:45:18,918
+SUCCESS : FALogger : [FAModelManager] - - Model loaded from MLP_2025-01-02_00-28-39_bf7294e9f5a663002871c6eef5228471.pkl. : 2025-01-06 18:45:18,922
+INFO : FALogger : [STORE] - State dumped. : 2025-01-06 18:45:18,997

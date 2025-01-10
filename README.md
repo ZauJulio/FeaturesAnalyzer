@@ -15,6 +15,8 @@
 ![Static Badge](https://img.shields.io/badge/pre--commit-enabled-%231F2E3A?logo=pre-commit&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/renovate-enabled-%2300BBDE?logo=renovatebot&logoColor=white)
 
+![image](https://github.com/user-attachments/assets/b336cca1-a81b-4be6-9e51-2947defd3eb6)
+
 ## Overview
 
 This is a simple tool to analyze the features of a dataset, prototype and test machine learning/statistical models.
@@ -35,7 +37,7 @@ The project is built with Python type hints in all modules.
 ---
 
 <details>
-<summary><strong>2. Install Poetry</strong></summary>
+<summary><strong>2. Install Poetry (Optional but RECOMMENDED)</strong></summary>
 
 Poetry is used to manage dependencies and build the project. Follow the [link](https://python-poetry.org/docs/#installing-with-pipx) to install it or continue with to install with pyenv and pip.
 </details>
@@ -43,7 +45,7 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
 ---
 
 <details>
-<summary><strong>3. Install Project and Run</strong></summary>
+<summary><strong>3. Install Project</strong></summary>
 
 ### **With Poetry**
 
@@ -85,7 +87,7 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
 
 1. The option to run via Docker is in its early stages and is a work in progress
 
-   ```sh
+   ```bash
    # If you are using X11, remember to allow the connection
    xhost +local:docker
 
@@ -94,6 +96,21 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
    # If u must use the local files, remember to map to volume
    docker run --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --name fa fa
    ```
+
+</details>
+
+---
+
+<details>
+<summary><strong>3. Run</strong></summary>
+
+```bash
+cd src
+python main.py
+
+# Or with make
+make run
+```
 
 </details>
 
@@ -156,7 +173,7 @@ Poetry is used to manage dependencies and build the project. Follow the [link](h
 │   │   │   ├── lock.py                 # Lock utils to multiprocessing
 │   │   │   ├── logger.py               # Global logger
 │   │   │   ├── meta.py                 # Meta class utils (Singleton)
-│   │   │   ├── time_.py                # T
+│   │   │   ├── time_.py                # Timezone, etc
 │   │   │   ├── types_.py               # State manager with Observer
 │   │   │   ├── ui.py                   # State manager with Observer
 │   │   └── widget.py                   # Generic Widget (extends Gtk.Widget)
