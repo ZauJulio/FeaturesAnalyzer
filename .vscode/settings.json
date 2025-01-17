@@ -62,5 +62,6 @@
 	"python.envFile": "${workspaceFolder}/.env",
 	"makefile.configureOnOpen": false,
 	"python.analysis.autoImportCompletions": true,
-	"python.analysis.typeCheckingMode": "basic"
+	"python.analysis.typeCheckingMode": "basic",
+	"svg.preview.background": "editor"
 }

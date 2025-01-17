@@ -10,26 +10,21 @@ class KMeansSolverController(FAController[KMeansSolverState]):
     """KMeans Solver controller."""
 
     state: KMeansSolverState
-    widget: KMeansSolverWidget
+    widget: KMeansSolverWidget = KMeansSolverWidget()
 
     def __init__(self, state: KMeansSolverState) -> None:
-        super().__init__(state=state, widget=KMeansSolverWidget())
+        self.state = state
 
-        self._load_initial_state()
+        self._connect_signals()
 
-    def _load_initial_state(self) -> None:
-        """Load the initial state."""
-        self.widget.max_iter_entry.set_text(str(self.state.max_iter or 100))
-        self.widget.n_cluster_entry.set_text(str(self.state.n_clusters or 1))
+        # Load the initial state
+        self.load(self.state)
 
         if self.state.max_iter or self.state.n_clusters:
             self.widget.on_module_change()
 
     def _connect_signals(self) -> None:
         """Connect signals to the widget."""
-        # Handle status and commit interface
-        self.widget.handle_status(state=self.state)
-
         self.widget.max_iter_entry.connect("changed", self.__on_data_iter_entry_changed)
         self.widget.n_cluster_entry.connect(
             "changed",
@@ -70,15 +65,11 @@ class KMeansSolverController(FAController[KMeansSolverState]):
 
     def reset(self) -> None:
         """Reset state."""
-        self.state.reset()
-
         self.widget.max_iter_entry.set_text("100")
         self.widget.n_cluster_entry.set_text("1")
 
     def load(self, value: KMeansSolverState) -> None:
         """Load state."""
-        self.state.reset()
-
         self.state.max_iter = value.max_iter or 100
         self.state.n_clusters = value.n_clusters or 1
 

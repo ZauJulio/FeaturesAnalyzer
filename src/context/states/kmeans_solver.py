@@ -55,37 +55,20 @@ class KMeansSolverState(FAState):
 
         ax = tab.figure.add_subplot(111, projection="3d")
 
-        ax.scatter(
-            x[y_kmeans == 0, 0],
-            x[y_kmeans == 0, 1],
-            x[y_kmeans == 0, 2],
-            c="purple",
-            label="Cluster 1",
-        )
+        for cluster in range(model_state.n_clusters):
+            ax.scatter(
+                x[y_kmeans == cluster, 0],
+                x[y_kmeans == cluster, 1],
+                x[y_kmeans == cluster, 2],
+                label=f"Cluster {cluster}",
+            )
 
-        ax.scatter(
-            x[y_kmeans == 1, 0],
-            x[y_kmeans == 1, 1],
-            x[y_kmeans == 1, 2],
-            c="orange",
-            label="Cluster 2",
-        )
-
-        ax.scatter(
-            x[y_kmeans == 2, 0],  # noqa: PLR2004
-            x[y_kmeans == 2, 1],  # noqa: PLR2004
-            x[y_kmeans == 2, 2],  # noqa: PLR2004
-            c="green",
-            label="Cluster 3",
-        )
-
-        # Plotting the centroids of the clusters
         ax.scatter(
             kmeans.method.cluster_centers_[:, 0],
             kmeans.method.cluster_centers_[:, 1],
             kmeans.method.cluster_centers_[:, 2],
-            c="red",
-            marker="X",
+            c="fuchsia",
+            marker="D",
             label="Centroids",
         )
 

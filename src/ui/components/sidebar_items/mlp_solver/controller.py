@@ -12,31 +12,27 @@ class MLPSolverController(FAController[MLPSolverState]):
     """MLP Solver controller."""
 
     state: MLPSolverState
-    widget: MLPSolverWidget
+    widget: MLPSolverWidget = MLPSolverWidget()
 
     def __init__(self, state: MLPSolverState) -> None:
-        super().__init__(state=state, widget=MLPSolverWidget())
+        self.state = state
 
-        self._load_initial_state()
+        self._connect_signals()
 
-    def _load_initial_state(self) -> None:
-        """Load the initial state."""
-        self.widget.max_iter_entry.set_text(str(self.state.max_iter or 200))
-        self.widget.hidden_layer_sizes_entry.set_text(
-            ",".join(map(str, self.state.hidden_layer_sizes or (100,))),
-        )
+        # Load the initial state
+        self.load(self.state)
 
-        self.widget.activation_combo.set_active_id(self.state.activation or "relu")
-        self.widget.solver_combo.set_active_id(self.state.solver or "adam")
-
-        if self.state.max_iter or self.state.hidden_layer_sizes:
+        if (
+            self.state.max_iter
+            or self.state.hidden_layer_sizes
+            or self.state.activation
+            or self.state.solver
+        ):
             self.widget.on_module_change()
 
     def _connect_signals(self) -> None:
         """Connect signals to the widget."""
         # Handle status and commit interface
-        self.widget.handle_status(state=self.state)
-
         self.widget.max_iter_entry.connect("changed", self.__on_max_iter_changed)
         self.widget.hidden_layer_sizes_entry.connect(
             "changed",
@@ -86,8 +82,6 @@ class MLPSolverController(FAController[MLPSolverState]):
 
     def reset(self) -> None:
         """Reset state."""
-        self.state.reset()
-
         self.widget.max_iter_entry.set_text("200")
         self.widget.hidden_layer_sizes_entry.set_text("100")
         self.widget.activation_combo.set_active(3)  # Default to "relu"
@@ -95,8 +89,6 @@ class MLPSolverController(FAController[MLPSolverState]):
 
     def load(self, value: MLPSolverState) -> None:
         """Load state."""
-        self.state.reset()
-
         self.state.max_iter = value.max_iter or 200
         self.state.hidden_layer_sizes = value.hidden_layer_sizes or (100,)
         self.state.activation = value.activation or "relu"
@@ -106,5 +98,6 @@ class MLPSolverController(FAController[MLPSolverState]):
         self.widget.hidden_layer_sizes_entry.set_text(
             ",".join(map(str, self.state.hidden_layer_sizes)),
         )
-        self.widget.activation_combo.set_active_id(self.state.activation)
-        self.widget.solver_combo.set_active_id(self.state.solver)
+
+        self.widget.activation_combo.set_active_id(self.state.activation or "relu")
+        self.widget.solver_combo.set_active_id(self.state.solver or "adam")

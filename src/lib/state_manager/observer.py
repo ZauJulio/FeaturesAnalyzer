@@ -150,7 +150,6 @@ class FAObserver:
         yield
 
         self.track()
-        self.__dict__["_status"] = "idle"
 
     def commit(self) -> None:
         """Commit the untracked state."""

@@ -5,7 +5,7 @@ from sklearn.base import check_is_fitted
 from sklearn.cluster import KMeans as SklearnKMeans
 from sklearn.exceptions import NotFittedError
 
-from lib.model_manager import FAModelManager
+from lib.model_manager import FAModel
 from lib.orm.schemas import PydanticBaseModel
 
 
@@ -19,7 +19,7 @@ class KMeansParams(PydanticBaseModel):
     random_state: int = 0
 
 
-class KMeans(FAModelManager[SklearnKMeans, KMeansParams]):
+class KMeans(FAModel[SklearnKMeans, KMeansParams]):
     """KMeans model manager."""
 
     schema = KMeansParams
