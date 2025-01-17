@@ -15,10 +15,10 @@ ParamsType = TypeVar("ParamsType", bound=PydanticBaseModel)
 ModelType = TypeVar("ModelType")
 
 
-class FAModelManager(Generic[ModelType, ParamsType]):
+class FAModel(Generic[ModelType, ParamsType]):
     """A manager for FA models."""
 
-    __PREFIX = "[FAModelManager] -"
+    __PREFIX = "[FAModel] -"
     file_name: str
     bin_base_path = Path(os.getenv("BIN_PATH", "./bin")) / "models"
     Path(bin_base_path).mkdir(parents=True, exist_ok=True)

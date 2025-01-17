@@ -5,7 +5,7 @@ from sklearn.base import check_is_fitted
 from sklearn.exceptions import NotFittedError
 from sklearn.neural_network import MLPClassifier
 
-from lib.model_manager import FAModelManager
+from lib.model_manager import FAModel
 from lib.orm.schemas import PydanticBaseModel
 
 
@@ -22,7 +22,7 @@ class MLPParams(PydanticBaseModel):
     random_state: int | None = None
 
 
-class MLP(FAModelManager[MLPClassifier, MLPParams]):
+class MLP(FAModel[MLPClassifier, MLPParams]):
     """MLPClassifier model manager."""
 
     schema = MLPParams

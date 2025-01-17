@@ -1,6 +1,11 @@
+from typing import TYPE_CHECKING
+
 from interfaces import FAMetaCheckModule, FAModule
 
 from . import ImportSettingsController, ImportSettingsState
+
+if TYPE_CHECKING:
+    from app import FeaturesAnalyzer
 
 
 @FAMetaCheckModule
@@ -8,26 +13,43 @@ class ImportSettingsModule(FAModule[ImportSettingsController, ImportSettingsStat
     """Import settings module."""
 
     name: str = "ImportSettings"
+    app: "FeaturesAnalyzer"
     controller: ImportSettingsController
 
-    def __init__(self, state: ImportSettingsState) -> None:
-        super().__init__(controller=ImportSettingsController(state))
-
-        self.subscribe()
+    def __init__(self, app: "FeaturesAnalyzer", state: ImportSettingsState) -> None:
+        super().__init__(
+            app=app,
+            controller=ImportSettingsController(state),
+        )
 
     def subscribe(self) -> None:
         """Load the module subscribers."""
         # On track changes, update the module
         # show button to commit changes
-        self.state.on_change(
-            "on_untrack",
-            lambda *_: self.controller.widget.on_module_change(),
-        )
+        self.controller.widget.handle_status(state=self.state)
 
-        self.state.on_change(
-            "selected_file",
-            lambda _, next_: self.on_select_file(None, next_),
-        )
+        with self.state as state:
+            state.on_change(
+                "on_untrack",
+                lambda *_: self.controller.widget.on_module_change(),
+            )
+
+            state.on_change(
+                "selected_file",
+                lambda _, next_: self.on_select_file(None, next_),
+            )
+
+            state.on_change(
+                "on_commit",
+                lambda *_: state.handle_001_load_data(self.app),
+            )
+
+            state.on_change(
+                "on_commit",
+                lambda *_: state.handle_002_on_data_update(self.app),
+            )
+
+            state.on_change("on_commit", lambda *_: self.app.store.dump())
 
     def on_select_file(self, _: None, next_: ImportSettingsState) -> None:
         """Select file."""

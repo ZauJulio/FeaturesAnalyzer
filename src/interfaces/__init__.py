@@ -1,6 +1,6 @@
 """Interfaces."""
 
-from .state import StateGeneric  # noqa: I001
+from .state import GenericState  # noqa: I001
 from .widget import GenericWidget
 from .controller import GenericController, FAController, FAMetaCheckController
 from .module import GenericModule, FAModule, FAMetaCheckModule
@@ -15,6 +15,6 @@ __all__ = [
     "FAModule",
     "GenericController",
     "GenericModule",
+    "GenericState",
     "GenericWidget",
-    "StateGeneric",
 ]

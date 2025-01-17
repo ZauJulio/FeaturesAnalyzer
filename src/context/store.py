@@ -54,13 +54,13 @@ class Store(metaclass=SingletonMeta):
 
     def load(self) -> None:
         """Load state from json."""
-        state = db.SettingsTable.find_by_uid("root")
+        doc = db.SettingsTable.find_by_uid("root")
 
-        if state:
-            self.__state.load(state.value)
+        if doc:
+            self.state.load(doc.value)
 
-            for key in self.__state.__annotations__:
-                if isinstance(self.__state[key], FAState):
-                    cast("FAState", self.__state[key]).untrack()
+            for key in self.state.__annotations__:
+                if isinstance(self.state[key], FAState):
+                    cast("FAState", self.state[key]).untrack()
 
             logger.info(f"{PREFIX} State loaded.")
