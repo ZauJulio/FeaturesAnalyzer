@@ -214,8 +214,8 @@ make run
 ## How to cite
 
 ```txt
-@misc{zaujulioFeaturesAnalyzer,
-  title={Features Analyzer},
+@misc{FeaturesAnalyzer,
+  title={Boilerplate para Ferramentas de Visualização e Análise de Dados},
   author={Zaú Júlio},
   year={2024},
   url={https://github.com/ZauJulio/FeaturesAnalyzer},
