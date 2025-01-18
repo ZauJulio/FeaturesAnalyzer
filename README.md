@@ -199,7 +199,7 @@ make run
 - **Widget**: Interact with the user/screen
 - **Controller**: Handle the widget state setter's/handle signals
 - **Module**: Handle the controller with root state subscribes
-- **Widget**: Integrate the module and interact with data/graphs, group widgets/modules, be creative ; )
+- **State**: Integrate the module and interact with data/graphs, group widgets/modules, be creative ; )
 
 ---
 
